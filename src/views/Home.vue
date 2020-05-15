@@ -4,7 +4,7 @@
       <v-layout col>
         <v-flex md3>
           <v-card flat color="transparent">
-            <ProfileCard />
+            <ScannerItem />
           </v-card>
         </v-flex>
 
@@ -95,7 +95,7 @@
 <script>
 import StarRating from "vue-star-rating";
 import { ToggleButton } from "vue-js-toggle-button";
-import ProfileCard from "../components/ProfileCard.vue";
+import ScannerItem from "../components/ScannerItem.vue";
 import MessageCard from "../components/MessageCard.vue";
 import Calender from "../components/Calender.vue";
 import firebase from "firebase";
@@ -108,7 +108,7 @@ export default {
     TestCalender,
     StarRating,
     ToggleButton,
-    ProfileCard,
+    ScannerItem,
     MessageCard,
     Calender,
     VueGrid,
