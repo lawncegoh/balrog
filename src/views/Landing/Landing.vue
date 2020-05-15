@@ -3,7 +3,7 @@
     <b-navbar toggleable="lg" type="light" :class="[$style['alternate-bg'], $style['navbar-bg']]">
       <div class="container">
         <b-navbar-brand to="/">
-          <img src="./National_University_of_Singapore_logo_NUS.png" width="173" height="80" class="d-inline-block align-top" alt="">
+          <img src="./razer.png" width="150" height="150" class="d-inline-block align-top" alt="">
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -20,15 +20,15 @@
     <div :class="[$style['alternate-bg'], $style['header-bg']]" class="py-5 text-center">
       <div class="container">
         <!-- <logo /> -->
-        <h1 :class="$style.orange"><strong>
-          NUSTutors
+        <h1 :class="$style.green"><strong>
+          FundRaze
         </strong></h1>
-        <h4 :class="$style.orange" >
-          Simple and easy way to connect NUS students
+        <h4 :class="$style.green" >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed residamus, inquit, si placet. 
         </h4>
 
         <div class="mt-5">
-          <div>Join our early access program.</div>
+          <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed residamus, inquit, si placet. </div>
           <form>
             <div class="form-row justify-content-md-center">
               <div class="col-md-auto mb-3">
@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <div class="py-5">
+    <!-- <div class="py-5">
       <div class="container">
         <b-carousel
           :interval="4000"
@@ -67,17 +67,17 @@
           
         </b-carousel>
       </div>
-    </div>
+    </div> -->
     <div class="py-5">
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <h2>What is NUS FORUM?</h2>
-            <p>A platform made by students, for students. We believe that students need to make informed descisions and connect with seniors about module selections and advice. NUS Forum is the platform to make that happen.</p>
+            <h2>XXX</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed residamus, inquit, si placet. Quod quidem nobis non saepe contingit. Cyrenaici quidem non recusant; Si quae forte-possumus. Esse enim quam vellet iniquus iustus poterat inpune. Duo Reges: constructio interrete.</p>
           </div>
           <div class="col-md-6">
-            <h2>Why do we use it?</h2>
-            <p>As students ourselves, we faced problems seeking advice from seniors regarding modules selection and general help for the modules that we are currently taking. By opening up doors and connections to students across NUS, students that face similar problems like ourselves can be able to reach out and connect with the right people.</p>
+            <h2>XXX</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed residamus, inquit, si placet. Quod quidem nobis non saepe contingit. Cyrenaici quidem non recusant; Si quae forte-possumus. Esse enim quam vellet iniquus iustus poterat inpune. Duo Reges: constructio interrete.</p>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@
         class="text-center"
         cols="12"
       >
-        <strong>Made With Love By 3G3B</strong>
+        <strong>By Beef Wellington</strong>
       </v-col>
     </v-footer>
 
@@ -112,9 +112,9 @@
 
 <style module>
 .alternate-bg {
-  background-color: #003D7C;
-  border-bottom: solid 1px #003D7C;
-  border-top: solid 1px #003D7C;
+  background-color: black;
+  border-bottom: solid 1px black;
+  border-top: solid 1px black;
 }
 
 .navbar-bg {
@@ -133,15 +133,15 @@
 }
 
 .blue {
-  color: white;
-  background-color: #003D7C;
+  color: #66B933;
+  background-color: black;
   width:100%;
   height: 100%;
   padding: 0.5%
 }
 
-.orange{
-  color:#EF7C00
+.green{
+  color:#66B933
 }
 
 </style>

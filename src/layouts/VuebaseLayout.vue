@@ -14,11 +14,11 @@
         <v-list class="pa-0" :class="{ 'list-border-bottom': miniVariant }">
           <v-list-tile>
             <v-list-tile-action v-if="!miniVariant">
-              <img src="NUS.jpg" height="40" width="40">
+              <img src="./razer.png" height="40" width="40">
             </v-list-tile-action>
             <v-list-tile-content v-if="!miniVariant">
               <v-list-tile-title>
-                <h4>NUSTutors</h4>
+                <h4>FundRaze</h4>
               </v-list-tile-title>
             </v-list-tile-content>
             <v-list-tile-action>
@@ -123,17 +123,17 @@ export default {
       analyticsItems: [
         {
           icon: 'dashboard',
-          title: 'Dashboard',
+          title: 'RazeAwareness',
           link: '/dashboard'
         },
         {
           icon: 'search',
-          title: 'Module Search',
+          title: 'RazeScanner',
           link: '/search'
         },
         {
           icon: 'chat',
-          title: 'Chat',
+          title: 'FundRaze',
           link: '/chat'
         },
         {
