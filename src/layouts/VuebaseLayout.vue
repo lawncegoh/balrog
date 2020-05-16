@@ -138,11 +138,6 @@ export default {
           link: "/chat",
         },
 
-        {
-          icon: "person",
-          title: "About Us",
-          link: "/about",
-        },
       ],
       miniVariant: false,
       right: true,

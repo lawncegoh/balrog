@@ -6,15 +6,15 @@
       </h1>
 
       <div class="container">
-          <VueFaqAccordion
-            @categorySelect="onCategorySelect"
-            @itemSelect="onItemSelect"
-            :items="myItems"
-          />
-        </div>
+        <VueFaqAccordion
+          @categorySelect="onCategorySelect"
+          @itemSelect="onItemSelect"
+          :items="myItems"
+        />
+      </div>
 
       <!-- Clicked on Government Grants, render grants stuff -->
-      <v-container v-if="this.currentState==0">
+      <v-container v-if="this.currentState == 0">
         <div>
           <v-container>
             <h2 class="headers">
@@ -113,36 +113,35 @@
                   {{ r }}
                 </li>
               </ul>
-              </v-container>
             </v-container>
-          </div>
-        </v-container>
-    <!-- Clicked on Government Grants, render grants stuff -->
+          </v-container>
+        </div>
+      </v-container>
+      <!-- Clicked on Government Grants, render grants stuff -->
 
+      <!-- Clicked on Loans, render loans stuff-->
+      <v-container v-else-if="this.currentState == 1">
+        <div>
+          <SMEAccountCreation />
+        </div>
+      </v-container>
+      <!-- Clicked on Loans, render loans stuff-->
 
-    <!-- Clicked on Loans, render loans stuff-->
-    <v-container v-else-if="this.currentState==1">
-      <div>
-        Hello Hello
-      </div>
-    </v-container>
-    <!-- Clicked on Loans, render loans stuff-->
+      <!-- Clicked on Loans, render loans stuff-->
+      <!-- <v-container v-else-if="this.currentState==2"> -->
 
-    <!-- Clicked on Loans, render loans stuff-->
-    <!-- <v-container v-else-if="this.currentState==2"> -->
-
-    <!-- Clicked on Loans, render loans stuff-->
-
-
+      <!-- Clicked on Loans, render loans stuff-->
     </div>
   </v-container>
 </template>
 
 <script>
 import VueFaqAccordion from "./vue-faq-accordion.vue";
+import SMEAccountCreation from "./components/Mambu/SMEAccountCreation.vue";
 export default {
   components: {
     VueFaqAccordion,
+    SMEAccountCreation,
   },
   data() {
     return {
@@ -165,7 +164,8 @@ export default {
       myItems: [
         {
           title: "Capability Development Grant",
-          value: "CDG (Capability Development Grant) is a programme managed by Enterprise Singapore (formerly known as SPRING Singapore). It is designed to help Small and Medium Enterprises (SMEs) in Singapore to build internal capabilities in 10 specific areas: \n Branding & Marketing, Business Model Transformation, Enhancing Business, Processes for Productivity, Human Capital Development, Product Development, Business Excellence, Service Excellence, Intellectual Property, Financial Management, Standards Adoption, https://cdggrant.com/",
+          value:
+            "CDG (Capability Development Grant) is a programme managed by Enterprise Singapore (formerly known as SPRING Singapore). It is designed to help Small and Medium Enterprises (SMEs) in Singapore to build internal capabilities in 10 specific areas: \n Branding & Marketing, Business Model Transformation, Enhancing Business, Processes for Productivity, Human Capital Development, Product Development, Business Excellence, Service Excellence, Intellectual Property, Financial Management, Standards Adoption, https://cdggrant.com/",
           category: "Government Grants",
         },
         {
@@ -188,10 +188,9 @@ export default {
         },
         {
           title: "Loans",
-          value:
-          "your loan descriptions come here",
+          value: "your loan descriptions come here",
           category: "Loans",
-        }
+        },
       ],
     };
   },
@@ -216,7 +215,12 @@ export default {
       this.indexToKeep = [];
     },
     determineRightFunds() {
-      if (this.selected1 == 1 && this.selected2 == 1 && this.selected3 == 1 && this.selected4 == 1) {
+      if (
+        this.selected1 == 1 &&
+        this.selected2 == 1 &&
+        this.selected3 == 1 &&
+        this.selected4 == 1
+      ) {
         if (!this.indexToKeep.includes(0)) {
           this.indexToKeep.push(0);
         }
@@ -230,39 +234,24 @@ export default {
           this.indexToKeep.push(3);
         }
       }
-      if (this.selected1 != 1) {
+      if (this.selected1 == 0) {
+        if (!this.indexToKeep.includes(3)) {
+          this.indexToKeep.push(3);
+        }
       }
       if (this.selected2 != 1) {
-        if (!this.indexToKeep.includes(0)) {
-          this.indexToKeep.push(0);
-        }
-        if (!this.indexToKeep.includes(1)) {
-          this.indexToKeep.push(1);
-        }
-        if (!this.indexToKeep.includes(2)) {
-          this.indexToKeep.push(2);
+        if (!this.indexToKeep.includes(3)) {
+          this.indexToKeep.push(3);
         }
       }
       if (this.selected3 != 1) {
-        if (!this.indexToKeep.includes(0)) {
-          this.indexToKeep.push(0);
-        }
-        if (!this.indexToKeep.includes(1)) {
-          this.indexToKeep.push(1);
-        }
-        if (!this.indexToKeep.includes(2)) {
-          this.indexToKeep.push(2);
+        if (!this.indexToKeep.includes(3)) {
+          this.indexToKeep.push(3);
         }
       }
       if (this.selected4 != 1) {
-        if (!this.indexToKeep.includes(0)) {
-          this.indexToKeep.push(0);
-        }
-        if (!this.indexToKeep.includes(1)) {
-          this.indexToKeep.push(1);
-        }
-        if (!this.indexToKeep.includes(2)) {
-          this.indexToKeep.push(2);
+        if (!this.indexToKeep.includes(3)) {
+          this.indexToKeep.push(3);
         }
       }
     },
@@ -275,8 +264,14 @@ export default {
       console.log(this.recommendedGrants);
     },
     onQuizComplete() {
-      if (this.selected1 != null && this.selected2 != null && this.selected3 != null && this.selected4 != null) {
-        this.recommendedGrants = [];
+      this.regenRecoArray();
+      this.regenIndexArray();
+      if (
+        this.selected1 != null &&
+        this.selected2 != null &&
+        this.selected3 != null &&
+        this.selected4 != null
+      ) {
         this.determineRightFunds();
         this.genRecommendedGrants();
         this.complete = true;

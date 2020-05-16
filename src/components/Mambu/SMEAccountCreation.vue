@@ -11,13 +11,13 @@
       
       <br>
       <div class="component-container">
-        <h3>Basic Info</h3>
+        <h3 style="color:#66B933">Basic Info</h3>
         <br>
         <VueInputUi
           id="VueInputUi1"
           v-model="groupname"
           label="Company Name"
-          color="green"
+          color="#66B933"
           :border-radius="8"
           required
         />
@@ -31,11 +31,12 @@
           type="email"
           required
         /> -->
-        <br>
+        
         <VueInputUi
           id="VueInputUi7"
           v-model="line1"
           label="Address"
+          color="#66B933"
           :border-radius="8"
           required
         />
@@ -43,6 +44,7 @@
         <VueInputUi
           id="VueInputUi8"
           v-model="line2"
+          color="#66B933"
           label="Building (Optional)"
           :border-radius="8"
         />
@@ -51,6 +53,7 @@
           id="VueInputUi9"
           v-model="city"
           label="City"
+          color="#66B933"
           :border-radius="8"
           required
         />        
@@ -59,6 +62,7 @@
           id="VueInputUi10"
           v-model="region"
           label="Region"
+          color="#66B933"
           :border-radius="8"
           required
         />
@@ -67,6 +71,7 @@
           id="VueInputUi11"
           v-model="postcode"
           label="Postal Code"
+          color="#66B933"
           :border-radius="8"
           required
         />
@@ -75,6 +80,7 @@
           id="VueInputUi12"
           v-model="country"
           label="Country"
+          color="#66B933"
           :border-radius="8"
           required
         />
@@ -82,12 +88,13 @@
       </div>
 
       <div class="component-container">
-        <h3>Identification Numbers</h3>
+        <h3 style="color:#66B933">Identification Numbers</h3>
         <br>
         <VueInputUi
           id="VueInputUi18"
           v-model="UniqueEntityNumber"
           label="Unique Entity Number"
+          color="#66B933"
           :border-radius="8"
           required
         />
@@ -109,7 +116,7 @@
       
 
       <div>
-        <v-btn @click="submit" color="blue">Submit</v-btn>
+        <v-btn @click="submit" large color="#66B933">Submit</v-btn>
       </div>
 
     </div>
@@ -224,7 +231,7 @@
 </script>
 
 <style lang="scss">
-  @import 'style-helpers';
+  //@import 'style-helpers';
   html,
   body {
     margin: 0;
@@ -248,7 +255,7 @@
     .component-container {
       margin: 0 10px 20px 10px;
       padding: 20px;
-      background: lightblue;
+      background:#000000;
       border-radius: 4px;
       border: 1px solid #EBEBEB;
       min-width: 300px;

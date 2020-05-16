@@ -82,8 +82,6 @@ export default {
           comment: this.chatComment,
           time: this.timeStamp,
         });
-        this.chatName = "Insert Username";
-        this.chatComment = "Insert Comment";
       }
     },
     insert_chat_event: function(event) {
