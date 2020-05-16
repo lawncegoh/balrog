@@ -12,19 +12,14 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutUs.vue')
+    path: '/razeawareness',
+    name: 'razeawareness',
+    component: () => import('../views/Dashboard/RazeAwareness.vue')
   },
   {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: () => import('../views/Dashboard/Layout')
-  },
-  {
-    path: '/chat',
-    name: 'Chat',
-    component: () => import('../Chat.vue'),
+    path: '/razefunds',
+    name: 'razefunds',
+    component: () => import('../RazeFunds.vue'),
     props: true
   },
   {

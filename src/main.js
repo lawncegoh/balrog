@@ -30,7 +30,6 @@ Vue.use(ShardsVue);
 
 Vue.use(VueSimpleAlert);
 
-Vue.use(FullCalendar);
 Vue.config.productionTip = false;
 Vue.use(VueChatScroll);
 Vue.use(CarouselPlugin);

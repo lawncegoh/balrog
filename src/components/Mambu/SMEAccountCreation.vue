@@ -125,7 +125,7 @@
         <br />
         <br />
         <div class="text-center ">
-          <b-btn pill variant="success" class="text-center" href="/chat"
+          <b-btn pill variant="success" class="text-center" href="/razefunds"
             >Back to Home Page</b-btn
           >
           <br />

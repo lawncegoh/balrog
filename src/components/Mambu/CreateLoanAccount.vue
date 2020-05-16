@@ -25,7 +25,7 @@
             variant="success"
             class="next"
             text-align="right"
-            href="/chat"
+            href="/razefunds"
             @click="createLA"
             >Create Loan Account Now</b-btn
           >

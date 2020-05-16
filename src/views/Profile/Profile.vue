@@ -333,15 +333,11 @@
 <script>
 import { VueEditor } from "vue2-editor";
 import firebase from "firebase";
-import StarRating from "vue-star-rating";
 import ProfileCard from "../../components/ProfileCard";
-import MessageCard from "../../components/MessageCard";
 export default {
   name: "Modules",
   components: {
-    StarRating,
     ProfileCard,
-    MessageCard,
   },
   data() {
     return {

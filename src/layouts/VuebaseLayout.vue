@@ -125,7 +125,7 @@ export default {
         {
           icon: "library_books",
           title: "RazeAwareness",
-          link: "/dashboard",
+          link: "/razeawareness",
         },
         {
           icon: "search",
@@ -135,7 +135,7 @@ export default {
         {
           icon: "attach_money",
           title: "RazeFunds",
-          link: "/chat",
+          link: "/razefunds",
         },
 
       ],
