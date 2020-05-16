@@ -300,13 +300,13 @@
             </v-container>
           </v-card>
 
-          <v-card class="skillset">
+          <v-card class="businessset">
             <div class="container">
-              <div class="skill-test">
+              <div class="business-test">
                 <v-btn
                   class="mx-2"
                   depressed
-                  @click="newSkill"
+                  @click="newBusiness"
                   color="#F1BA79"
                   :style="{ float: 'right', color: '#FFFFFF' }"
                   >Add one Part</v-btn
@@ -322,28 +322,28 @@
                     </thead>
 
                     <tbody>
-                      <tr v-for="skill in skillset" v-bind:key="skill">
+                      <tr v-for="business in businessset" v-bind:key="business">
                         <td>
                           <span>
                             <h5>
-                              {{ skill.name }}
+                              {{ business.name }}
                             </h5>
 
-                            {{ skill.detail }}
+                            {{ business.detail }}
                           </span>
                         </td>
                         <td>
                           <v-btn
                             class="mx-2"
                             color="primary"
-                            @click="editSkill(skill)"
+                            @click="editBusiness(business)"
                           >
                             Edit
                           </v-btn>
                           <v-btn
                             class="mx-2"
                             color="error"
-                            @click="deleteSkill(skill)"
+                            @click="deleteBusiness(business)"
                           >
                             Delete
                           </v-btn>
@@ -355,10 +355,10 @@
               </div>
             </div>
 
-            <!-- Skills Modal -->
+            <!-- Business Modal -->
             <div
               class="modal fade"
-              id="skill"
+              id="business"
               tabindex="-1"
               role="dialog"
               aria-labelledby="editLabel"
@@ -385,7 +385,7 @@
                           <input
                             type="text"
                             placeholder="Title e.g Distribution Channel, Value Proposition"
-                            v-model="skill.name"
+                            v-model="business.name"
                             class="form-control"
                           />
                         </div>
@@ -393,7 +393,7 @@
                           <input
                             type="text"
                             placeholder="A small write-up about this part of your business model"
-                            v-model="skill.detail"
+                            v-model="business.detail"
                             class="form-control"
                           />
                         </div>
@@ -409,7 +409,7 @@
                       Close
                     </button>
                     <button
-                      @click="addSkill()"
+                      @click="addBusiness()"
                       type="button"
                       class="btn btn-primary"
                       v-if="modal == 'new'"
@@ -417,7 +417,7 @@
                       Save changes
                     </button>
                     <button
-                      @click="updateSkill()"
+                      @click="updateBusiness()"
                       type="button"
                       class="btn btn-primary"
                       v-if="modal == 'edit'"
@@ -463,8 +463,8 @@ export default {
         skill: null,
         id: null,
       },
-      skillset: [],
-      skill: {
+      businessset: [],
+      business: {
         name: null,
         detail: null,
         id: null,
@@ -615,14 +615,14 @@ export default {
 
       db.collection("users")
         .doc(firebase.auth().currentUser.uid)
-        .collection("skills")
+        .collection("business")
         .get()
         .then((querySnapshot) => {
-          let allSkills = [];
+          let allBusiness = [];
           querySnapshot.forEach((doc) => {
-            allSkills.push(doc.data());
+            allBusiness.push(doc.data());
           });
-          this.skillset = allSkills;
+          this.businessset = allBusiness;
         });
 
       db.collection("users")
@@ -632,45 +632,45 @@ export default {
           this.rate = doc.data().rate;
         });
     },
-    resetSkill() {
-      this.skill = {
+    resetBusiness() {
+      this.business = {
         name: null,
         detail: null,
         id: null,
       };
     },
-    newSkill() {
+    newBusiness() {
       this.modal = "new";
-      this.resetSkill();
-      $("#skill").modal("show");
+      this.resetBusiness();
+      $("#business").modal("show");
     },
-    updateSkill() {
+    updateBusiness() {
       db.collection("users")
         .doc(firebase.auth().currentUser.uid)
-        .collection("skills")
-        .where("id", "==", this.skill.id)
+        .collection("business")
+        .where("id", "==", this.business.id)
         .get()
         .then((querySnapshot) => {
           return querySnapshot.docs[0].ref.update({
-            name: this.skill.name,
-            detail: this.skill.detail,
+            name: this.business.name,
+            detail: this.business.detail,
           });
         })
         .then(() => {
           this.fetchEverything();
         });
-      $("#skill").modal("hide");
+      $("#business").modal("hide");
     },
-    editSkill(skill) {
+    editBusiness(business) {
       this.modal = "edit";
-      this.skill = skill;
-      $("#skill").modal("show");
+      this.business = business;
+      $("#business").modal("show");
     },
-    deleteSkill(skill) {
+    deleteBusiness(business) {
       db.collection("users")
         .doc(firebase.auth().currentUser.uid)
-        .collection("skills")
-        .where("id", "==", skill.id)
+        .collection("business")
+        .where("id", "==", business.id)
         .get()
         .then((querySnapshot) => {
           return querySnapshot.docs[0].ref.delete().then(() => {
@@ -678,21 +678,21 @@ export default {
           });
         });
     },
-    addSkill() {
-      this.skill.id = new Date();
-      if (this.skill.name != null && this.skill.detail != null) {
+    addBusiness() {
+      this.business.id = new Date();
+      if (this.business.name != null && this.business.detail != null) {
         db.collection("users")
           .doc(firebase.auth().currentUser.uid)
-          .collection("skills")
-          .add(this.skill)
+          .collection("business")
+          .add(this.business)
           .then(() => {
-            alert("Skill created successfully");
+            alert("Business Model created successfully");
           });
       } else {
         alert("Enter blank first");
       }
       this.fetchEverything();
-      $('#skill').modal('hide');
+      $('#business').modal('hide');
     }
   },
   created() {
