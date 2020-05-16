@@ -14,7 +14,7 @@
         <v-list class="pa-0" :class="{ 'list-border-bottom': miniVariant }">
           <v-list-tile>
             <v-list-tile-action v-if="!miniVariant">
-              <img src="./razer.png" height="40" width="40" />
+              <img src="pseudo_razer.jpg" height="40" width="40" />
             </v-list-tile-action>
             <v-list-tile-content v-if="!miniVariant">
               <v-list-tile-title>
@@ -33,7 +33,7 @@
       </v-toolbar>
       <v-divider></v-divider>
 
-      <v-tooltip right :disabled="!miniVariant">
+      <!-- <v-tooltip right :disabled="!miniVariant">
         <v-toolbar flat class="transparent" dense slot="activator">
           <v-list class="pa-0" :class="{ 'list-border-bottom': miniVariant }">
             <v-list-tile to="/home" exact>
@@ -47,7 +47,7 @@
           </v-list>
         </v-toolbar>
       </v-tooltip>
-      <v-divider></v-divider>
+      <v-divider></v-divider> -->
 
       <v-list subheader :class="{ 'list-border-bottom': miniVariant }">
         <template v-for="item in analyticsItems">
@@ -137,6 +137,11 @@ export default {
           title: "Company Profile",
           link: "/profile",
         },
+        {
+          icon: "person",
+          title: "About Us",
+          link: "/about",
+        }
       ],
       miniVariant: false,
       right: true,

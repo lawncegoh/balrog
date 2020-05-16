@@ -159,7 +159,7 @@ export default {
   },
   methods: {
     showInfo() {
-      this.$fire({title: this.service.company, text: this.service.company, text:this.service.company});
+      this.$fire({title: this.service.company, text: this.service.company});
     },
   },
   //   fetchUser() {
@@ -207,9 +207,6 @@ export default {
     },
     isCompared() {
       // check whether in compared
-    //   console.log("checking comparison");
-    //   console.log(this.comparedItems);
-    //   console.log(this.comparedItems.includes(this.service));
       if (this.comparedItems.includes(this.service)) {
         return true;
       } else {
