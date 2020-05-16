@@ -19,6 +19,10 @@ import 'vue-chartist';
 import 'vuetify/dist/vuetify.min.css';
 import FullCalendar from 'vue-full-calendar';
 
+import VueSimpleAlert from "vue-simple-alert";
+
+Vue.use(VueSimpleAlert);
+
 Vue.use(FullCalendar);
 Vue.config.productionTip = false;
 Vue.use(VueChatScroll);
@@ -26,6 +30,7 @@ Vue.use(CarouselPlugin);
 Vue.use(NavbarPlugin);
 Vue.use(Vuetify);
 Vue.use(require('vue-chartist'));
+
 
 window.$ = window.jQuery = jQuery;
 
