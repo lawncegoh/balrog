@@ -126,12 +126,12 @@ export default {
       console.log(data);
     },
     addToComparison(data) {
-      if (this.compared.length < 3) {
+      if (this.compared.length < 2) {
       console.log("pushing data into comparison");
       this.compared.push(data);
       console.log(this.compared);
       } else {
-        alert('You can compare at most 3 companies!');
+        alert('You can compare at most 2 companies!');
       }
     },
     removeFromComparison(data) {

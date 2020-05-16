@@ -22,6 +22,11 @@ import VueSimpleAlert from "vue-simple-alert";
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import ShardsVue from 'shards-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'shards-ui/dist/css/shards.css'
+
+Vue.use(ShardsVue);
 
 Vue.use(VueSimpleAlert);
 
