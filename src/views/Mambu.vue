@@ -1,332 +1,155 @@
 <template>
-  <div
-    id="VueInputUiDemo"
-    class="vue-input-ui-demo flex"
-    :class="{'dark': darkMode}"
-  >
-    <div class="container">
-      
-      <div class="section">
-        <h2>Create Your Company Bank Account</h2>
+  <div id="show-form">
+    <h1 class="title1">
+      <center>Start Here to apply for your loans</center>
+    </h1>
+    <br />
+
+    <div v-if="index === 0" class="container">
+      <div class="col-md-10 ml-auto mr-auto">
+        <ScannerItem v-bind:order="orderCallback" />
       </div>
-      
-      <div class="flex justify-content-center pt-3 mb-2">
-        <button
-          class="btn btn-sm"
-          @click="darkMode = !darkMode"
+      <vue-grid align="stretch" justify="between">
+        <vue-cell
+          v-for="service in services"
+          v-bind:key="service.company"
+          width="4of12"
         >
-          Toggle Dark Mode
-        </button>
-        <button
-          class="btn btn-success ml-2 btn-sm"
-          @click="loading = !loading"
-        >
-          Toggle loader
-        </button>
-      </div>
-      <br>
-      <div class="component-container">
-        <VueInputUi
-          id="VueInputUi1"
-          type="abc"
-          name="abc"
-          v-model="groupname"
-          label="Company Name"
-          color="purple"
-          size="sm"
-          :dark="darkMode"
-          clearable
-          :loader="loading"
-        />
-        <br>
-        <VueInputUi
-          id="VueInputUi2"
-          v-model="emailAddress"
-          label="Email Address"
-          :dark="darkMode"
-          :loader="loading"
-          :border-radius="8"
-        />
-        <br>
-        <VueInputUi
-          id="VueInputUi3"
-          v-model="homeAddress"
-          :error="true"
-          label="Company Address"
-          hint="Error text"
-          size="lg"
-          :dark="darkMode"
-          :loader="loading"
-        />
-        <br>
-        <VueInputUi
-          id="VueInputUi4"
-          v-model="assignedUserKey"
-          label="Assigned User Key (Optional)"
-          valid
-          :dark="darkMode"
-            
-          :loader="loading"
-        />
-        <br>
-        <VueInputUi
-          id="VueInputUi5"
-          v-model="assignedCentreKey"
-          label="Assigned Centre Key (Optional)"
-          :dark="darkMode"
-          :loader="loading"
-        />
-        <br>
-        <VueInputUi
-          id="VueInputUi6"
-          v-model="assignedBranchKey"
-          label="Assigned Branch Key"
-          :dark="darkMode"
-          disabled
-          :loader="loading"
-        />
-        <br>
-        <VueInputUi
-          id="VueInputUi7"
-          v-model="line1"
-          label="Building Name"
-          :dark="darkMode"
-          clearable
-          :loader="loading"
-        />
-        <br>
-        <VueInputUi
-          id="VueInputUi8"
-          v-model="line2"
-          label="Address"
-          hint="Is required"
-          :dark="darkMode"
-          required
-          :loader="loading"
-          clearable
-        />
-        <br>
-        <VueInputUi
-          id="VueInputUi9"
-          v-model="city"
-          label="City"
-          :dark="darkMode"
-          color="tomato"
-          :loader="loading"
-        />        
-        <br>
-        <VueInputUi
-          id="VueInputUi10"
-          v-model="region"
-          label="Region"
-          :dark="darkMode"
-          :loader="loading"
-          :border-radius="8"
-        />
-        <br>
-        <VueInputUi
-          id="VueInputUi11"
-          v-model="postcode"
-          label="Postal Code"
-          :dark="darkMode"
-          :loader="loading"
-          :border-radius="8"
-        />
-        <br>
-        <VueInputUi
-          id="VueInputUi12"
-          v-model="country"
-          label="Country"
-          :dark="darkMode"
-          :loader="loading"
-          :border-radius="8"
-        />
-        <br> <!-- nothing to add, can add my own customFieldId that coys need to add in -->
-        <VueInputUi 
-          id="VueInputUi13" 
-          v-model="custominfo_customFieldID" 
-          label="Income"
-          :dark="darkMode"
-          :loader="loading"
-          :border-radius="8"
-        />
-        <br>
-        <VueInputUi
-          id="VueInputUi14"
-          v-model="custominfo_customFieldID"
-          label="Profit Value"
-          :border-radius="8"
-          :dark="darkMode"
-        />
-        <br>
-        <VueInputUi
-          id="VueInputUi15"
-          v-model="clientKey"
-          label="Client Key"
-          :dark="darkMode"
-          :loader="loading"
-          :border-radius="8"
-        />
-        <br>
-        <VueInputUi
-          id="VueInputUi16"
-          v-model="groupRoles_clientKey"
-          label="Client Key of Group Roles"
-          :dark="darkMode"
-          :loader="loading"
-          :border-radius="8"
-        />
-        <br>
-        <VueInputUi
-          id="VueInputUi17"
-          v-model="groupRoles_groupRoleNameKey"
-          label="Unique Entity Number"
-          :dark="darkMode"
-          :loader="loading"
-          :border-radius="8"
-        />
-        <br>
-        <VueInputUi
-          v-if="branchID"
-          id="VueInputUi18"
-          v-model="branchID"
-          label="Branch ID"
-          :dark="darkMode"
-          :loader="loading"
-          :border-radius="8"
-        />
-      </div>
-      <div id="components-demo">
-        <button @click="submit">Submit</button>
+          <!-- <router-link v-bind:to="'/services/' + service.company"> -->
+            <ScannerItem :service="service" :order="orderCallback"/>
+          <!-- </router-link> -->
+        </vue-cell>
+      </vue-grid>
+    </div>
+
+    <div v-if="ordering" class="container">
+      <div class="col-md-10 ml-auto mr-auto">
+        <OrderItem v-bind:service="ordered" />
       </div>
     </div>
-    
 
+    <div v-if="comparing" class="container">
+      <div class="col-md-10 ml-auto mr-auto">
+        Comparing
+      </div>
+    </div>
+    <!-- <div class="searchbox">
+      <center>
+        <input type="text" v-model="search" placeholder="search module codes" class="show-blogs" />
+      </center>
+    </div>
+
+    <div v-for="mods in filteredBlogs" class="single-blog">
+      <h1>{{ mods.code.toUpperCase() }}: {{ mods.name.toUpperCase() }}</h1>
+      <h3>Tutors:</h3>
+
+      <div v-for="tut in mods.tutors" class="tutor-col">
+        <router-link v-bind:to="'/tutors/' + tut">
+          <h4>{{ tut }}</h4>
+        </router-link>
+      </div>
+    </div> -->
   </div>
-  
 </template>
 
 <script>
-  import VueInputUi from 'vue-input-ui';
-  import 'vue-input-ui/dist/vue-input-ui.css';
-  import axios from 'axios';
-  
-  const baseURL = 'http://localhost:3002'
-
-  export default {
-    name: 'App',
-    components: {
-      VueInputUi
+import db from "@/firebase/init.js";
+import ScannerItem from "../components/ScannerItem.vue";
+import { VueGrid, VueCell } from "vue-grd";
+import OrderItem from "../components/Order.vue";
+export default {
+  data() {
+    return {
+      services: [],
+      browsing: true,
+      ordering: false,
+      comparing: false,
+      ordered: null,
+      compared: [],
+    };
+  },
+  components: {
+    ScannerItem,
+    VueGrid,
+    VueCell,
+    OrderItem
+  },
+  methods: {
+    orderCallback(data) {
+      this.browsing = false;
+      this.ordering = true;
+      this.ordered = data;
+      console.log(data);
     },
-    data () {
-      return {
-        groupname: "",
-        emailAddress: "",
-        homeAddress: "",
-        assignedUserKey: "",
-        assignedCentreKey: "",
-        assignedBranchKey: "",
-        line1: "", // home address
-        line2: "",
-        city: "",
-        region: "",
-        postcode: "",
-        country: "",
-        custominfo_customFieldID: "",
-        custominfo_value: "",
-        customFieldSetGroupIndex: "",
-        clientKey: "", // can have a lot of clientKey
-        groupRoles_clientKey: "",
-        groupRoles_groupRoleNameKey: "",
-        UniqueEntityNumber: null,
-        branchID: null,
-        creationDate: "",
-        darkMode: false,
-        loading: false
-      }
-    },
-    mounted: async function() {
-        try {
-          const res = await axios.get(baseURL + "/getBranchID");
-          console.log(res.data)
-          this.branchID = res.data.encodedKey
-          console.log('branchId', this.branchID)
-        } catch(e) {
-          console.error(e)
-        }
-      },
-    methods: {
-      getNow: function() {
-        const today = new Date();
-        const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        const dateTime = date +' '+ time;
-        this.creationDate = dateTime;
-      },
-      submit: async function() {
-        try {
-          var results = await axios.post(baseURL + "/createAccount");
-          console.log(results)
-        } catch(e) {
-          console.error(e)
-        }
-      }
-    }
-  }
+    // fetchServices() {
+    //   this.services = [];
+    //   db.collection("services")
+    //     .get()
+    //     .then((querySnapshot) => {
+    //       querySnapshot.forEach((doc) => {
+    //         this.services.push(doc.data);
+    //       });
+    //     });
+    // },
+  //   }
+  },
+  created() {
+    db.collection("services")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const data = {
+            id: doc.id,
+            category: doc.data().category,
+            company: doc.data().company,
+            contracted_count: doc.data().contracted_count,
+            desc: doc.data().description,
+            price: doc.data().price,
+            total_rating_count: doc.data().total_rating_count,
+            total_rating: doc.data().total_rating,
+          };
+          console.log("Write succeeded!");
+          console.log(data);
+          this.services.push(data);
+        });
+      });
+  },
+};
 </script>
 
-<style lang="scss">
-  @import 'style-helpers';
-  html,
-  body {
-    margin: 0;
-    min-height: 100%;
-  }
-  .vue-input-ui-demo {
-    background-color: white;
-    .container {
-      text-align: center;
-      font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    }
-    .component {
-      padding: 10px;
-      background: #FFF;
-      border-radius: 4px;
-      border: 1px solid #EBEBEB;
-      &:hover {
-        box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
-      }
-    }
-    .component-container {
-      margin: 0 10px 20px 10px;
-      padding: 20px;
-      background: #FFF;
-      border-radius: 4px;
-      border: 1px solid #EBEBEB;
-      min-width: 300px;
-      transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-      flex: 1 0 48%;
-      &:hover {
-        box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
-      }
-      &.dark {
-        background-color: darken(#424242, 10%);
-        color: #FFF;
-      }
-    }
-    &.dark {
-      background-color: darken(#424242, 20%);
-      .component-container,
-      .component {
-        border: 1px solid #424242;
-        background-color: darken(#424242, 10%);
-        &:hover {
-          box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.6), 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-        }
-      }
-      .container {
-        color: white;
-      }
-    }
-  }
+<style>
+h1 {
+  color: "#FFFFFF";
+}
+#show-blogs {
+  max-width: 80%;
+  margin: 0px auto;
+}
+.single-blog {
+  padding: 15px;
+  margin: 25px 0;
+  box-sizing: border-box;
+  background: #eee;
+}
+
+.searchbox {
+  left: 50%;
+  top: 7.5%;
+  transform: translate(-50%, -50%);
+  background: #f1ba79;
+  height: 5%;
+  border-radius: 60px;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 40%;
+  margin: 0% 50%;
+}
+
+.title1 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #66B933;
+  font-weight: bold;
+}
 </style>

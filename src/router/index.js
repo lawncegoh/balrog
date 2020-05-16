@@ -60,6 +60,16 @@ const routes = [
     path: '/mambu',
     name: 'mambu',
     component: () => import('../views/Mambu.vue')
+  },
+  {
+    path: '/SMEForm',
+    name: 'SMEForm',
+    component: () => import('../components/Mambu/SMEAccountCreation.vue')
+  },
+  {
+    path: '/current',
+    name: 'current',
+    component: () => import('../components/Mambu/CreateCurrentAccount.vue')
   }
 ];
 

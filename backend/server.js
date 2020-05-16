@@ -31,7 +31,8 @@ app
   .get(clientCreation.getBranchID)
 
 app
-  .route('/createClient')
+  .route('/createAccount')
+  .post(clientCreation.createSMEAccount)
 
 app.listen(process.env.PORT || 3002, () => {
   console.log(`Server listening`)

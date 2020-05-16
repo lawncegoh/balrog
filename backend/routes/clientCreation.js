@@ -56,10 +56,33 @@ const getBranchID = (req, res) => {
   });    
 }
 
+// Create Client Account
+var clientAccountOptions = {
+  'method': 'POST',
+  'url': 'https://razerhackathon.sandbox.mambu.com/api/groups',
+  'headers': {
+    'Content-Type': ['application/json', 'application/json'],
+    'Authorization': 'Basic VGVhbTY0OnBhc3MyNzgyOTU2Qzk=',
+    'Cookie': 'AWSALB=OlueeFKW8e+aMPsY4BwWmPLPUAzuIg+G51b0wGfiOR8EbcVGvl5Shl78zz6MPvebGiu748qU5rZ2eDY9n4hCc24LXKlryc5vIkDEH6Smp6JbUrSIRZYJPANMrlXa; AWSALBCORS=OlueeFKW8e+aMPsY4BwWmPLPUAzuIg+G51b0wGfiOR8EbcVGvl5Shl78zz6MPvebGiu748qU5rZ2eDY9n4hCc24LXKlryc5vIkDEH6Smp6JbUrSIRZYJPANMrlXa'
+  },
+  // body: JSON.stringify({"client":{"firstName":"Celeste","lastName":"Goh","preferredLanguage":"ENGLISH","notes":"Enjoys playing RPG","assignedBranchKey":"8a8e878e71c7a4d70171ca6401ba1253"},"idDocuments":[{"identificationDocumentTemplateKey":"8a8e867271bd280c0171bf7e4ec71b01","issuingAuthority":"Immigration Authority of Singapore","documentType":"NRIC/Passport Number","validUntil":"2021-09-12","documentId":"S9812345A"}],"addresses":[],"customInformation":[{"value":"Singapore","customFieldID":"countryOfBirth"},{"value":"58f5add7-3d0b-4640-84a9-43829f70d115","customFieldID":"razerID"}]})
+  body: ''
+};
+const createSMEAccount = (req, res) => {
+  clientAccountOptions.body = JSON.stringify(req.body);
+
+  request(clientAccountOptions, function (error, response) { 
+  if (error) throw new Error(error);
+  console.log(req.body)
+  console.log(clientAccountOptions)
+  console.log(response.body);
+  res.status(200).send(response.body)
+})};
 
 
 module.exports = {
   getIDDocument,
   getTransactionChannels,
-  getBranchID
+  getBranchID,
+  createSMEAccount
 }
