@@ -4,9 +4,16 @@
       <center>RazeScanner</center>
     </h1>
     <br />
-    <div class="container">
+
+    <div v-if="browsing" class="container">
       <div class="col-md-10 ml-auto mr-auto">
-        <ScannerItem />
+        <ScannerItem v-bind:order="orderCallback" />
+      </div>
+    </div>
+
+    <div v-if="ordering" class="container">
+      <div class="col-md-10 ml-auto mr-auto">
+        {{ ordered.company }}
       </div>
     </div>
     <!-- <div class="searchbox">
@@ -25,8 +32,6 @@
         </router-link>
       </div>
     </div> -->
-
-
   </div>
 </template>
 
@@ -34,34 +39,47 @@
 import db from "@/firebase/init.js";
 import ScannerItem from "../components/ScannerItem.vue";
 export default {
-  // data() {
-  //   return {
-  //     search: "",
-  //     testlist: []
-  //   };
-  // },
-  components: {
-    ScannerItem
+  data() {
+    return {
+      services: [],
+      browsing: true,
+      ordering: false,
+      comparing: false,
+      ordered: null,    
+      compared: [],
+    };
   },
-  methods: {},
+  components: {
+    ScannerItem,
+  },
+  methods: {
+    orderCallback(data) {
+      this.browsing = false;
+      this.ordering = true;
+      this.ordered = data;
+    }
+  },
   created() {
-    db.collection("modules")
+    db.collection("services")
       .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
           const data = {
             id: doc.id,
-            code: doc.data().code,
-            name: doc.data().name,
-            tutors: doc.data().tutors,
-            modules: doc.data().modules
+            category: doc.data().category,
+            company: doc.data().company,
+            concount: doc.data().contracted_count,
+            desc: doc.data().description,
+            price: doc.data().price,
+            totalrcount: doc.data().total_rating_count,
+            totalr: doc.data().total_rating
           };
           console.log("Write succeeded!");
           console.log(data);
-          this.testlist.push(data);
+          this.services.push(data);
         });
       });
-  }
+  },
 };
 </script>
 
