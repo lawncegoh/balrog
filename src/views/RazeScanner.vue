@@ -173,17 +173,18 @@ export default {
             id: doc.id,
             category: doc.data().category,
             company: doc.data().company,
-            contracted_count: doc.data().contracted_count,
+            // contracted_count: doc.data().contracted_count,
             desc: doc.data().description,
-            price: doc.data().price,
-            total_rating_count: doc.data().total_rating_count,
-            total_rating: doc.data().total_ratings,
+            // price: doc.data().price,
+            // total_rating_count: doc.data().total_rating_count,
+            // total_rating: doc.data().total_ratings,
             expertise: doc.data().expertise,
             standards: doc.data().standards,
             training: doc.data().training,
             customers: doc.data().customers,
             cost_savings: doc.data().cost_savings,
             cloud_tech: doc.data().cloud_tech,
+            costs: doc.data().costs,
           };
           console.log("Write succeeded!");
           console.log(data);
