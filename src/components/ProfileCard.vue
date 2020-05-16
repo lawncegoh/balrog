@@ -23,7 +23,9 @@
                 
                     <br />
                     <br />
-                
+                <h5>{{email}}</h5>
+                <h5>{{company}}</h5>
+                <h5></h5>
                 
               </div>
             </v-card-title>
@@ -48,6 +50,8 @@ export default {
   data() {
     return {
       name: null,
+      company: null,
+      email: null
     };
   },
   methods: {
@@ -64,6 +68,8 @@ export default {
                 const myData = doc.data();
 
                 this.name = myData.username;
+                this.email = myData.email;
+                this.company = myData.companyname;
               }
             })
             .catch((error) => {

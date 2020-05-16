@@ -96,6 +96,7 @@ export default {
         .then(function(data) {
           console.log("Logged event", data);
         });
+      this.chatComment = "";
     },
     log_event: function(event) {
       console.log("Logging event.");

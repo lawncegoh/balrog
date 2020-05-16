@@ -187,8 +187,15 @@ export default {
           category: "Government Grants",
         },
         {
-          title: "Loans",
-          value: "your loan descriptions come here",
+          title: "Small Term Loan",
+          value:
+            "Interest Rate (p.a.): 0.50% - 5%, Loan Amount: $100 - $20,000, Term of Loan: 1 week - 52 weeks, Currency: SGD, Fees: Manual ad-hoc fee allowed, Prepayment: Allowed, Principal Collected: Every 3 Instalment",
+          category: "Loans",
+        },
+        {
+          title: "Long Term Loan",
+          value:
+            "Interest Rate (p.a.): 3% - 12%, Loan Amount: $2,000 - $50,000, Term of Loan: 1 Month - 12 Months, Currency: SGD, Fees: Manual ad-hoc fee allowed, Prepayment: Allowed, Principal Collected: Every 1 Instalment",
           category: "Loans",
         },
       ],

@@ -14,10 +14,6 @@
           </v-card> -->
           <ProfileCard />
           <br />
-          
-
-
-
         </v-flex>
 
         <v-flex md8>
@@ -61,7 +57,9 @@
                         <td>
                           {{ experience.code }}
                         </td>
-
+                        <td>
+                          {{ experience.name }}
+                        </td>
                         <td>
                           {{ experience.skill }}
                         </td>
@@ -212,6 +210,7 @@
                     <thead>
                       <tr>
                         <th>Title</th>
+                        <th></th>
                         <th>Description</th>
                       </tr>
                     </thead>
@@ -219,14 +218,15 @@
                     <tbody>
                       <tr v-for="business in businessset" v-bind:key="business">
                         <td>
-                          <span>
-                            <h5>
-                              {{ business.name }}
-                            </h5>
-
-                            {{ business.detail }}
-                          </span>
+                          {{ business.name }}
                         </td>
+                        <td>
+                          {{ experience.name }}
+                        </td>
+                        <td>
+                          {{ business.detail }}
+                        </td>
+
                         <td>
                           <v-btn
                             class="mx-2"
@@ -587,8 +587,8 @@ export default {
         alert("Enter blank first");
       }
       this.fetchEverything();
-      $('#business').modal('hide');
-    }
+      $("#business").modal("hide");
+    },
   },
   created() {
     this.fetchEverything();
@@ -598,7 +598,7 @@ export default {
 
 <style scoped>
 h2 {
-  color: #66B933;
+  color: #66b933;
   font-weight: bold;
 }
 h3 {
@@ -609,7 +609,7 @@ h3 {
 }
 .top-card {
   height: 8rem;
-  background-color: #66B933;
+  background-color: #66b933;
   display: flex;
   justify-content: center;
   align-items: flex-end;
