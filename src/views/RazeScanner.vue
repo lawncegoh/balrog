@@ -5,7 +5,7 @@
     </h1>
 
     <div class="text-center flex-end">
-      <div v-if="this.comparing">
+      <div v-if="this.comparing || this.ordering">
         <v-btn @click="browse"  color="#66b933" style="text">
           Browse
         </v-btn>
@@ -36,6 +36,7 @@
     <br />
 
     <div v-if="browsing" class="container">
+      <i><h6 style="padding-left:15px"> Click on the information icon to find out more!</h6></i>
       <!-- <div class="col-md-10 ml-auto mr-auto">
         <ScannerItem v-bind:order="orderCallback" />
       </div> -->

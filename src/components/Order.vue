@@ -2,14 +2,7 @@
   <v-container>
     <div>
       <body>
-        <h1>Ordering<br /></h1>
-        Company: {{ service.company }} <br />
-        Category: {{ service.category }} <br />
-        Price: {{ service.price }} <br />
-
-        <v-btn @click="checkout(data)" color="#66b933" style="text">
-          Checkout
-        </v-btn>
+        <h1>Chat with {{service.company}}<br /></h1>
       </body>
     </div>
     <br />
@@ -64,6 +57,7 @@ export default {
       chatComment: "",
       userkey: "",
       timeStamp: "",
+      company: "",
       firebaseUrl: "https://fundraze-123.firebaseio.com/",
     };
   },
@@ -74,7 +68,7 @@ export default {
       this.logs = data;
     },
     fetch_chat_logs: async function() {
-      let response = await fetch(this.firebaseUrl + '/chat/' + this.name + '.json');
+      let response = await fetch(this.firebaseUrl + '/chat/' + this.name + '/' + this.company +'.json');
       let data = await response.json();
       this.chatLogs = data;
     },
@@ -94,7 +88,7 @@ export default {
     },
     insert_chat_event: function(event) {
       console.log("Logging event.");
-      fetch(this.firebaseUrl + '/chat/' + this.name + '.json', {
+      fetch(this.firebaseUrl + '/chat/' + this.name + '/' + this.company + '.json', {
         method: "post",
         body: JSON.stringify(event),
       })
@@ -158,6 +152,7 @@ export default {
   created() {
     setInterval(this.getNow, 1000);
     this.fetchUser();
+    this.company = this.service.company;
   },
   mounted: function() {
     this.$nextTick(function() {
