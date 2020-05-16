@@ -32,7 +32,7 @@
                   <br /> -->
                 <!-- <router-link to="{name: 'order', params: {service: data} }" v-slot="{ href, route, navigate}"> -->
                 <router-link to="/order" v-slot="{ href, route, navigate}">
-                    <button :href="href" @click="order" color="primary" style="text"> Hello </button>
+                    <button :href="href" @click="order(data)" color="primary" style="text"> Hello </button>
                 </router-link>
                 </body>
               </div>

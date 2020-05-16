@@ -7,13 +7,13 @@
 
     <div v-if="browsing" class="container">
       <div class="col-md-10 ml-auto mr-auto">
-        <ScannerItem v-bind:order="orderFunction" />
+        <ScannerItem v-bind:order="orderCallback" />
       </div>
     </div>
 
     <div v-if="ordering" class="container">
       <div class="col-md-10 ml-auto mr-auto">
-        Test
+        {{ ordered.company }}
       </div>
     </div>
     <!-- <div class="searchbox">
@@ -54,9 +54,10 @@ export default {
     ScannerItem
   },
   methods: {
-    orderFunction() {
+    orderCallback(data) {
       this.browsing = false;
       this.ordering = true;
+      this.ordered = data;
     }
   },
   created() {
