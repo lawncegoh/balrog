@@ -26,7 +26,7 @@
           width="4of12"
         >
           <!-- <router-link v-bind:to="'/services/' + service.company"> -->
-            <ScannerItem :service="service" :order="orderCallback" :addCompare="addToComparison" :browsing="browsing"/>
+            <ScannerItem :service="service" :order="orderCallback" :addCompare="addToComparison" :browsing="browsing" :comparedItems="compared"/>
           <!-- </router-link> -->
         </vue-cell>
       </vue-grid>

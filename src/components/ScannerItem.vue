@@ -8,7 +8,13 @@
             :class="`elevation-${hover ? 12 : 2}`"
             class="profile"
           >
-            <div class="top-card" style="height:6.5em">
+            <div v-if="isCompared" class="top-card1" style="height:6.5em">
+              <v-avatar size="120" class="avatar">
+                <img src="razerlogo.jpg" class="image" />
+              </v-avatar>
+            </div>
+
+            <div v-else class="top-card" style="height:6.5em">
               <v-avatar size="120" class="avatar">
                 <img src="razerlogo.jpg" class="image" />
               </v-avatar>
@@ -51,7 +57,7 @@ export default {
   components: {
     StarRating,
   },
-  props: ["order", "service", "addCompare", "browsing"],
+  props: ["order", "service", "addCompare", "browsing", "comparedItems"],
 
   data() {
     return {
@@ -107,6 +113,14 @@ export default {
     calculateAverage() {
       return this.service.total_rating_count == 0 ? 0 : (this.service.total_rating / this.service.total_rating_count).toFixed(2);
     },
+    isCompared() {
+      // check whether in compared
+      if (this.comparedItems.includes(this.service)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     profileImg() {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
@@ -147,6 +161,12 @@ h3 {
 }
 .top-card {
   background-color: #66b933;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.top-card1 {
+  background-color: red;
   display: flex;
   justify-content: center;
   align-items: flex-end;

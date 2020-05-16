@@ -25,11 +25,36 @@
         >
           <template v-slot:default="{ item }">
             <div class="item">
-              <img v-if="item.id==='0'" src= "amazon.png" height="100%" width="100%" />
-              <img v-else-if="item.id==='1'"src= "azure-sql.png" height="70%" width="70%" />
-              <img v-else-if="item.id==='2'"src= "oracle.png" height="60%" width="60%" />
-              <img v-else-if="item.id==='3'"src= "ibm.png" height="60%" width="60%" />
-              <img v-else-if="item.id==='4'"src= "google-cloud.png" height="60%" width="60%" />
+              <img
+                v-if="item.id === '0'"
+                src="amazon.png"
+                height="100%"
+                width="100%"
+              />
+              <img
+                v-else-if="item.id === '1'"
+                src="azure-sql.png"
+                height="70%"
+                width="70%"
+              />
+              <img
+                v-else-if="item.id === '2'"
+                src="oracle.png"
+                height="60%"
+                width="60%"
+              />
+              <img
+                v-else-if="item.id === '3'"
+                src="ibm.png"
+                height="60%"
+                width="60%"
+              />
+              <img
+                v-else-if="item.id === '4'"
+                src="google-cloud.png"
+                height="60%"
+                width="60%"
+              />
 
               <h5 class="titlestyle">{{ item.title }}</h5>
               <p>{{ item.content }}</p>
@@ -82,7 +107,7 @@
                 width="100%"
               />
 
-              <h5 class = "titlestyle">{{ item.title }}</h5>
+              <h5 class="titlestyle">{{ item.title }}</h5>
               <p>{{ item.content }}</p>
               <button>Click HERE</button>
             </div>
@@ -106,15 +131,34 @@
         >
           <template v-slot:default="{ item }">
             <div class="item">
-              <img v-if="item.id==='0'" src= "singtel.png" height="100%" width="100%" />
-              <img v-else-if="item.id==='1'"src= "zoho.png" height="100%" width="100%" />
-              <img v-else-if="item.id==='2'"src= "namely.png" height="60%" width="60%" />
-              <img v-else-if="item.id==='3'"src= "breathe.png" height="100%" width="100%" />
-              <h5 class = "titlestyle">{{ item.title }}</h5>
+              <img
+                v-if="item.id === '0'"
+                src="singtel.png"
+                height="100%"
+                width="100%"
+              />
+              <img
+                v-else-if="item.id === '1'"
+                src="zoho.png"
+                height="100%"
+                width="100%"
+              />
+              <img
+                v-else-if="item.id === '2'"
+                src="namely.png"
+                height="60%"
+                width="60%"
+              />
+              <img
+                v-else-if="item.id === '3'"
+                src="breathe.png"
+                height="100%"
+                width="100%"
+              />
+              <h5 class="titlestyle">{{ item.title }}</h5>
               <p>{{ item.content }}</p>
             </div>
           </template>
-
         </vue-horizontal-list>
       </section>
     </div>
@@ -146,37 +190,61 @@ export default {
         },
       },
       items: [
-        { id: '0', title: "Amazon Relational Database", content: "Amazon Relational Database is a Database as a Service (DBaaS). It is suitable for experienced data users, data scientists and database administrators. This is a good choice for developers already familiar with AWS services. Users need to contact a Database Administrator to get setup as the process is technically involved."},
-        { id: '1', title: "Microsoft Azure SQL Database", content: "Azure’s SQL database has the familiar look and feel of Microsoft. It has a strong SQL engine compatibility and machine learning. The service offers all SQL tools and applications needed for creating a database. It's easy to use." },
-        { id: '2',title: "Oracle Database", content: "All of your data and applications can be integrated. The solution enables the user to migrate all processes to the cloud. Everything is managed via a single platform. All data is encrypted by default. Oracle Cloud Platform claims their solution does everything for you. This saves time on repetitive tasks such as system maintenance, deploying solutions and necessary updates."},
-        { id: '3',title: "IBM DB2 on Cloud", content: "IBM's Db2 on Cloud is a fully managed SQL database that runs in the cloud. It's quick and easy to set up and allows for flexible scaling, so you only need to pay for what you actually use in terms of resources. It also comes with AI capabilities built in, and security patching it automated through rolling updates. It's easy to retrieve datasets as and when you need to look at them. Db2 on Cloud can also be set up on a private VPN."},
-        { id: '4',title: "Google Cloud SQL", content: "The platform provides a fully managed service, specifically for relational databases such as MySQL, PostgreSQL, and SQL Server, and aims to provide strong performance, availability, scalability, and convenience, while also using Google's private global network for enhanced security."},
-
+        {
+          id: "0",
+          title: "Amazon Relational Database",
+          content:
+            "Amazon Relational Database is a Database as a Service (DBaaS). It is suitable for experienced data users, data scientists and database administrators. This is a good choice for developers already familiar with AWS services. Users need to contact a Database Administrator to get setup as the process is technically involved.",
+        },
+        {
+          id: "1",
+          title: "Microsoft Azure SQL Database",
+          content:
+            "Azure’s SQL database has the familiar look and feel of Microsoft. It has a strong SQL engine compatibility and machine learning. The service offers all SQL tools and applications needed for creating a database. It's easy to use.",
+        },
+        {
+          id: "2",
+          title: "Oracle Database",
+          content:
+            "All of your data and applications can be integrated. The solution enables the user to migrate all processes to the cloud. Everything is managed via a single platform. All data is encrypted by default. Oracle Cloud Platform claims their solution does everything for you. This saves time on repetitive tasks such as system maintenance, deploying solutions and necessary updates.",
+        },
+        {
+          id: "3",
+          title: "IBM DB2 on Cloud",
+          content:
+            "IBM's Db2 on Cloud is a fully managed SQL database that runs in the cloud. It's quick and easy to set up and allows for flexible scaling, so you only need to pay for what you actually use in terms of resources. It also comes with AI capabilities built in, and security patching it automated through rolling updates. It's easy to retrieve datasets as and when you need to look at them. Db2 on Cloud can also be set up on a private VPN.",
+        },
+        {
+          id: "4",
+          title: "Google Cloud SQL",
+          content:
+            "The platform provides a fully managed service, specifically for relational databases such as MySQL, PostgreSQL, and SQL Server, and aims to provide strong performance, availability, scalability, and convenience, while also using Google's private global network for enhanced security.",
+        },
       ],
       items1: [
         {
           id: "0",
           title: "Comodo",
           content:
-            " Comodo is a global, award-winning security provider that offers free and affordable security tools that don't compromise on features and reliability."         
+            " Comodo is a global, award-winning security provider that offers free and affordable security tools that don't compromise on features and reliability.",
         },
         {
           id: "1",
           title: "Cloudflare",
           content:
-            " Cloudflare automatically detects attacks, blocks them and creates reports to keep you up to date. "
+            " Cloudflare automatically detects attacks, blocks them and creates reports to keep you up to date. ",
         },
         {
           id: "2",
           title: "OpenVPN",
           content:
-            "You can use OpenVPN to make sure your employees aren't accessing your network through an open, unprotected connection. "
+            "You can use OpenVPN to make sure your employees aren't accessing your network through an open, unprotected connection. ",
         },
         {
           id: "3",
           title: "Social Engineer",
           content:
-            "Social-Engineer.com helps organizations identify risk areas and how malicious attackers can exploit vulnerabilities to gain unauthorized access to infrastructures."
+            "Social-Engineer.com helps organizations identify risk areas and how malicious attackers can exploit vulnerabilities to gain unauthorized access to infrastructures.",
         },
       ],
       items2: [
@@ -224,7 +292,7 @@ export default {
   }
 }
 .titlestyle {
-  padding-top:30px;
+  padding-top: 30px;
 }
 h5 {
   font-size: 18px;
