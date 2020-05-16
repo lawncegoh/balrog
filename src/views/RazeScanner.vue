@@ -4,9 +4,16 @@
       <center>RazeScanner</center>
     </h1>
     <br />
-    <div class="container">
+
+    <div v-if="browsing" class="container">
       <div class="col-md-10 ml-auto mr-auto">
-        <ScannerItem />
+        <ScannerItem v-bind:order="orderFunction" />
+      </div>
+    </div>
+
+    <div v-if="ordering" class="container">
+      <div class="col-md-10 ml-auto mr-auto">
+        Test
       </div>
     </div>
     <!-- <div class="searchbox">
@@ -34,16 +41,24 @@
 import db from "@/firebase/init.js";
 import ScannerItem from "../components/ScannerItem.vue";
 export default {
-  // data() {
-  //   return {
-  //     search: "",
-  //     testlist: []
-  //   };
-  // },
+  data() {
+    return {
+      browsing: true,
+      ordering: false,
+      comparing: false,
+      ordered: null,    
+      compared: [],
+    };
+  },
   components: {
     ScannerItem
   },
-  methods: {},
+  methods: {
+    orderFunction() {
+      this.browsing = false;
+      this.ordering = true;
+    }
+  },
   created() {
     db.collection("modules")
       .get()
