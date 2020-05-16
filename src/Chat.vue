@@ -1,337 +1,54 @@
 <template>
-  <div class="container">
-    <div class="messaging">
-      <div class="inbox_msg">
-        <div class="inbox_people">
-          <div class="headind_srch">
-            <div class="recent_heading">
-              <h4>Recent</h4>
-            </div>
-            <div class="srch_bar">
-              <div class="stylish-input-group">
-                <input type="text" class="search-bar" placeholder="Search" />
-                <span class="input-group-addon">
-                  <button type="button">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                  </button>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="inbox_chat">
-            <div
-              v-for="contact in contacts"
-              :key="contact"
-              class="chat_list active_chat"
-            >
-              <div class="chat people">
-                <div class="chat_ib">
-                  <h5>{{ contact.username }}</h5>
-                  <v-btn
-                    :style="{ align: 'center', color: '#FFFFFF' }"
-                    color="#F1BA79"
-                    tile
-                    outlined
-                    @click="
-                      select(contact.email);
-                      fetchMessages();
-                    "
-                  >
-                    Start messaging
-                  </v-btn>
-                  <v-btn
-                    :style="{
-                      align: 'center',
-                      color: '#FFFFFF',
-                      float: 'right',
-                    }"
-                    color="#F1BA79"
-                    tile
-                    outlined
-                    @click="
-                      select(contact.email);
-                      addNew();
-                    "
-                    >Schedule session</v-btn
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="mesgs">
-          <div class="msg_history">
-            <div
-              v-for="message in messages"
-              v-bind:key="message"
-              class="incoming_msg"
-            >
-              <div
-                :class="[
-                  message.author === authUser.email
-                    ? 'sent_msg'
-                    : 'received_msg',
-                ]"
-              >
-                <div class="received_withd_msg">
-                  <p>
-                    {{ message.message }}
-                  </p>
-
-                  <span class="time_date"
-                    >{{
-                      message.createdAt.toDate().getMonth() +
-                        '/' +
-                        message.createdAt.toDate().getDate() +
-                        ' ' +
-                        message.createdAt.toDate().getHours() +
-                        ':' +
-                        message.createdAt.toDate().getMinutes()
-                    }}||{{ message.author }}</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="type_msg">
-            <div class="input_msg_write">
-              <input
-                @keyup.enter="saveMessage"
-                v-model="message"
-                type="text"
-                class="write_msg"
-                placeholder="Type a message"
-              />
-              <button class="msg_send_btn" type="button">
-                <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="module"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="editLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="editLabel">Schedule a date!</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Module
-            <input class="mod_input" type="text" v-model="module" />
-            <v-spacer></v-spacer>
-            <br />
-
-            Date
-            <br />
-            <v-date-picker v-model="date" no-title scrollable></v-date-picker>
-            <v-spacer></v-spacer>
-            Time
-            <br />
-            <v-time-picker v-model="time"></v-time-picker>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              @click="addSession()"
-              type="button"
-              class="btn btn-primary"
-              v-if="modal == 'new'"
-            >
-              Save changes
-            </button>
-            <button
-              @click="updateModule()"
-              type="button"
-              class="btn btn-primary"
-              v-if="modal == 'edit'"
-            >
-              Apply changes
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div>
+    <VueFaqAccordion
+      @categorySelect="onCategorySelect"
+      @itemSelect="onItemSelect"
+      :items="myItems"
+    />
   </div>
 </template>
 
 <script>
-import firebase from 'firebase';
-
+import VueFaqAccordion from "./vue-faq-accordion.vue";
 export default {
-  name: 'Chat',
-
+  components: {
+    VueFaqAccordion,
+  },
   data() {
     return {
-      message: null,
-      messages: [],
-      authUser: {},
-      receipient: '',
-      contacts: [],
-      modal: null,
-      date: new Date().toISOString().substr(0, 10),
-      menu: false,
-      menu2: false,
-      time: new Date(),
-      module: null,
+      myItems: [
+        {
+          title: "How many time zones are there in all?",
+          value:
+            "Given a 24-hour day and 360 degrees of longitude around the Earth",
+          category: "Government Grants",
+        },
+        {
+          title: "How long is a day and year on Venus?",
+          value:
+            "Venus takes 224.7 Earth days to complete one orbit around the Sun.",
+          category: "Loans",
+        },
+        {
+          title: "What animal smells like popcorn?",
+          value: "Binturongs smell like popcorn.",
+          category: "Loans",
+        },
+        {
+          title: "What animal smells like popcorn?",
+          value: "Binturongs smell like popcorn.",
+          category: "Crowdfunding Investments",
+        },
+      ],
     };
   },
   methods: {
-    saveMessage() {
-      //save message to firestore
-      if (this.message != null) {
-        db.collection('chat')
-          .add({
-            message: this.message,
-            author: this.authUser.email,
-            createdAt: new Date(),
-            receipient: this.receipient,
-            auth_rec: this.authUser.email.concat(this.receipient).length,
-          })
-          .then(() => {
-            this.scrollToBottom();
-          });
-      } else {
-        alert('Enter message first');
-      }
-      this.message = null;
+    onCategorySelect(args) {
+      console.log("onCategorySelect", args);
     },
-    fetchMessages() {
-      if (this.receipient) {
-        db.collection('chat')
-          .where(
-            'auth_rec',
-            '==',
-            firebase.auth().currentUser.email.concat(this.receipient).length
-          )
-          .orderBy('createdAt')
-          .onSnapshot((querySnapshot) => {
-            let allMessages = [];
-            querySnapshot.forEach((doc) => {
-              allMessages.push(doc.data());
-            });
-            this.messages = allMessages;
-
-            setTimeout(() => {
-              this.scrollToBottom();
-            }, 1000);
-          });
-      } else {
-        console.log('no receipient');
-      }
+    onItemSelect(args) {
+      console.log("onItemSelect", args);
     },
-    fetchContacts() {
-      firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          db.collection('users')
-            .doc(user.uid)
-            .collection('contacts')
-            .onSnapshot((querySnapshot) => {
-              let allContacts = [];
-              querySnapshot.forEach((doc) => {
-                let email = doc.data().name;
-                db.collection('users')
-                  .where('email', '==', email)
-                  .get()
-                  .then((snapshot) => {
-                    snapshot.forEach((doc) => {
-                      allContacts.push(doc.data());
-                    });
-                  });
-                // allContacts.push(doc.data());
-              });
-              this.contacts = allContacts;
-            });
-        }
-      });
-    },
-    scrollToBottom() {
-      let box = document.querySelector('.msg_history');
-      box.scrollTop = box.scrollHeight;
-    },
-    select: function(e) {
-      this.receipient = e;
-    },
-    addNew() {
-      this.modal = 'new';
-      $('#module').modal('show');
-    },
-    addSession() {
-      db.collection('studentrequests')
-        .doc(firebase.auth().currentUser.uid)
-        .set({
-          date: this.submittableDateTime,
-          author: firebase.auth().currentUser.email,
-          receipient: this.receipient,
-          created: new Date(),
-          module: this.module,
-          accepted: false,
-          uid: firebase.auth().currentUser.uid,
-          auth_rec: firebase.auth().currentUser.email.concat(this.receipient)
-            .length,
-        })
-        .then(() => {
-          this.modal = null;
-        });
-    },
-  },
-  created() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.authUser = user;
-      } else {
-        this.authUser = {};
-      }
-    });
-    this.fetchContacts();
-  },
-  computed: {
-    submittableDateTime() {
-      const date = new Date(this.date);
-      if (typeof this.time === 'string') {
-        const hours = this.time.match(/^(\d+)/)[1];
-        const minutes = this.time.match(/:(\d+)/)[1];
-        date.setHours(hours);
-        date.setMinutes(minutes);
-      } else {
-        date.setHours(this.time.getHours());
-        date.setMinutes(this.time.getMinutes());
-      }
-      return date;
-    },
-  },
-  beforeRouteEnter(to, from, next) {
-    next((vm) => {
-      firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          next();
-        } else {
-          vm.$router.push('/login');
-        }
-      });
-    });
   },
 };
 </script>
@@ -419,8 +136,8 @@ img {
 }
 .chat_ib {
   /* float: left; */
-  display: 'flex';
-  flex-direction: 'row';
+  display: "flex";
+  flex-direction: "row";
   padding: 0 0 0 0px;
   width: 88%;
   font-size: 30px;
@@ -532,8 +249,8 @@ img {
 }
 
 .mx-2 {
-  float: 'left';
-  color: '#FFFFFF';
+  float: "left";
+  color: "#FFFFFF";
 }
 .modal-body {
   align-items: center;
