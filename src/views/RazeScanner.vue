@@ -26,7 +26,7 @@
           width="4of12"
         >
           <!-- <router-link v-bind:to="'/services/' + service.company"> -->
-            <ScannerItem :service="service" :order="orderCallback" :addCompare="addToComparison"/>
+            <ScannerItem :service="service" :order="orderCallback" :addCompare="addToComparison" :browsing="browsing"/>
           <!-- </router-link> -->
         </vue-cell>
       </vue-grid>
@@ -40,7 +40,7 @@
 
     <div v-if="comparing" class="container">
       <div class="col-md-10 ml-auto mr-auto">
-        <CompareItem v-bind:services="compared" />
+        <CompareItem :services="compared" :orderCallback="orderCallback" :browsing="browsing"/>
       </div>
     </div>
     <!-- <div class="searchbox">
@@ -94,8 +94,9 @@ export default {
       console.log(data);
     },
     addToComparison(data) {
-      console.log('pushing data into comparison: ' + data);
+      console.log('pushing data into comparison');
       this.compared.push(data);
+      console.log(this.compared);
     },
     compare() {
       this.browsing = false;

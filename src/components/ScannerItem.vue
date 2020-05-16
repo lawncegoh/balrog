@@ -27,7 +27,7 @@
                     <v-btn @click="order(service)" color="#66b933" style="text">
                       Order
                     </v-btn>
-                    <v-btn @click="addCompare(service)" color="#66b933" style="text">
+                    <v-btn v-show="browsing" @click="addCompare(service)" color="#66b933" style="text">
                       Add To Comparison
                     </v-btn>
                   </body>
@@ -51,7 +51,7 @@ export default {
   components: {
     StarRating,
   },
-  props: ["order", "service", "addCompare"],
+  props: ["order", "service", "addCompare", "browsing"],
 
   data() {
     return {

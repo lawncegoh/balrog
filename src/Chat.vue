@@ -1,4 +1,10 @@
 <template>
+  <div class="razefunds">
+    <VueFaqAccordion
+      @categorySelect="onCategorySelect"
+      @itemSelect="onItemSelect"
+      :items="myItems"
+    />
   <div>
     <v-container>
       <h2>These are the grants that are currently available</h2>
@@ -223,6 +229,14 @@ export default {
 </script>
 
 <style scoped>
+.razefunds{
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  
+}
+
 .container {
   max-width: 1170px;
   margin: auto;
