@@ -58,7 +58,7 @@ export default {
 
 <style>
 h2 {
-  color: #f1ba79;
+  color: #66B933;
   font-weight: bold;
 }
 h3 {
@@ -69,7 +69,7 @@ h3 {
 }
 .top-card {
   height: 5.5rem;
-  background-color: #f1ba79;
+  background-color: #66B933;
   display: flex;
   justify-content: center;
   align-items: flex-end;

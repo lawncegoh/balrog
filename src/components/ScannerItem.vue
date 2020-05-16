@@ -211,7 +211,7 @@ export default {
 
 <style scoped>
 h2 {
-  color: #f1ba79;
+  color:#66B933;
   font-weight: bold;
 }
 h3 {

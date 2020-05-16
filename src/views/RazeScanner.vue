@@ -213,7 +213,7 @@ h1 {
   left: 50%;
   top: 7.5%;
   transform: translate(-50%, -50%);
-  background: #f1ba79;
+  background: #66B933;
   height: 5%;
   border-radius: 60px;
   padding: 10px;

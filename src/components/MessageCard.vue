@@ -10,7 +10,7 @@
             <v-btn
               to="/chat"
               :style="{ align: 'center', color: '#FFFFFF' }"
-              color="#F1BA79"
+              color="#66B933"
               small
               tile
               outlined
@@ -26,7 +26,7 @@
 <script></script>
 <style>
 h2 {
-  color: #f1ba79;
+  color: #66B933;
   font-weight: bold;
 }
 </style>
