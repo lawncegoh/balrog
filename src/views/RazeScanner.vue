@@ -1,6 +1,6 @@
 <template>
   <div id="show-blogs">
-    <h1 class="modsearch">
+    <h1 class="title1">
       <center>RazeScanner</center>
     </h1>
     <br />
@@ -9,11 +9,28 @@
       <div class="col-md-10 ml-auto mr-auto">
         <ScannerItem v-bind:order="orderCallback" />
       </div>
+      <vue-grid align="stretch" justify="between">
+        <vue-cell
+          v-for="service in services"
+          v-bind:key="service.company"
+          width="4of12"
+        >
+          <!-- <router-link v-bind:to="'/services/' + service.company"> -->
+            <ScannerItem :service="service" :order="orderCallback"/>
+          <!-- </router-link> -->
+        </vue-cell>
+      </vue-grid>
     </div>
 
     <div v-if="ordering" class="container">
       <div class="col-md-10 ml-auto mr-auto">
-        {{ ordered.company }}
+        <OrderItem v-bind:service="ordered" />
+      </div>
+    </div>
+
+    <div v-if="comparing" class="container">
+      <div class="col-md-10 ml-auto mr-auto">
+        Comparing
       </div>
     </div>
     <!-- <div class="searchbox">
@@ -38,6 +55,8 @@
 <script>
 import db from "@/firebase/init.js";
 import ScannerItem from "../components/ScannerItem.vue";
+import { VueGrid, VueCell } from "vue-grd";
+import OrderItem from "../components/Order.vue";
 export default {
   data() {
     return {
@@ -45,19 +64,34 @@ export default {
       browsing: true,
       ordering: false,
       comparing: false,
-      ordered: null,    
+      ordered: null,
       compared: [],
     };
   },
   components: {
     ScannerItem,
+    VueGrid,
+    VueCell,
+    OrderItem
   },
   methods: {
     orderCallback(data) {
       this.browsing = false;
       this.ordering = true;
       this.ordered = data;
-    }
+      console.log(data);
+    },
+    // fetchServices() {
+    //   this.services = [];
+    //   db.collection("services")
+    //     .get()
+    //     .then((querySnapshot) => {
+    //       querySnapshot.forEach((doc) => {
+    //         this.services.push(doc.data);
+    //       });
+    //     });
+    // },
+  //   }
   },
   created() {
     db.collection("services")
@@ -68,11 +102,11 @@ export default {
             id: doc.id,
             category: doc.data().category,
             company: doc.data().company,
-            concount: doc.data().contracted_count,
+            contracted_count: doc.data().contracted_count,
             desc: doc.data().description,
             price: doc.data().price,
-            totalrcount: doc.data().total_rating_count,
-            totalr: doc.data().total_rating
+            total_rating_count: doc.data().total_rating_count,
+            total_rating: doc.data().total_rating,
           };
           console.log("Write succeeded!");
           console.log(data);
@@ -90,7 +124,6 @@ h1 {
 #show-blogs {
   max-width: 80%;
   margin: 0px auto;
-  color: #19266e;
 }
 .single-blog {
   padding: 15px;
@@ -113,10 +146,10 @@ h1 {
   margin: 0% 50%;
 }
 
-.modsearch {
+.title1 {
   padding-top: 20px;
   padding-bottom: 20px;
-  color: #f1ba79;
+  color: #66B933;
   font-weight: bold;
 }
 </style>
