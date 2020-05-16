@@ -1,6 +1,6 @@
 <template>
   <div id="show-blogs">
-    <h1 class="modsearch">
+    <h1 class="title">
       <center>RazeScanner</center>
     </h1>
     <br />
@@ -9,6 +9,17 @@
       <div class="col-md-10 ml-auto mr-auto">
         <ScannerItem v-bind:order="orderFunction" />
       </div>
+      <vue-grid align="stretch" justify="between">
+        <vue-cell
+          v-for="service in services"
+          v-bind:key="service.name"
+          width="4of12"
+        >
+          <!-- <router-link v-bind:to="'/services/' + service.company"> -->
+            <ScannerItem :service="service" :order="orderFunction"/>
+          <!-- </router-link> -->
+        </vue-cell>
+      </vue-grid>
     </div>
 
     <div v-if="ordering" class="container">
@@ -38,28 +49,38 @@
 <script>
 import db from "@/firebase/init.js";
 import ScannerItem from "../components/ScannerItem.vue";
+import { VueGrid, VueCell } from "vue-grd";
 export default {
   data() {
     return {
-<<<<<<< HEAD
       services: [],
-=======
       browsing: true,
       ordering: false,
       comparing: false,
-      ordered: null,    
+      ordered: null,
       compared: [],
->>>>>>> 15775c5d4d2b12a13a3d4f378a8beba27ac85aa7
     };
   },
   components: {
     ScannerItem,
+    VueGrid,
+    VueCell,
   },
   methods: {
     orderFunction() {
       this.browsing = false;
       this.ordering = true;
-    }
+    },
+    // fetchServices() {
+    //   this.services = [];
+    //   db.collection("services")
+    //     .get()
+    //     .then((querySnapshot) => {
+    //       querySnapshot.forEach((doc) => {
+    //         this.services.push(doc.data);
+    //       });
+    //     });
+    // },
   },
   created() {
     db.collection("services")
@@ -74,7 +95,7 @@ export default {
             desc: doc.data().description,
             price: doc.data().price,
             totalrcount: doc.data().total_rating_count,
-            totalr: doc.data().total_rating
+            totalr: doc.data().total_rating,
           };
           console.log("Write succeeded!");
           console.log(data);
@@ -115,10 +136,10 @@ h1 {
   margin: 0% 50%;
 }
 
-.modsearch {
+.title {
   padding-top: 20px;
   padding-bottom: 20px;
-  color: #f1ba79;
+  color: #66b933;
   font-weight: bold;
 }
 </style>

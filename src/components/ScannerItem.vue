@@ -12,13 +12,13 @@
 
           <v-card-title primary-title>
             <div>
-              <h3>{{ data.company }}</h3>
+              <h3>{{ service.company }}</h3>
               <div>
-                <h6>{{ data.description }}</h6>
+                <h6>{{ service.description }}</h6>
                 <body>
-                  Category: {{ data.category }} <br />
-                  Contracted: {{ data.contracted_count }}<br />
-                  Rating: {{ data.average_ratings }} <br />
+                  Category: {{ service.category }} <br />
+                  Contracted: {{ service.concount }}<br />
+                  Rating: {{ service.average_ratings }} <br />
                 <router-link to="/order" v-slot="{ href, route, navigate}">
                     <button :href="href" @click="order" color="primary" style="text"> Hello </button>
                 </router-link>
@@ -43,7 +43,7 @@ export default {
   components: {
     StarRating
   },
-  props: ["order"],
+  props: ["order", "service"],
 
   data() {
     return {
@@ -59,42 +59,43 @@ export default {
         }
     };
   },
-  methods: {
-    fetchUser() {
-      firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-          // User is signed in.
-          var db = firebase.firestore();
-          var docRef = db.collection("services").doc("VYUCYSjp4m4YOinJGVZc");
-          docRef
-            .get()
-            .then(doc => {
-              if (doc && doc.exists) {
-                const myData = doc.data();
-                this.data.category = myData.category;
-                this.data.company = myData.company;
-                this.data.contracted_count = myData.contracted_count;
-                this.data.description = myData.description;
-                this.data.price = myData.price;
-                this.data.total_rating_counts = myData.total_ratings_counts;
-                this.data.total_ratings = myData.total_ratings;
+    props: ["service"],
+  // methods: {
+  //   fetchUser() {
+  //     firebase.auth().onAuthStateChanged(user => {
+  //       if (user) {
+  //         // User is signed in.
+  //         var db = firebase.firestore();
+  //         var docRef = db.collection("services");
+  //         docRef
+  //           .get()
+  //           .then(doc => {
+  //             if (doc && doc.exists) {
+  //               const myData = doc.data();
+  //               this.data.category = myData.category;
+  //               this.data.company = myData.company;
+  //               this.data.contracted_count = myData.contracted_count;
+  //               this.data.description = myData.description;
+  //               this.data.price = myData.price;
+  //               this.data.total_rating_counts = myData.total_ratings_counts;
+  //               this.data.total_ratings = myData.total_ratings;
 
-                if (total_rating_counts == 0) {
-                    this.average_ratings = 0;
-                } else {
-                    this.average_ratings = this.total_ratings / this.total_rating_counts;
-                }
-              }
-            })
-            .catch(error => {
-              console.log("Got an error: ", error);
-            });
-        } else {
-          console.log("not signed in");
-        }
-      });
-    }
-  },
+  //               if (total_rating_counts == 0) {
+  //                   this.average_ratings = 0;
+  //               } else {
+  //                   this.average_ratings = this.total_ratings / this.total_rating_counts;
+  //               }
+  //             }
+  //           })
+  //           .catch(error => {
+  //             console.log("Got an error: ", error);
+  //           });
+  //       } else {
+  //         console.log("not signed in");
+  //       }
+  //     });
+  //   }
+  // },
   computed: {
     profileImg() {
       firebase.auth().onAuthStateChanged(user => {
