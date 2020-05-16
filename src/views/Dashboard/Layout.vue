@@ -6,15 +6,8 @@
       </h1>
       <br />
       <div class="title">
-<<<<<<< HEAD
-        <h5>Cloud Services</h5>
-        <p>
-          Future-proof your database with one of these awesome cloud providers
-        </p>
-=======
         <h5>Cloud Databases</h5>
         <p>Future-proof your database with one of these awesome cloud providers</p>
->>>>>>> 165ea1eacd064cc603f58c6881eb62478325a939
       </div>
 
       <section>
@@ -117,45 +110,12 @@ export default {
         },
       },
       items: [
-<<<<<<< HEAD
-        {
-          title: "Amazon Relational Database",
-          content:
-            "Amazon Relational Database is a Database as a Service (DBaaS). It is suitable for experienced data users, data scientists and database administrators. This is a good choice for developers already familiar with AWS services. Users need to contact a Database Administrator to get setup as the process is technically involved.",
-        },
-        {
-          title: "Microsoft Azure SQL Database",
-          content:
-            "Azure’s SQL database has the familiar look and feel of Microsoft. It has a strong SQL engine compatibility and machine learning. The service offers all SQL tools and applications needed for creating a database. It's easy to use.",
-        },
-        {
-          title: "Oracle Database",
-          content:
-            "All of your data and applications can be integrated. The solution enables the user to migrate all processes to the cloud. Everything is managed via a single platform. All data is encrypted by default. Oracle Cloud Platform claims their solution does everything for you. This saves time on repetitive tasks such as system maintenance, deploying solutions and necessary updates.",
-        },
-        {
-          title: "IBM DB2 on Cloud",
-          content:
-            "IBM's Db2 on Cloud is a fully managed SQL database that runs in the cloud. It's quick and easy to set up and allows for flexible scaling, so you only need to pay for what you actually use in terms of resources. It also comes with AI capabilities built in, and security patching it automated through rolling updates. It's easy to retrieve datasets as and when you need to look at them. Db2 on Cloud can also be set up on a private VPN.",
-        },
-        {
-          title: "Google Cloud SQL",
-          content:
-            "The platform provides a fully managed service, specifically for relational databases such as MySQL, PostgreSQL, and SQL Server, and aims to provide strong performance, availability, scalability, and convenience, while also using Google's private global network for enhanced security.",
-        },
-        { title: "Item 5", content: "Content item with description" },
-        { title: "Item 6", content: "Content item with description" },
-        { title: "Item 7", content: "Content item with description" },
-        { title: "Item 8", content: "Content item with description" },
-        { title: "Item 9", content: "Content item with description" },
-=======
         { title: "Amazon Relational Database", content: "Amazon Relational Database is a Database as a Service (DBaaS). It is suitable for experienced data users, data scientists and database administrators. This is a good choice for developers already familiar with AWS services. Users need to contact a Database Administrator to get setup as the process is technically involved." },
         { title: "Microsoft Azure SQL Database", content: "Azure’s SQL database has the familiar look and feel of Microsoft. It has a strong SQL engine compatibility and machine learning. The service offers all SQL tools and applications needed for creating a database. It's easy to use." },
         { title: "Oracle Database", content: "All of your data and applications can be integrated. The solution enables the user to migrate all processes to the cloud. Everything is managed via a single platform. All data is encrypted by default. Oracle Cloud Platform claims their solution does everything for you. This saves time on repetitive tasks such as system maintenance, deploying solutions and necessary updates." },
         { title: "IBM DB2 on Cloud", content: "IBM's Db2 on Cloud is a fully managed SQL database that runs in the cloud. It's quick and easy to set up and allows for flexible scaling, so you only need to pay for what you actually use in terms of resources. It also comes with AI capabilities built in, and security patching it automated through rolling updates. It's easy to retrieve datasets as and when you need to look at them. Db2 on Cloud can also be set up on a private VPN." },
         { title: "Google Cloud SQL", content: "The platform provides a fully managed service, specifically for relational databases such as MySQL, PostgreSQL, and SQL Server, and aims to provide strong performance, availability, scalability, and convenience, while also using Google's private global network for enhanced security." },
 
->>>>>>> 165ea1eacd064cc603f58c6881eb62478325a939
       ],
       items1: [
         {

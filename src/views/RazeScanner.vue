@@ -55,11 +55,8 @@
 <script>
 import db from "@/firebase/init.js";
 import ScannerItem from "../components/ScannerItem.vue";
-<<<<<<< HEAD
 import { VueGrid, VueCell } from "vue-grd";
-=======
 import OrderItem from "../components/Order.vue";
->>>>>>> 165ea1eacd064cc603f58c6881eb62478325a939
 export default {
   data() {
     return {
@@ -73,18 +70,16 @@ export default {
   },
   components: {
     ScannerItem,
-<<<<<<< HEAD
     VueGrid,
     VueCell,
-=======
     OrderItem
->>>>>>> 165ea1eacd064cc603f58c6881eb62478325a939
   },
   methods: {
     orderCallback(data) {
       this.browsing = false;
       this.ordering = true;
-<<<<<<< HEAD
+      this.ordered = data;
+      console.log(data);
     },
     // fetchServices() {
     //   this.services = [];
@@ -96,11 +91,7 @@ export default {
     //       });
     //     });
     // },
-=======
-      this.ordered = data;
-      console.log(data);
-    }
->>>>>>> 165ea1eacd064cc603f58c6881eb62478325a939
+  //   }
   },
   created() {
     db.collection("services")
