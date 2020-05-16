@@ -122,6 +122,9 @@ export default {
     },
     isCompared() {
       // check whether in compared
+    //   console.log("checking comparison");
+    //   console.log(this.comparedItems);
+    //   console.log(this.comparedItems.includes(this.service));
       if (this.comparedItems.includes(this.service)) {
         return true;
       } else {
