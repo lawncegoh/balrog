@@ -30,16 +30,47 @@
                     <v-icon>info</v-icon>
                 </v-btn>
 
-                <b-modal v-model="modalShow" :title="service.company">
+                <b-modal v-model="modalShow" :title="service.company" hide-footer>
                     <h6>{{service.desc}}</h6>
                     <body>
-                        Category: {{service.category}} <br/>
+                        <br/>
+                        Category: {{service.category}} <br/><br/>
+                        Estimated Costs (varies): From SGD${{service.costs}} onwards<br/><br/>
                         Expertise Areas: <br />
                         <ul>
                             <li v-for="area in service.expertise" :key="area">
                                 {{ area }}
                             </li>
                         </ul>
+                        Company Standards: <br />
+                        <ul>
+                            <li v-for="standard in service.standards" :key="standard">
+                                {{ standard }}
+                            </li>
+                        </ul>
+                        Training Standards and Certifications: <br />
+                        <ul>
+                            <li v-for="training in service.training" :key="training">
+                                {{ training }}
+                            </li>
+                        </ul>
+                        Notable Customers: <br />
+                        <ul>
+                            <li v-for="customer in service.customers" :key="customer">
+                                {{ customer }}
+                            </li>
+                        </ul>
+                        Estimated Cost Savings: {{ service.cost_savings }} <br /><br/>
+                        Cloud Technology Usage: <br />
+                        
+                        <ul>
+                            <li v-for="tech in service.cloud_tech" :key="tech">
+                                {{ tech }}
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <v-btn @click="modalShow = !modalShow" color="#66b933">OK</v-btn>
+                        </div>
                     </body>
                 </b-modal>
                 </div>
