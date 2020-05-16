@@ -23,9 +23,27 @@
             <v-card-title primary-title>
               <div>
                 <v-col cols="12" sm="3">
-                  <v-btn icon @click="showInfo()">
+
+                <!-- Modal for more details about the company and its services -->
+                <div>
+                <v-btn icon @click="modalShow = !modalShow">
                     <v-icon>info</v-icon>
-                  </v-btn>
+                </v-btn>
+
+                <b-modal v-model="modalShow" :title="service.company">
+                    <h6>{{service.desc}}</h6>
+                    <body>
+                        Category: {{service.category}} <br/>
+                        Expertise Areas: <br />
+                        <ul>
+                            <li v-for="area in service.expertise" :key="area">
+                                {{ area }}
+                            </li>
+                        </ul>
+                    </body>
+                </b-modal>
+                </div>
+
                 </v-col>
                 <h3>{{ service.company }}</h3>
                 <div>
@@ -59,7 +77,8 @@
                         Add To Comparison
                       </v-btn>
                     </div>
-                  </body>
+
+                    </body>
                 </div>
               </div>
             </v-card-title>
@@ -93,6 +112,7 @@ export default {
 
   data() {
     return {
+        modalShow: false,
       data: {
         hover: false,
         category: "",

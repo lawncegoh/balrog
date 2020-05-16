@@ -18,8 +18,10 @@ import StarRating from 'vue-star-rating';
 import 'vue-chartist';
 import 'vuetify/dist/vuetify.min.css';
 import FullCalendar from 'vue-full-calendar';
-
 import VueSimpleAlert from "vue-simple-alert";
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 Vue.use(VueSimpleAlert);
 
@@ -30,6 +32,8 @@ Vue.use(CarouselPlugin);
 Vue.use(NavbarPlugin);
 Vue.use(Vuetify);
 Vue.use(require('vue-chartist'));
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
 
 
 window.$ = window.jQuery = jQuery;
