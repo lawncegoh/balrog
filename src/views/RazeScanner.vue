@@ -121,6 +121,7 @@ export default {
     orderCallback(data) {
       this.browsing = false;
       this.ordering = true;
+      this.comparing = false;
       this.ordered = data;
       console.log(data);
     },
