@@ -7,7 +7,9 @@
       <br />
       <div class="title">
         <h5>Cloud Databases</h5>
-        <p>Future-proof your database with one of these awesome cloud providers</p>
+        <p>
+          Future-proof your database with one of these awesome cloud providers
+        </p>
       </div>
 
       <section>
@@ -23,13 +25,38 @@
         >
           <template v-slot:default="{ item }">
             <div class="item">
-              <img v-if="item.id==='0'" src= "amazon.png" height="100%" width="100%" />
-              <img v-else-if="item.id==='1'"src= "azure-sql.png" height="70%" width="70%" />
-              <img v-else-if="item.id==='2'"src= "oracle.png" height="80%" width="80%" />
-              <img v-else-if="item.id==='3'"src= "ibm.png" height="80%" width="80%" />
-              <img v-else-if="item.id==='4'"src= "google-cloud.png" height="80%" width="80%" />
+              <img
+                v-if="item.id === '0'"
+                src="amazon.png"
+                height="100%"
+                width="100%"
+              />
+              <img
+                v-else-if="item.id === '1'"
+                src="azure-sql.png"
+                height="70%"
+                width="70%"
+              />
+              <img
+                v-else-if="item.id === '2'"
+                src="oracle.png"
+                height="80%"
+                width="80%"
+              />
+              <img
+                v-else-if="item.id === '3'"
+                src="ibm.png"
+                height="80%"
+                width="80%"
+              />
+              <img
+                v-else-if="item.id === '4'"
+                src="google-cloud.png"
+                height="80%"
+                width="80%"
+              />
 
-              <h5>{{ item.title }}</h5>
+              <h5 class="titlestyle">{{ item.title }}</h5>
               <p>{{ item.content }}</p>
             </div>
           </template>
@@ -55,15 +82,34 @@
         >
           <template v-slot:default="{ item }">
             <div class="item">
-              <img v-if="item.id==='0'" src= "comodo.png" height="100%" width="100%" />
-              <img v-else-if="item.id==='1'"src= "cloudflare.png" height="100%" width="100%" />
-              <img v-else-if="item.id==='2'"src= "openvpn.png" height="100%" width="100%" />
-              <img v-else-if="item.id==='3'"src= "social-engineer.png" height="100%" width="100%" />
+              <img
+                v-if="item.id === '0'"
+                src="comodo.png"
+                height="100%"
+                width="100%"
+              />
+              <img
+                v-else-if="item.id === '1'"
+                src="cloudflare.png"
+                height="100%"
+                width="100%"
+              />
+              <img
+                v-else-if="item.id === '2'"
+                src="openvpn.png"
+                height="100%"
+                width="100%"
+              />
+              <img
+                v-else-if="item.id === '3'"
+                src="social-engineer.png"
+                height="100%"
+                width="100%"
+              />
 
-              <h5>{{ item.title }}</h5>
+              <h5 class = "titlestyle">{{ item.title }}</h5>
               <p>{{ item.content }}</p>
               <button>Click HERE</button>
-
             </div>
           </template>
         </vue-horizontal-list>
@@ -86,7 +132,7 @@
           <template v-slot:default="{ item }">
             <div class="item">
               <img src="razer.png" height="100" width="100" />
-              <h5>{{ item.title }}</h5>
+              <h5 class = "titlestyle">{{ item.title }}</h5>
               <p>{{ item.content }}</p>
             </div>
           </template>
@@ -121,67 +167,96 @@ export default {
         },
       },
       items: [
-        { id: '0', title: "Amazon Relational Database", content: "Amazon Relational Database is a Database as a Service (DBaaS). It is suitable for experienced data users, data scientists and database administrators. This is a good choice for developers already familiar with AWS services. Users need to contact a Database Administrator to get setup as the process is technically involved.", image_src:"comodo.png"},
-        { id: '1', title: "Microsoft Azure SQL Database", content: "Azure’s SQL database has the familiar look and feel of Microsoft. It has a strong SQL engine compatibility and machine learning. The service offers all SQL tools and applications needed for creating a database. It's easy to use.", image_src:"razer.png" },
-        { id: '2',title: "Oracle Database", content: "All of your data and applications can be integrated. The solution enables the user to migrate all processes to the cloud. Everything is managed via a single platform. All data is encrypted by default. Oracle Cloud Platform claims their solution does everything for you. This saves time on repetitive tasks such as system maintenance, deploying solutions and necessary updates.", image_src:'' },
-        { id: '3',title: "IBM DB2 on Cloud", content: "IBM's Db2 on Cloud is a fully managed SQL database that runs in the cloud. It's quick and easy to set up and allows for flexible scaling, so you only need to pay for what you actually use in terms of resources. It also comes with AI capabilities built in, and security patching it automated through rolling updates. It's easy to retrieve datasets as and when you need to look at them. Db2 on Cloud can also be set up on a private VPN.", image_src:'' },
-        { id: '4',title: "Google Cloud SQL", content: "The platform provides a fully managed service, specifically for relational databases such as MySQL, PostgreSQL, and SQL Server, and aims to provide strong performance, availability, scalability, and convenience, while also using Google's private global network for enhanced security.", image_src:""},
-
+        {
+          id: "0",
+          title: "Amazon Relational Database",
+          content:
+            "Amazon Relational Database is a Database as a Service (DBaaS). It is suitable for experienced data users, data scientists and database administrators. This is a good choice for developers already familiar with AWS services. Users need to contact a Database Administrator to get setup as the process is technically involved.",
+          image_src: "comodo.png",
+        },
+        {
+          id: "1",
+          title: "Microsoft Azure SQL Database",
+          content:
+            "Azure’s SQL database has the familiar look and feel of Microsoft. It has a strong SQL engine compatibility and machine learning. The service offers all SQL tools and applications needed for creating a database. It's easy to use.",
+          image_src: "razer.png",
+        },
+        {
+          id: "2",
+          title: "Oracle Database",
+          content:
+            "All of your data and applications can be integrated. The solution enables the user to migrate all processes to the cloud. Everything is managed via a single platform. All data is encrypted by default. Oracle Cloud Platform claims their solution does everything for you. This saves time on repetitive tasks such as system maintenance, deploying solutions and necessary updates.",
+          image_src: "",
+        },
+        {
+          id: "3",
+          title: "IBM DB2 on Cloud",
+          content:
+            "IBM's Db2 on Cloud is a fully managed SQL database that runs in the cloud. It's quick and easy to set up and allows for flexible scaling, so you only need to pay for what you actually use in terms of resources. It also comes with AI capabilities built in, and security patching it automated through rolling updates. It's easy to retrieve datasets as and when you need to look at them. Db2 on Cloud can also be set up on a private VPN.",
+          image_src: "",
+        },
+        {
+          id: "4",
+          title: "Google Cloud SQL",
+          content:
+            "The platform provides a fully managed service, specifically for relational databases such as MySQL, PostgreSQL, and SQL Server, and aims to provide strong performance, availability, scalability, and convenience, while also using Google's private global network for enhanced security.",
+          image_src: "",
+        },
       ],
       items1: [
         {
-          id: '0',
+          id: "0",
           title: "Comodo",
           content:
-            " Comodo is a global, award-winning security provider that offers free and affordable security tools that don't compromise on features and reliability.", 
-          image_src:"comodo.png"
+            " Comodo is a global, award-winning security provider that offers free and affordable security tools that don't compromise on features and reliability.",
+          image_src: "comodo.png",
         },
         {
-          id: '1',
+          id: "1",
           title: "Cloudflare",
           content:
             " Cloudflare automatically detects attacks, blocks them and creates reports to keep you up to date. ",
-          image_src:"razer.png"
+          image_src: "razer.png",
         },
         {
-          id: '2',
+          id: "2",
           title: "OpenVPN",
           content:
             "You can use OpenVPN to make sure your employees aren't accessing your network through an open, unprotected connection. ",
-          image_src:"razer.png"
+          image_src: "razer.png",
         },
         {
-          id: '3',
+          id: "3",
           title: "Social Engineer",
           content:
             "Social-Engineer.com helps organizations identify risk areas and how malicious attackers can exploit vulnerabilities to gain unauthorized access to infrastructures.",
-          image_src:"razer.png"
+          image_src: "razer.png",
         },
       ],
       items2: [
         {
-          id: '0',
+          id: "0",
           title: "Singtel MecWise Payroll",
           content:
             "Singtel MecWise Payroll enables companies to easily comply with the pay slip requirement. It calculates different pay components such as bonus, advance pay, monthly variable component (MVC), etc. ",
-          image_src:"razer.png"
+          image_src: "razer.png",
         },
         {
-          id: '1',
+          id: "1",
           title: "Zoho People",
           content:
             "If you only have a few employees, one thing you’ll love about Zoho People is that it’s free to use for up to five employees. After that, the monthly prices scale up with the number of employees like most of the others.",
-          image_src:"razer.png"
+          image_src: "razer.png",
         },
         {
-          id: '2',
+          id: "2",
           title: "Namely",
           content:
             "Namely targets mid-sized companies, which it defines as anything from 15 employees to a few thousand. So, it may not be ideal for a true micro-business, but it’s a great option if you have ambitious growth plans and want a solution that is very scalable. ",
-          image_src:"razer.png"
+          image_src: "razer.png",
         },
         {
-          id: '3',
+          id: "3",
           title: "BreatheHR",
           content:
             "UK-based BreatheHR lets you bring a lot of disparate data together into easy-to-use dashboards for both you and your employees.",
@@ -198,13 +273,15 @@ export default {
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
-
 }
 @media (min-width: 1200px) {
   #app {
     padding-left: 80px;
     padding-right: 80px;
   }
+}
+.titlestyle {
+  padding-top:30px;
 }
 h5 {
   font-size: 18px;
@@ -237,7 +314,7 @@ section {
 .title1 {
   padding-top: 20px;
   padding-bottom: 20px;
-  color: #66B933;
+  color: #66b933;
   font-weight: bold;
 }
 </style>
