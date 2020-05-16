@@ -3,12 +3,42 @@
     <h1 class="title1">
       <center>RazeScanner</center>
     </h1>
+
+    <div class="text-center flex-end">
+      <div v-if="this.comparing">
+        <v-btn @click="browse"  color="#66b933" style="text">
+          Browse
+        </v-btn>
+        <v-btn @click="compare" disabled color="#66b933" style="text">
+          Compare
+        </v-btn>
+      </div>
+      <div v-if="this.browsing">
+        <div v-if="this.compared.length > 1">
+        <v-btn @click="browse" disabled color="#66b933" style="text">
+          Browse
+        </v-btn>
+        <v-btn @click="compare"  color="#66b933" style="text">
+          Compare
+        </v-btn>
+        </div>
+        <div v-else>
+                  <v-btn @click="browse" disabled color="#66b933" style="text">
+          Browse
+        </v-btn>
+        <v-btn @click="compare" disabled color="#66b933" style="text">
+          Compare
+        </v-btn>
+          </div>
+      </div>
+    </div>
+
     <br />
 
     <div v-if="browsing" class="container">
-      <div class="col-md-10 ml-auto mr-auto">
+      <!-- <div class="col-md-10 ml-auto mr-auto">
         <ScannerItem v-bind:order="orderCallback" />
-      </div>
+      </div> -->
       <vue-grid align="stretch" justify="between">
         <vue-cell
           v-for="service in services"
@@ -16,7 +46,14 @@
           width="4of12"
         >
           <!-- <router-link v-bind:to="'/services/' + service.company"> -->
-            <ScannerItem :service="service" :order="orderCallback"/>
+          <ScannerItem
+            :service="service"
+            :order="orderCallback"
+            :addCompare="addToComparison"
+            :browsing="browsing"
+            :comparedItems="compared"
+            :removeCompare="removeFromComparison"
+          />
           <!-- </router-link> -->
         </vue-cell>
       </vue-grid>
@@ -30,7 +67,11 @@
 
     <div v-if="comparing" class="container">
       <div class="col-md-10 ml-auto mr-auto">
-        Comparing
+        <CompareItem
+          :services="compared"
+          :orderCallback="orderCallback"
+          :browsing="browsing"
+        />
       </div>
     </div>
     <!-- <div class="searchbox">
@@ -57,6 +98,7 @@ import db from "@/firebase/init.js";
 import ScannerItem from "../components/ScannerItem.vue";
 import { VueGrid, VueCell } from "vue-grd";
 import OrderItem from "../components/Order.vue";
+import CompareItem from "../components/Compare.vue";
 export default {
   data() {
     return {
@@ -72,14 +114,43 @@ export default {
     ScannerItem,
     VueGrid,
     VueCell,
-    OrderItem
+    OrderItem,
+    CompareItem,
   },
   methods: {
     orderCallback(data) {
       this.browsing = false;
       this.ordering = true;
+      this.comparing = false;
       this.ordered = data;
       console.log(data);
+    },
+    addToComparison(data) {
+      if (this.compared.length < 3) {
+      console.log("pushing data into comparison");
+      this.compared.push(data);
+      console.log(this.compared);
+      } else {
+        alert('You can compare at most 3 companies!');
+      }
+    },
+    removeFromComparison(data) {
+      console.log("removing data from comparison");
+      const index = this.compared.indexOf(data);
+      if (index > -1) {
+        this.compared.splice(index, 1);
+      }
+      console.log(this.compared);
+    },
+    compare() {
+      this.browsing = false;
+      this.ordering = false;
+      this.comparing = true;
+    },
+    browse() {
+      this.browsing = true;
+      this.ordering = false;
+      this.comparing = false;
     },
     // fetchServices() {
     //   this.services = [];
@@ -91,7 +162,7 @@ export default {
     //       });
     //     });
     // },
-  //   }
+    //   }
   },
   created() {
     db.collection("services")
@@ -106,7 +177,13 @@ export default {
             desc: doc.data().description,
             price: doc.data().price,
             total_rating_count: doc.data().total_rating_count,
-            total_rating: doc.data().total_rating,
+            total_rating: doc.data().total_ratings,
+            expertise: doc.data().expertise,
+            standards: doc.data().standards,
+            training: doc.data().training,
+            customers: doc.data().customers,
+            cost_savings: doc.data().cost_savings,
+            cloud_tech: doc.data().cloud_tech,
           };
           console.log("Write succeeded!");
           console.log(data);
@@ -149,7 +226,7 @@ h1 {
 .title1 {
   padding-top: 20px;
   padding-bottom: 20px;
-  color: #66B933;
+  color: #66b933;
   font-weight: bold;
 }
 </style>
