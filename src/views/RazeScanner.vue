@@ -41,15 +41,12 @@ import ScannerItem from "../components/ScannerItem.vue";
 export default {
   data() {
     return {
-<<<<<<< HEAD
       services: [],
-=======
       browsing: true,
       ordering: false,
       comparing: false,
       ordered: null,    
       compared: [],
->>>>>>> 15775c5d4d2b12a13a3d4f378a8beba27ac85aa7
     };
   },
   components: {

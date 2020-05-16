@@ -16,12 +16,10 @@
               <div>
                 <h6>{{ data.description }}</h6>
                 <body>
-                  Category: {{ data.category }} <br />
-                  Contracted: {{ data.contracted_count }}<br />
-                  Rating: {{ data.average_ratings }} <br />
-                <router-link to="/order" v-slot="{ href, route, navigate}">
-                    <button :href="href" @click="order(data)" color="primary" style="text"> Hello </button>
-                </router-link>
+                Category: {{ data.category }} <br />
+                Contracted: {{ data.contracted_count }}<br />
+                Rating: {{ data.average_ratings }} <br />
+                <v-btn @click="order(data)" color="#66b933" style="text"> Order </v-btn>
                 </body>
               </div>
             </div>
