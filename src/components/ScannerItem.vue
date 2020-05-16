@@ -20,7 +20,7 @@
                   Contracted: {{ data.contracted_count }}<br />
                   Rating: {{ data.average_ratings }} <br />
                 <router-link to="/order" v-slot="{ href, route, navigate}">
-                    <button :href="href" @click="navigate" color="primary" style="text"> Hello </button>
+                    <button :href="href" @click="order" color="primary" style="text"> Hello </button>
                 </router-link>
                 </body>
               </div>
@@ -43,6 +43,7 @@ export default {
   components: {
     StarRating
   },
+  props: ["order"],
 
   data() {
     return {

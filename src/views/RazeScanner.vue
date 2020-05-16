@@ -4,9 +4,16 @@
       <center>RazeScanner</center>
     </h1>
     <br />
-    <div class="container">
+
+    <div v-if="browsing" class="container">
       <div class="col-md-10 ml-auto mr-auto">
-        <ScannerItem />
+        <ScannerItem v-bind:order="orderFunction" />
+      </div>
+    </div>
+
+    <div v-if="ordering" class="container">
+      <div class="col-md-10 ml-auto mr-auto">
+        Test
       </div>
     </div>
     <!-- <div class="searchbox">
@@ -34,13 +41,26 @@ import ScannerItem from "../components/ScannerItem.vue";
 export default {
   data() {
     return {
+<<<<<<< HEAD
       services: [],
+=======
+      browsing: true,
+      ordering: false,
+      comparing: false,
+      ordered: null,    
+      compared: [],
+>>>>>>> 15775c5d4d2b12a13a3d4f378a8beba27ac85aa7
     };
   },
   components: {
     ScannerItem,
   },
-  methods: {},
+  methods: {
+    orderFunction() {
+      this.browsing = false;
+      this.ordering = true;
+    }
+  },
   created() {
     db.collection("services")
       .get()
