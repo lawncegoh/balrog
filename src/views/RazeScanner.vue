@@ -16,7 +16,7 @@
           width="4of12"
         >
           <!-- <router-link v-bind:to="'/services/' + service.company"> -->
-            <ScannerItem :service="service" :order="orderFunction"/>
+            <ScannerItem :service="service" :order="orderCallback"/>
           <!-- </router-link> -->
         </vue-cell>
       </vue-grid>
