@@ -27,21 +27,22 @@
                   <h6>{{ service.desc }}</h6>
                   <body>
                     Category: {{ service.category }} <br />
-                    Contracted: {{ service.contracted_count }}<br />
+                    <!-- Contracted: {{ service.contracted_count }}<br />
                     Price: ${{ service.price }} <br />
-                    Rating: {{ calculateAverage }}/5 <br />
+                    Rating: {{ calculateAverage }}/5 <br /> -->
                     <v-btn @click="order(service)" color="#66b933" style="text">
-                      Order
+                    Consult
                     </v-btn>
+
                     <div v-if="isCompared">
-                      <v-btn v-show="browsing" @click="removeCompare(service)" color="#66b933" style="text">
-                      Remove from Comparison
-                      </v-btn>
-                      </div>
+                        <v-btn v-show="browsing" @click="removeCompare(service)" color="#66b933" style="text">
+                        Remove from Comparison
+                        </v-btn>
+                    </div>
                     <div v-else>
-                    <v-btn v-show="browsing" @click="addCompare(service)" color="#66b933" style="text">
-                      Add To Comparison
-                    </v-btn>
+                        <v-btn v-show="browsing" @click="addCompare(service)" color="#66b933" style="text">
+                        Add To Comparison
+                        </v-btn>
                     </div>
                   </body>
                 </div>
