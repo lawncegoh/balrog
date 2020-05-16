@@ -23,12 +23,12 @@
         <h1 :class="$style.green"><strong>
           FundRaze
         </strong></h1>
+        <div><p>Digitalising Your Company One Step at a Time</p></div>
         <h4 :class="$style.green" >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed residamus, inquit, si placet. 
+
         </h4>
 
         <div class="mt-5">
-          <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed residamus, inquit, si placet. </div>
           <form>
             <div class="form-row justify-content-md-center">
               <div class="col-md-auto mb-3">
@@ -71,13 +71,31 @@
     <div class="py-5">
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
-            <h2>XXX</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed residamus, inquit, si placet. Quod quidem nobis non saepe contingit. Cyrenaici quidem non recusant; Si quae forte-possumus. Esse enim quam vellet iniquus iustus poterat inpune. Duo Reges: constructio interrete.</p>
+          <div class="col-md-4">
+            <h3><b>Step 1</b></h3>
+            <p>
+              Start from our RazeAwareness page to understand the various
+              technologies that are needed for your company to grow.
+            </p>
           </div>
-          <div class="col-md-6">
-            <h2>XXX</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed residamus, inquit, si placet. Quod quidem nobis non saepe contingit. Cyrenaici quidem non recusant; Si quae forte-possumus. Esse enim quam vellet iniquus iustus poterat inpune. Duo Reges: constructio interrete.</p>
+          <div class="col-md-4">
+            <h3><b>Step 2</b></h3>
+            <p>
+              Compare all the technologies that your previously read about
+              in the RazeScanner page. Like a shopping cart, add the technologies
+              that you are most interested into a single page and seek to make 
+              payment for them asap.
+            </p>
+          </div>
+          <div class="col-md-4">
+            <h3><b>Step 3</b></h3>
+            <p>
+              Taken aback by the exorbitant fee at the end of your previous 
+              page? Fret Not. In this step, you can easily find your sources 
+              of funding. In priority, you can check for any government funds that 
+              you are eligible for. Second, you can check for loans that you can take 
+              from the various banks. Lastly, you can attain funds through angel investors.
+            </p>
           </div>
         </div>
       </div>
@@ -111,6 +129,7 @@
 </script>
 
 <style module>
+
 .alternate-bg {
   background-color: black;
   border-bottom: solid 1px black;

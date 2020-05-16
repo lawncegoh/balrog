@@ -144,7 +144,7 @@
             <v-container fluid grid-list-lg>
               <v-layout row wrap>
                 <v-flex md8>
-                  <h2>Experiences</h2>
+                  <h2>Founders' Experiences</h2>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -166,9 +166,9 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>Module</th>
-                        <th>Skill</th>
-                        <th>Modify</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Date</th>
                       </tr>
                     </thead>
 
@@ -250,7 +250,7 @@
                         <div class="form-group">
                           <input
                             type="text"
-                            placeholder="Module code (please use capital letters) e.g. CS1010S"
+                            placeholder="Title e.g John(CTO) Harvard Lecturer"
                             v-model="experience.code"
                             class="form-control"
                           />
@@ -258,7 +258,7 @@
                         <div class="form-group">
                           <input
                             type="text"
-                            placeholder="Module name e.g. Discrete Structures"
+                            placeholder="Description e.g Research Fellow for 5 modules "
                             v-model="experience.name"
                             class="form-control"
                           />
@@ -266,7 +266,7 @@
                         <div class="form-group">
                           <input
                             type="text"
-                            placeholder="Your skill level (out of 10) e.g. 7/10"
+                            placeholder="Date e.g DD/MM/YYYY"
                             v-model="experience.skill"
                             class="form-control"
                           />
@@ -308,7 +308,7 @@
             <v-container fluid grid-list-lg>
               <v-layout row wrap>
                 <v-flex md8>
-                  <h2>Skills</h2>
+                  <h2>Business Model</h2>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -323,15 +323,15 @@
                   @click="newSkill"
                   color="#F1BA79"
                   :style="{ float: 'right', color: '#FFFFFF' }"
-                  >Add Skills</v-btn
+                  >Add one Part</v-btn
                 >
 
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>Skills</th>
-                        <th>Modify</th>
+                        <th>Title</th>
+                        <th>Description</th>
                       </tr>
                     </thead>
 
@@ -381,7 +381,7 @@
               <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="editLabel">Add Skill</h5>
+                    <h5 class="modal-title" id="editLabel">Add</h5>
                     <button
                       type="button"
                       class="close"
@@ -398,7 +398,7 @@
                         <div class="form-group">
                           <input
                             type="text"
-                            placeholder="Skill Name"
+                            placeholder="Title e.g Distribution Channel, Value Proposition"
                             v-model="skill.name"
                             class="form-control"
                           />
@@ -406,7 +406,7 @@
                         <div class="form-group">
                           <input
                             type="text"
-                            placeholder="A small write-up about your skill"
+                            placeholder="A small write-up about this part of your business model"
                             v-model="skill.detail"
                             class="form-control"
                           />
@@ -709,6 +709,9 @@ export default {
       this.fetchEverything();
       $('#skill').modal('hide');
     },
+    generateResume() {
+      
+    }
   },
   created() {
     this.fetchEverything();
