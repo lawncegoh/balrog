@@ -11,7 +11,13 @@
           v-bind:key="service.company"
           width="4of12"
         >
-        <ScannerItem :service="service" :order="orderCallback" :addCompare="addToComparison" :browsing="browsing"/>
+        <ScannerItem 
+            :service="service" 
+            :order="orderCallback" 
+            :addCompare="addToComparison" 
+            :browsing="browsing"
+            :comparedItems="services"    
+        />
         </vue-cell>
       </vue-grid>
     </body>
