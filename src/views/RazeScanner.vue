@@ -13,7 +13,13 @@
 
     <div v-if="ordering" class="container">
       <div class="col-md-10 ml-auto mr-auto">
-        {{ ordered.company }}
+        <OrderItem v-bind:service="ordered" />
+      </div>
+    </div>
+
+    <div v-if="comparing" class="container">
+      <div class="col-md-10 ml-auto mr-auto">
+        Comparing
       </div>
     </div>
     <!-- <div class="searchbox">
@@ -38,6 +44,7 @@
 <script>
 import db from "@/firebase/init.js";
 import ScannerItem from "../components/ScannerItem.vue";
+import OrderItem from "../components/Order.vue";
 export default {
   data() {
     return {
@@ -51,12 +58,14 @@ export default {
   },
   components: {
     ScannerItem,
+    OrderItem
   },
   methods: {
     orderCallback(data) {
       this.browsing = false;
       this.ordering = true;
       this.ordered = data;
+      console.log(data);
     }
   },
   created() {

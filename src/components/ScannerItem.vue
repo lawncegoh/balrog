@@ -51,7 +51,7 @@ export default {
             contracted_count: 0,
             description: "",
             price: 0, 
-            total_rating_counts: 0,
+            total_rating_count: 0,
             total_ratings: 0,
             average_ratings: 0
         }
@@ -63,7 +63,7 @@ export default {
         if (user) {
           // User is signed in.
           var db = firebase.firestore();
-          var docRef = db.collection("services").doc("VYUCYSjp4m4YOinJGVZc");
+          var docRef = db.collection("services").doc("AihpygOEGsUQs2W79WRl");
           docRef
             .get()
             .then(doc => {
@@ -74,13 +74,13 @@ export default {
                 this.data.contracted_count = myData.contracted_count;
                 this.data.description = myData.description;
                 this.data.price = myData.price;
-                this.data.total_rating_counts = myData.total_ratings_counts;
+                this.data.total_rating_count = myData.total_rating_count;
                 this.data.total_ratings = myData.total_ratings;
 
-                if (total_rating_counts == 0) {
-                    this.average_ratings = 0;
+                if (this.data.total_rating_count == 0) {
+                    this.data.average_ratings = 0;
                 } else {
-                    this.average_ratings = this.total_ratings / this.total_rating_counts;
+                    this.data.average_ratings = this.data.total_ratings / this.data.total_rating_count;
                 }
               }
             })
