@@ -18,12 +18,12 @@
             </v-list-tile-action>
             <v-list-tile-content v-if="!miniVariant">
               <v-list-tile-title>
-                <h4>Acceleraze</h4>
+                <h4 style="color:#66B933">Acceleraze</h4>
               </v-list-tile-title>
             </v-list-tile-content>
             <v-list-tile-action>
               <v-btn icon @click.stop="miniVariant = !miniVariant">
-                <v-icon
+                <v-icon 
                   v-html="miniVariant ? 'chevron_right' : 'chevron_left'"
                 ></v-icon>
               </v-btn>
@@ -60,7 +60,7 @@
               slot="activator"
             >
               <v-list-tile-action>
-                <v-icon v-html="item.icon"></v-icon>
+                <v-icon medium v-html="item.icon"></v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
                 <v-list-tile-title v-text="item.title"></v-list-tile-title>
@@ -74,7 +74,7 @@
       <v-list subheader :class="{ 'list-border-bottom': miniVariant }">
         <v-list-tile key="lock_open" @click.prevent="signOut">
           <v-list-tile-action>
-            <v-icon>lock_open</v-icon>
+            <v-icon medium>lock_open</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>Logout</v-list-tile-title>

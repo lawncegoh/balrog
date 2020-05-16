@@ -31,7 +31,7 @@
                 <!-- Modal for more details about the company and its services -->
                 <div>
                 <v-btn icon @click="modalShow = !modalShow">
-                    <v-icon>info</v-icon>
+                    <v-icon large>info</v-icon>
                 </v-btn>
 
                 <b-modal v-model="modalShow" :title="service.company" hide-footer>

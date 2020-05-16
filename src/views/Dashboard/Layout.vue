@@ -336,6 +336,7 @@ export default {
   padding-top: 30px;
 }
 h5 {
+  color:#66b933;
   font-size: 20px;
   line-height: 1.5;
   margin: 0 0 8px;
