@@ -152,17 +152,6 @@ export default {
       this.ordering = false;
       this.comparing = false;
     },
-    // fetchServices() {
-    //   this.services = [];
-    //   db.collection("services")
-    //     .get()
-    //     .then((querySnapshot) => {
-    //       querySnapshot.forEach((doc) => {
-    //         this.services.push(doc.data);
-    //       });
-    //     });
-    // },
-    //   }
   },
   created() {
     db.collection("services")
@@ -173,11 +162,7 @@ export default {
             id: doc.id,
             category: doc.data().category,
             company: doc.data().company,
-            // contracted_count: doc.data().contracted_count,
             desc: doc.data().description,
-            // price: doc.data().price,
-            // total_rating_count: doc.data().total_rating_count,
-            // total_rating: doc.data().total_ratings,
             expertise: doc.data().expertise,
             standards: doc.data().standards,
             training: doc.data().training,
