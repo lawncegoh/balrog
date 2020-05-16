@@ -1,6 +1,6 @@
 <template>
   <div id="show-blogs">
-    <h1 class="title">
+    <h1 class="title1">
       <center>RazeScanner</center>
     </h1>
     <br />
@@ -12,11 +12,11 @@
       <vue-grid align="stretch" justify="between">
         <vue-cell
           v-for="service in services"
-          v-bind:key="service.name"
+          v-bind:key="service.company"
           width="4of12"
         >
           <!-- <router-link v-bind:to="'/services/' + service.company"> -->
-            <ScannerItem :service="service" :order="orderFunction"/>
+            <ScannerItem :service="service" :order="orderCallback"/>
           <!-- </router-link> -->
         </vue-cell>
       </vue-grid>
@@ -102,11 +102,11 @@ export default {
             id: doc.id,
             category: doc.data().category,
             company: doc.data().company,
-            concount: doc.data().contracted_count,
+            contracted_count: doc.data().contracted_count,
             desc: doc.data().description,
             price: doc.data().price,
-            totalrcount: doc.data().total_rating_count,
-            totalr: doc.data().total_rating,
+            total_rating_count: doc.data().total_rating_count,
+            total_rating: doc.data().total_rating,
           };
           console.log("Write succeeded!");
           console.log(data);
@@ -124,7 +124,6 @@ h1 {
 #show-blogs {
   max-width: 80%;
   margin: 0px auto;
-  color: #19266e;
 }
 .single-blog {
   padding: 15px;
@@ -147,10 +146,10 @@ h1 {
   margin: 0% 50%;
 }
 
-.title {
+.title1 {
   padding-top: 20px;
   padding-bottom: 20px;
-  color: #66b933;
+  color: #66B933;
   font-weight: bold;
 }
 </style>
