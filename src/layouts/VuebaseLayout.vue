@@ -118,30 +118,31 @@ export default {
       fixed: false,
       analyticsItems: [
         {
+          icon: "person",
+          title: "Company Profile",
+          link: "/profile",
+        },
+        {
           icon: "library_books",
           title: "RazeAwareness",
           link: "/dashboard",
         },
         {
-          icon: 'search',
-          title: 'RazeScanner',
-          link: '/razescanner'
+          icon: "search",
+          title: "RazeScanner",
+          link: "/razescanner",
         },
         {
           icon: "attach_money",
           title: "RazeFunds",
           link: "/chat",
         },
-        {
-          icon: "person",
-          title: "Company Profile",
-          link: "/profile",
-        },
+
         {
           icon: "person",
           title: "About Us",
           link: "/about",
-        }
+        },
       ],
       miniVariant: false,
       right: true,

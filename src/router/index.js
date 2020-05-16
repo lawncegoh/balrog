@@ -48,10 +48,6 @@ const routes = [
     component: () => import('../views/RazeScanner.vue')
   },
   {
-    path: '/tutors/:tut',
-    component: () => import('../views/singleBlog.vue')
-  },
-  {
     path: '/profile',
     name: 'profile',
     component: () => import('../views/Profile/Profile.vue')
