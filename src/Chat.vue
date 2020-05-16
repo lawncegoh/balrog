@@ -18,9 +18,9 @@ export default {
     return {
       myItems: [
         {
-          title: "How many time zones are there in all?",
+          title: "Start-Up SG Equity",
           value:
-            "Given a 24-hour day and 360 degrees of longitude around the Earth",
+            "Managed by SPRING Seeds Capital and SG Innovate",
           category: "Government Grants",
         },
         {
