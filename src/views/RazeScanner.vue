@@ -3,14 +3,34 @@
     <h1 class="title1">
       <center>RazeScanner</center>
     </h1>
-    
+
     <div class="text-center flex-end">
-      <v-btn @click="browse" color="#66b933" style="text">
-        Browse
-      </v-btn>
-      <v-btn @click="compare" color="#66b933" style="text">
-        Compare
-      </v-btn>
+      <div v-if="this.comparing">
+        <v-btn @click="browse"  color="#66b933" style="text">
+          Browse
+        </v-btn>
+        <v-btn @click="compare" disabled color="#66b933" style="text">
+          Compare
+        </v-btn>
+      </div>
+      <div v-if="this.browsing">
+        <div v-if="this.compared.length > 1">
+        <v-btn @click="browse" disabled color="#66b933" style="text">
+          Browse
+        </v-btn>
+        <v-btn @click="compare"  color="#66b933" style="text">
+          Compare
+        </v-btn>
+        </div>
+        <div v-else>
+                  <v-btn @click="browse" disabled color="#66b933" style="text">
+          Browse
+        </v-btn>
+        <v-btn @click="compare" disabled color="#66b933" style="text">
+          Compare
+        </v-btn>
+          </div>
+      </div>
     </div>
 
     <br />
@@ -26,7 +46,14 @@
           width="4of12"
         >
           <!-- <router-link v-bind:to="'/services/' + service.company"> -->
-            <ScannerItem :service="service" :order="orderCallback" :addCompare="addToComparison" :browsing="browsing"/>
+          <ScannerItem
+            :service="service"
+            :order="orderCallback"
+            :addCompare="addToComparison"
+            :browsing="browsing"
+            :comparedItems="compared"
+            :removeCompare="removeFromComparison"
+          />
           <!-- </router-link> -->
         </vue-cell>
       </vue-grid>
@@ -40,7 +67,11 @@
 
     <div v-if="comparing" class="container">
       <div class="col-md-10 ml-auto mr-auto">
-        <CompareItem :services="compared" :orderCallback="orderCallback" :browsing="browsing"/>
+        <CompareItem
+          :services="compared"
+          :orderCallback="orderCallback"
+          :browsing="browsing"
+        />
       </div>
     </div>
     <!-- <div class="searchbox">
@@ -84,7 +115,7 @@ export default {
     VueGrid,
     VueCell,
     OrderItem,
-    CompareItem
+    CompareItem,
   },
   methods: {
     orderCallback(data) {
@@ -94,8 +125,20 @@ export default {
       console.log(data);
     },
     addToComparison(data) {
-      console.log('pushing data into comparison');
+      if (this.compared.length < 3) {
+      console.log("pushing data into comparison");
       this.compared.push(data);
+      console.log(this.compared);
+      } else {
+        alert('You can compare at most 3 companies!');
+      }
+    },
+    removeFromComparison(data) {
+      console.log("removing data from comparison");
+      const index = this.compared.indexOf(data);
+      if (index > -1) {
+        this.compared.splice(index, 1);
+      }
       console.log(this.compared);
     },
     compare() {
@@ -118,7 +161,7 @@ export default {
     //       });
     //     });
     // },
-  //   }
+    //   }
   },
   created() {
     db.collection("services")
@@ -176,7 +219,7 @@ h1 {
 .title1 {
   padding-top: 20px;
   padding-bottom: 20px;
-  color: #66B933;
+  color: #66b933;
   font-weight: bold;
 }
 </style>

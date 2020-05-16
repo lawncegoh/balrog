@@ -27,10 +27,10 @@
             <template v-slot:default="{ item }">
               <div class="item text-center flex-end">
                 <img v-if="item.id==='0'" src= "amazon.png" height="100%" width="100%" />
-                <img v-else-if="item.id==='1'"src= "azure-sql.png" height="60%" width="60%" />
-                <img v-else-if="item.id==='2'"src= "oracle.png" height="60%" width="60%" />
-                <img v-else-if="item.id==='3'"src= "ibm.png" height="60%" width="60%" />
-                <img v-else-if="item.id==='4'"src= "google-cloud.png" height="60%" width="60%" />
+                <img v-else-if="item.id==='1'" src= "azure-sql.png" height="60%" width="60%" />
+                <img v-else-if="item.id==='2'" src= "oracle.png" height="60%" width="60%" />
+                <img v-else-if="item.id==='3'" src= "ibm.png" height="60%" width="60%" />
+                <img v-else-if="item.id==='4'" src= "google-cloud.png" height="60%" width="60%" />
 
                 <h5>{{ item.title }}</h5>
                 <p>{{ items1.data }}</p>
@@ -65,10 +65,10 @@
             <template v-slot:default="{ item }">
               <div class="item text-center flex-end">
                 <img v-if="item.id==='0'" src= "amazon.png" height="100%" width="100%" />
-                <img v-else-if="item.id==='1'"src= "azure-sql.png" height="60%" width="60%" />
-                <img v-else-if="item.id==='2'"src= "oracle.png" height="60%" width="60%" />
-                <img v-else-if="item.id==='3'"src= "ibm.png" height="60%" width="60%" />
-                <img v-else-if="item.id==='4'"src= "google-cloud.png" height="60%" width="60%" />
+                <img v-else-if="item.id==='1'" src= "azure-sql.png" height="60%" width="60%" />
+                <img v-else-if="item.id==='2'" src= "oracle.png" height="60%" width="60%" />
+                <img v-else-if="item.id==='3'" src= "ibm.png" height="60%" width="60%" />
+                <img v-else-if="item.id==='4'" src= "google-cloud.png" height="60%" width="60%" />
 
                 <h5>{{ item.title }}</h5>
                 <p>{{ items1.data }}</p>
@@ -106,11 +106,11 @@
           <template v-slot:default="{ item }">
             <div class="item text-center flex-end">
               <img v-if="item.id==='0'" src= "comodo.png" height="100%" width="100%" />
-              <img v-else-if="item.id==='1'"src= "cloudflare.png" height="100%" width="100%" />
-              <img v-else-if="item.id==='2'"src= "openvpn.png" height="100%" width="100%" />
-              <img v-else-if="item.id==='3'"src= "social-engineer.png" height="100%" width="100%" />
+              <img v-else-if="item.id==='1'" src= "cloudflare.png" height="100%" width="100%" />
+              <img v-else-if="item.id==='2'" src= "openvpn.png" height="100%" width="100%" />
+              <img v-else-if="item.id==='3'" src= "social-engineer.png" height="100%" width="100%" />
 
-              <h5>{{ item.title }}</h5>
+              <h5 class="titlestyle">{{ item.title }}</h5>
               <p>{{ item.content }}</p>
                 <div class="text-center flex-end">
                   <v-btn @click="itemChangeBool(item.id, item.variation)" color="#66b933" style="text">
@@ -144,9 +144,9 @@
             <template v-slot:default="{ item }">
               <div class="item text-center flex-end">
                 <img v-if="item.id==='0'" src= "singtel.png" height="100%" width="100%" />
-                <img v-else-if="item.id==='1'"src= "zoho.png" height="100%" width="100%" />
-                <img v-else-if="item.id==='2'"src= "namely.png" height="60%" width="60%" />
-                <img v-else-if="item.id==='3'"src= "breathe.png" height="100%" width="100%" />
+                <img v-else-if="item.id==='1'" src= "zoho.png" height="100%" width="100%" />
+                <img v-else-if="item.id==='2'" src= "namely.png" height="60%" width="60%" />
+                <img v-else-if="item.id==='3'" src= "breathe.png" height="100%" width="100%" />
                 <h5>{{ item.title }}</h5>
                 <p>{{ item.content }}</p>
                 <div class="text-center flex-end">
@@ -191,7 +191,6 @@
 
       </div>
     </div>
-  </section>
 </template>
 
 <script>
@@ -326,13 +325,15 @@ export default {
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
-
 }
 @media (min-width: 1200px) {
   #app {
     padding-left: 80px;
     padding-right: 80px;
   }
+}
+.titlestyle {
+  padding-top: 30px;
 }
 h5 {
   font-size: 20px;
@@ -367,7 +368,7 @@ section {
 .title1 {
   padding-top: 20px;
   padding-bottom: 20px;
-  color: #66B933;
+  color: #66b933;
   font-weight: bold;
 }
 </style>
