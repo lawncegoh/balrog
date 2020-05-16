@@ -9,14 +9,6 @@
       </ul>
     </v-container>
 
-    <v-container>
-      <h2>These are the grants that are <b>highly recommended</b> for you! :-)</h2>
-      <ul id="recoGrants">
-        <li v-for="r in recommendedGrants">
-          {{ r }}
-        </li>
-      </ul>
-    </v-container>
     <v-container id='questions'>
       <div>
         <div>
@@ -67,6 +59,15 @@
           Submit
         </button>
       </div>
+
+      <v-container>
+      <h2>These are the grants that are <b>highly recommended</b> for you! :-)</h2>
+      <ul id="recoGrants">
+        <li v-for="r in recommendedGrants">
+          {{ r }}
+        </li>
+      </ul>
+    </v-container>
       
     </v-container>
     <div>
@@ -76,6 +77,9 @@
         :items="myItems"
       />
     </div>
+
+    
+    
   </div>
 </template>
 
