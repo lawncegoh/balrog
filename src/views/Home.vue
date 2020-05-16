@@ -113,8 +113,7 @@ export default {
     Calender,
     VueGrid,
     VueCell,
-    TutorCard,
-    ScannerItem
+    TutorCard
   },
 
   data() {
