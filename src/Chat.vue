@@ -5,6 +5,7 @@
       @itemSelect="onItemSelect"
       :items="myItems"
     />
+  
   <div>
     <v-container>
       <h2>These are the grants that are currently available</h2>
