@@ -165,7 +165,7 @@
 
       <!-- Article Rendering based on topic-->
       <section v-else-if="this.globalBool==true">
-        <v-container v-if="this.whichItemsArray == '1'">
+        <v-container v-if="this.whichItemsArray == '0'">
           <h1> {{ items0[this.index].title }} </h1>
           <p> {{ items0[this.index].data }} </p>
         </v-container>
@@ -220,8 +220,9 @@ export default {
       index: null,
       globalBool: false,
       whichItemsArray: null,
+      stringyStuff: '',
       items0: [
-        { id: '0', variation: 0, title: "Digital transformation and customer experience go hand in hand. These 100 statistics show the growth and importance of digital transformation, its impact on customer experience and digital challenges and opportunities for the future.", data: "asdsdasdasdasadasdad"},
+        { id: '0', variation: 0, title: "Digital transformation and customer experience go hand in hand. These 100 statistics show the growth and importance of digital transformation, its impact on customer experience and digital challenges and opportunities for the future.", data: this.stringyStuff},
         { id: '1', variation: 0, title: "Microsoft Azure SQL Database", content: "Azure’s SQL database has the familiar look and feel of Microsoft. It has a strong SQL engine compatibility and machine learning. The service offers all SQL tools and applications needed for creating a database. It's easy to use.", data: "asdsdasdasdasadasdad" },
         { id: '2', variation: 0, title: "Oracle Database", content: "All of your data and applications can be integrated. The solution enables the user to migrate all processes to the cloud. Everything is managed via a single platform. All data is encrypted by default. Oracle Cloud Platform claims their solution does everything for you. This saves time on repetitive tasks such as system maintenance, deploying solutions and necessary updates.", data: "asdsdasdasdasadasdad"},
         { id: '3', variation: 0, title: "IBM DB2 on Cloud", content: "IBM's Db2 on Cloud is a fully managed SQL database that runs in the cloud. It's quick and easy to set up and allows for flexible scaling, so you only need to pay for what you actually use in terms of resources. It also comes with AI capabilities built in, and security patching it automated through rolling updates. It's easy to retrieve datasets as and when you need to look at them. Db2 on Cloud can also be set up on a private VPN.", data: "asdsdasdasdasadasdad"}
@@ -310,13 +311,22 @@ export default {
     itemChangeBool(id, variation) {
       this.changeBool();
       this.index = id;
-      this.whichItemsArray = variation ;
+      this.whichItemsArray = variation;
     },
     changeBoolBack() {
       this.globalBool=false;
+    },
+    read() {
+      const fs = require('fs') 
+
+      fs.readFile('text.txt', 'utf-8', (err, data) => { 
+      if (err) throw err; 
+        console.log(data); 
+        string.concat(this.stringyStuff, data);
+      });
     }
   }
-};
+}
 </script>
 
 <style scoped>
