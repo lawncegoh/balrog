@@ -138,7 +138,7 @@ export default {
 
 <style scoped>
 h2 {
-  color: #f1ba79;
+  color:#66B933;
   font-weight: bold;
 }
 h3 {
@@ -148,7 +148,7 @@ h3 {
   margin: -3.5rem;
 }
 .top-card {
-  background-color: #f1ba79;
+  background-color:#66B933;
   display: flex;
   justify-content: center;
   align-items: flex-end;

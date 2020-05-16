@@ -21,7 +21,7 @@
 
                   <v-btn
                     :style="{ align: 'center', color: '#FFFFFF' }"
-                    color="#F1BA79"
+                    color="#66B933"
                     large
                     tile
                     outlined
@@ -262,7 +262,7 @@ export default {
   padding-bottom: 20px;
 }
 h2 {
-  color: #f1ba79;
+  color: #66B933;
   font-weight: bold;
 }
 h3 {
@@ -273,7 +273,7 @@ h3 {
 }
 .top-card {
   height: 8rem;
-  background-color: #f1ba79;
+  background-color: #66B933;
   display: flex;
   justify-content: center;
   align-items: flex-end;

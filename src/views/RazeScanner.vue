@@ -152,17 +152,6 @@ export default {
       this.ordering = false;
       this.comparing = false;
     },
-    // fetchServices() {
-    //   this.services = [];
-    //   db.collection("services")
-    //     .get()
-    //     .then((querySnapshot) => {
-    //       querySnapshot.forEach((doc) => {
-    //         this.services.push(doc.data);
-    //       });
-    //     });
-    // },
-    //   }
   },
   created() {
     db.collection("services")
@@ -173,17 +162,14 @@ export default {
             id: doc.id,
             category: doc.data().category,
             company: doc.data().company,
-            contracted_count: doc.data().contracted_count,
             desc: doc.data().description,
-            price: doc.data().price,
-            total_rating_count: doc.data().total_rating_count,
-            total_rating: doc.data().total_ratings,
             expertise: doc.data().expertise,
             standards: doc.data().standards,
             training: doc.data().training,
             customers: doc.data().customers,
             cost_savings: doc.data().cost_savings,
             cloud_tech: doc.data().cloud_tech,
+            costs: doc.data().costs,
           };
           console.log("Write succeeded!");
           console.log(data);
@@ -213,7 +199,7 @@ h1 {
   left: 50%;
   top: 7.5%;
   transform: translate(-50%, -50%);
-  background: #f1ba79;
+  background: #66B933;
   height: 5%;
   border-radius: 60px;
   padding: 10px;

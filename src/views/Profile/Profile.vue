@@ -14,115 +14,10 @@
           </v-card> -->
           <ProfileCard />
           <br />
-          <v-btn
-            @click="addHourlyRate"
-            :style="{
-              align: 'center',
-              width: '89%',
-              color: '#FFFFFF',
-              marginLeft: '4%',
-            }"
-            color="#F1BA79"
-            large
-            tile
-            outlined
-            bold
-            >Hourly Rate</v-btn
-          >
+          
 
-          <div
-            class="modal fade"
-            id="rate"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="editLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="editLabel" v-if="modal == 'edit'">
-                    Edit Hourly Rate
-                  </h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <div class="row">
-                    <!-- main module -->
-                    <div class="col-md-8">
-                      <v-slider
-                        v-model="rate"
-                        class="align-center"
-                        :max="50"
-                        :min="0"
-                        hide-details
-                      >
-                        <template v-slot:append>
-                          <v-text-field
-                            v-model="rate"
-                            class="mt-0 pt-0"
-                            hide-details
-                            single-line
-                            type="number"
-                            style="width: 60px"
-                          ></v-text-field>
-                        </template>
-                      </v-slider>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button
-                    @click="addRate(rate)"
-                    type="button"
-                    class="btn btn-primary"
-                    v-if="modal == 'new'"
-                  >
-                    Save changes
-                  </button>
-                  <button
-                    @click="updateRate(rate)"
-                    type="button"
-                    class="btn btn-primary"
-                    v-if="modal == 'edit'"
-                  >
-                    Apply changes
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <br />
-          <v-btn
-            to="/chat"
-            :style="{
-              align: 'center',
-              width: '89%',
-              color: '#FFFFFF',
-              marginLeft: '4%',
-            }"
-            color="#F1BA79"
-            large
-            tile
-            outlined
-            bold
-            >Go to Chat</v-btn
-          >
+
         </v-flex>
 
         <v-flex md8>
@@ -143,7 +38,7 @@
                   class="mx-2"
                   depressed
                   @click="addNewExperience"
-                  color="#F1BA79"
+                  color="#66B933"
                   :style="{ float: 'right', color: '#FFFFFF' }"
                   >Add Experience</v-btn
                 >
@@ -307,7 +202,7 @@
                   class="mx-2"
                   depressed
                   @click="newBusiness"
-                  color="#F1BA79"
+                  color="#66B933"
                   :style="{ float: 'right', color: '#FFFFFF' }"
                   >Add one Part</v-btn
                 >
@@ -703,7 +598,7 @@ export default {
 
 <style scoped>
 h2 {
-  color: #f1ba79;
+  color: #66B933;
   font-weight: bold;
 }
 h3 {
@@ -714,7 +609,7 @@ h3 {
 }
 .top-card {
   height: 8rem;
-  background-color: #f1ba79;
+  background-color: #66B933;
   display: flex;
   justify-content: center;
   align-items: flex-end;

@@ -2,7 +2,7 @@
   <v-container>
     <div class="razefunds">
       <h1 class="title1">
-        <center>RazeScanner</center>
+        <center>RazeFunds</center>
       </h1>
 
       <div class="container">
