@@ -123,9 +123,9 @@ export default {
           link: "/dashboard",
         },
         {
-          icon: "search",
-          title: "RazeScanner",
-          link: "/search",
+          icon: 'search',
+          title: 'RazeScanner',
+          link: '/razescanner'
         },
         {
           icon: "attach_money",
