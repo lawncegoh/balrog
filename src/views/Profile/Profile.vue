@@ -30,96 +30,82 @@
             >Hourly Rate</v-btn
           >
 
-<div
-              class="modal fade"
-              id="rate"
-              tabindex="-1"
-              role="dialog"
-              aria-labelledby="editLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5
-                      class="modal-title"
-                      id="editLabel"
-                      v-if="modal == 'edit'"
-                    >
-                      Edit Hourly Rate
-                    </h5>
-                    <button
-                      type="button"
-                      class="close"
-                      data-dismiss="modal"
-                      aria-label="Close"
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="row">
-                      <!-- main module -->
-                      <div class="col-md-8">
-                        
-                        
-                        <v-slider
-            v-model="rate"
-            class="align-center"
-            :max=50
-            :min=0
-            hide-details
+          <div
+            class="modal fade"
+            id="rate"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="editLabel"
+            aria-hidden="true"
           >
-            <template v-slot:append>
-              <v-text-field
-                v-model="rate"
-                class="mt-0 pt-0"
-                hide-details
-                single-line
-                type="number"
-                style="width: 60px"
-              ></v-text-field>
-            </template>
-          </v-slider>
-                      </div>
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editLabel" v-if="modal == 'edit'">
+                    Edit Hourly Rate
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <!-- main module -->
+                    <div class="col-md-8">
+                      <v-slider
+                        v-model="rate"
+                        class="align-center"
+                        :max="50"
+                        :min="0"
+                        hide-details
+                      >
+                        <template v-slot:append>
+                          <v-text-field
+                            v-model="rate"
+                            class="mt-0 pt-0"
+                            hide-details
+                            single-line
+                            type="number"
+                            style="width: 60px"
+                          ></v-text-field>
+                        </template>
+                      </v-slider>
                     </div>
                   </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                    <button
-                      @click="addRate(rate)"
-                      type="button"
-                      class="btn btn-primary"
-                      v-if="modal == 'new'"
-                    >
-                      Save changes
-                    </button>
-                    <button
-                      @click="updateRate(rate)"
-                      type="button"
-                      class="btn btn-primary"
-                      v-if="modal == 'edit'"
-                    >
-                      Apply changes
-                    </button>
-                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    @click="addRate(rate)"
+                    type="button"
+                    class="btn btn-primary"
+                    v-if="modal == 'new'"
+                  >
+                    Save changes
+                  </button>
+                  <button
+                    @click="updateRate(rate)"
+                    type="button"
+                    class="btn btn-primary"
+                    v-if="modal == 'edit'"
+                  >
+                    Apply changes
+                  </button>
                 </div>
               </div>
             </div>
-
-
-
-
-
-
-
-
+          </div>
 
           <br />
           <v-btn
@@ -450,13 +436,13 @@
 </template>
 
 <script>
-import { VueEditor } from 'vue2-editor';
-import firebase from 'firebase';
-import StarRating from 'vue-star-rating';
-import ProfileCard from '../../components/ProfileCard';
-import MessageCard from '../../components/MessageCard';
+import { VueEditor } from "vue2-editor";
+import firebase from "firebase";
+import StarRating from "vue-star-rating";
+import ProfileCard from "../../components/ProfileCard";
+import MessageCard from "../../components/MessageCard";
 export default {
-  name: 'Modules',
+  name: "Modules",
   components: {
     StarRating,
     ProfileCard,
@@ -465,10 +451,10 @@ export default {
   data() {
     return {
       name: null,
-      year: '',
+      year: "",
       course: null,
       rate: null,
-      nstudents: '-',
+      nstudents: "-",
       rating: 0,
       testlist: [],
       experiences: [],
@@ -489,19 +475,18 @@ export default {
   },
   methods: {
     addHourlyRate() {
-      this.modal = 'edit';
+      this.modal = "edit";
       this.rate = rate;
-      $('#rate').modal('show');
+      $("#rate").modal("show");
     },
     updateRate(rate) {
-      db.collection('users')
-      .doc(firebase.auth().currentUser.uid)
-      .update({
-        rate: rate
-      }
-      );
+      db.collection("users")
+        .doc(firebase.auth().currentUser.uid)
+        .update({
+          rate: rate,
+        });
       this.fetchEverything();
-      $('#rate').modal('hide');
+      $("#rate").modal("hide");
     },
     resetExperience() {
       this.experience = {
@@ -511,15 +496,15 @@ export default {
       };
     },
     addNewExperience() {
-      this.modal = 'new';
+      this.modal = "new";
       this.resetExperience();
-      $('#experience').modal('show');
+      $("#experience").modal("show");
     },
     updateExperience() {
-      db.collection('users')
+      db.collection("users")
         .doc(firebase.auth().currentUser.uid)
-        .collection('modules')
-        .where('id', '==', this.experience.id)
+        .collection("modules")
+        .where("id", "==", this.experience.id)
         .get()
         .then((querySnapshot) => {
           return querySnapshot.docs[0].ref.update({
@@ -531,25 +516,25 @@ export default {
         .then(() => {
           this.fetchEverything();
         });
-      $('#experience').modal('hide');
+      $("#experience").modal("hide");
     },
     editExperience(experience) {
-      this.modal = 'edit';
+      this.modal = "edit";
       this.experience = experience;
-      $('#experience').modal('show');
+      $("#experience").modal("show");
     },
     deleteExperience(experience) {
-      db.collection('users')
+      db.collection("users")
         .doc(firebase.auth().currentUser.uid)
-        .collection('modules')
-        .where('id', '==', experience.id)
+        .collection("modules")
+        .where("id", "==", experience.id)
         .get()
         .then((querySnapshot) => {
           return querySnapshot.docs[0].ref.delete().then(() => {
             this.fetchEverything();
           });
         });
-      db.collection('modules')
+      db.collection("modules")
         .doc(experience.code)
         .update({
           tutors: firebase.firestore.FieldValue.arrayRemove(this.name),
@@ -558,26 +543,26 @@ export default {
     addExperience() {
       this.experience.id = new Date();
       if (this.experience.code != null && this.experience.skill != null) {
-        db.collection('users')
+        db.collection("users")
           .doc(firebase.auth().currentUser.uid)
-          .collection('modules')
+          .collection("modules")
           .add(this.experience)
           .then(() => {
-            alert('Module created successfully');
+            alert("Module created successfully");
           });
 
-        db.collection('modules')
+        db.collection("modules")
           .doc(this.experience.code)
           .get()
           .then((doc) => {
             if (doc.exists) {
-              db.collection('modules')
+              db.collection("modules")
                 .doc(this.experience.code)
                 .update({
                   tutors: firebase.firestore.FieldValue.arrayUnion(this.name),
                 });
             } else {
-              db.collection('modules')
+              db.collection("modules")
                 .doc(this.experience.code)
                 .set({
                   code: this.experience.code,
@@ -587,15 +572,15 @@ export default {
             }
           });
       } else {
-        alert('Enter blank first');
+        alert("Enter blank first");
       }
       this.fetchEverything();
-      $('#experience').modal('hide');
+      $("#experience").modal("hide");
     },
     fetchEverything() {
-      db.collection('users')
+      db.collection("users")
         .doc(firebase.auth().currentUser.uid)
-        .collection('modules')
+        .collection("modules")
         .get()
         .then((querySnapshot) => {
           let allExperiences = [];
@@ -609,7 +594,7 @@ export default {
         if (user) {
           // User is signed in.
           var db = firebase.firestore();
-          var docRef = db.collection('users').doc(user.uid);
+          var docRef = db.collection("users").doc(user.uid);
           docRef
             .get()
             .then((doc) => {
@@ -621,16 +606,16 @@ export default {
               }
             })
             .catch((error) => {
-              console.log('Got an error: ', error);
+              console.log("Got an error: ", error);
             });
         } else {
-          console.log('not signed in');
+          console.log("not signed in");
         }
       });
 
-      db.collection('users')
+      db.collection("users")
         .doc(firebase.auth().currentUser.uid)
-        .collection('skills')
+        .collection("skills")
         .get()
         .then((querySnapshot) => {
           let allSkills = [];
@@ -640,12 +625,12 @@ export default {
           this.skillset = allSkills;
         });
 
-        db.collection('users')
+      db.collection("users")
         .doc(firebase.auth().currentUser.uid)
         .get()
-        .then( (doc) => {
-          this.rate = doc.data().rate
-          });
+        .then((doc) => {
+          this.rate = doc.data().rate;
+        });
     },
     resetSkill() {
       this.skill = {
@@ -655,15 +640,15 @@ export default {
       };
     },
     newSkill() {
-      this.modal = 'new';
+      this.modal = "new";
       this.resetSkill();
-      $('#skill').modal('show');
+      $("#skill").modal("show");
     },
     updateSkill() {
-      db.collection('users')
+      db.collection("users")
         .doc(firebase.auth().currentUser.uid)
-        .collection('skills')
-        .where('id', '==', this.skill.id)
+        .collection("skills")
+        .where("id", "==", this.skill.id)
         .get()
         .then((querySnapshot) => {
           return querySnapshot.docs[0].ref.update({
@@ -674,18 +659,18 @@ export default {
         .then(() => {
           this.fetchEverything();
         });
-      $('#skill').modal('hide');
+      $("#skill").modal("hide");
     },
     editSkill(skill) {
-      this.modal = 'edit';
+      this.modal = "edit";
       this.skill = skill;
-      $('#skill').modal('show');
+      $("#skill").modal("show");
     },
     deleteSkill(skill) {
-      db.collection('users')
+      db.collection("users")
         .doc(firebase.auth().currentUser.uid)
-        .collection('skills')
-        .where('id', '==', skill.id)
+        .collection("skills")
+        .where("id", "==", skill.id)
         .get()
         .then((querySnapshot) => {
           return querySnapshot.docs[0].ref.delete().then(() => {
@@ -696,15 +681,15 @@ export default {
     addSkill() {
       this.skill.id = new Date();
       if (this.skill.name != null && this.skill.detail != null) {
-        db.collection('users')
+        db.collection("users")
           .doc(firebase.auth().currentUser.uid)
-          .collection('skills')
+          .collection("skills")
           .add(this.skill)
           .then(() => {
-            alert('Skill created successfully');
+            alert("Skill created successfully");
           });
       } else {
-        alert('Enter blank first');
+        alert("Enter blank first");
       }
       this.fetchEverything();
       $('#skill').modal('hide');

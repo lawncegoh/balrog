@@ -21,7 +21,7 @@
       <div class="container">
         <!-- <logo /> -->
         <h1 :class="$style.green"><strong>
-          FundRaze
+          Acceleraze
         </strong></h1>
         <div><p>Digitalising Your Company One Step at a Time</p></div>
         <h4 :class="$style.green" >
