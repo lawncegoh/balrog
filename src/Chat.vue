@@ -1,13 +1,83 @@
 <template>
   <div>
-    <VueFaqAccordion
-      @categorySelect="onCategorySelect"
-      @itemSelect="onItemSelect"
-      :items="myItems"
-    />
+    <v-container>
+      <h2>These are the grants that are currently available</h2>
+      <ul id="recoGrants">
+        <li v-for="r in currentGrants">
+          {{ r }}
+        </li>
+      </ul>
+    </v-container>
+
+    <v-container>
+      <h2>These are the grants that are <b>highly recommended</b> for you! :-)</h2>
+      <ul id="recoGrants">
+        <li v-for="r in recommendedGrants">
+          {{ r }}
+        </li>
+      </ul>
+    </v-container>
+    <v-container id='questions'>
+      <div>
+        <div>
+          <h3>Is your company registered in Singapore?</h3>
+        </div>
+      <select v-model="selected1">
+        <option disabled value="" id='q1'>Please select one</option>
+        <option value='1'>TRUE</option>
+        <option value='0'>FALSE</option>
+      </select>
+      <span>Selected: {{ this.selected1 }}</span>
+      </div>
+      <div>
+        <div>
+          <h3>Do you have at least 30% shareholding?</h3>
+        </div>
+        <select v-model="selected2">
+          <option disabled value="" id='q2'>Please select one</option>
+          <option value='1'>TRUE</option>
+          <option value='0'>FALSE</option>
+        </select>
+        <span>Selected: {{ this.selected2 }}</span>
+      </div>
+      <div>
+        <div>
+          <h3>Is your group's annual sales less than 100million</h3>
+        </div>
+        <select v-model="selected3">
+          <option disabled value="" id='q3'>Please select one</option>
+          <option value='1'>TRUE</option>
+          <option value='0'>FALSE</option>
+        </select>
+        <span>Selected: {{ this.selected3 }}</span>
+      </div>
+      <div>
+        <div>
+          <h3>Do you have less than 200 employees?</h3>
+        </div>
+        <select v-model="selected4">
+          <option disabled value="" id='q4'>Please select one</option>
+          <option value='1'>TRUE</option>
+          <option value='0'>FALSE</option>
+        </select>
+        <span>Selected: {{ this.selected4 }}</span>
+      </div>
+      <div>
+        <button v-on:click=onQuizComplete()>
+          Submit
+        </button>
+      </div>
+      
+    </v-container>
+    <div>
+      <VueFaqAccordion
+        @categorySelect="onCategorySelect"
+        @itemSelect="onItemSelect"
+        :items="myItems"
+      />
+    </div>
   </div>
 </template>
-
 
 <script>
 import VueFaqAccordion from "./vue-faq-accordion.vue";
@@ -21,13 +91,20 @@ export default {
       attr2: '',
       attr3: '',
       attr4: '',
-      indexToRemove: [],
-      recommendedGrants:[
-        "Capability Development Grant",
-        "Enhanced ISprint",
-        "Innovation and Cap Voucher",
-        "Productivity Innovation Project"
+      indexToKeep: [],
+      selected1: null,
+      selected2: null,
+      selected3: null,
+      selected4: null,
+
+      currentGrants: [
+        'Capability Development Grant',
+        'Enhanced ISprint',
+        'Innovation and Cap Voucher',
+        'Productivity Innovation Project'
       ],
+      recommendedGrants: [],
+
       grantsBinaries: [
         {grantName: "Capability Development Grant", attr1:"1", attr2:"1", attr3:"1", attr4:"1"},
         {grantName: "Enhanced ISprint", attr1:"1", attr2:"1", attr3:"1", attr4:"1"},
@@ -77,59 +154,67 @@ export default {
     onItemSelect(args) {
       console.log("onItemSelect", args);
     },
-    onQuizComplete() {
-      if (questions.getQ1.answer = TRUE) {
-        this.attr1 = 1;
-      } else {
-        this.attr1 = 0;
-      }
-      if (questions.getQ2.answer = TRUE) {
-        this.attr2 = 1;
-      } else {
-        this.attr2 = 0;
-      }
-      if (questions.getQ3.answer = TRUE) {
-        this.attr3 = 1;
-      } else {
-        this.attr3 = 0;
-      }
-      if (questions.getQ4.answer = TRUE) {
-        this.attr4 = 1;
-      } else {
-       this.attr4 = 0;
-      }
-      determineRightFunds()
+    regenRecoArray() {
+      this.recommendedGrants = [];
     },
     determineRightFunds() {
-      if (this.attr1 != 1) {
-        indexToRemove.push("0");
-        indexToRemove.push("1");
-        indexToRemove.push("2");
-        indexToRemove.push("3");
+      if (this.selected1 != 1) {
       }
-      if (this.attr2 != 1) {
-        indexToRemove.push("3");
+      if (this.selected2 != 1) {
+        if (!(this.indexToKeep.includes("0"))) {
+          this.indexToKeep.push("0");
+        }
+        if (!(this.indexToKeep.includes("1"))) {
+          this.indexToKeep.push("1");
+        }
+        if (!(this.indexToKeep.includes("2"))) {
+          this.indexToKeep.push("2");
+        }
       }
-      if (this.attr3 != 1) {
-        indexToRemove.push("3");
+      if (this.selected3 != 1) {
+        if (!(this.indexToKeep.includes("0"))) {
+          this.indexToKeep.push("0");
+        }
+        if (!(this.indexToKeep.includes("1"))) {
+          this.indexToKeep.push("1");
+        }
+        if (!(this.indexToKeep.includes("2"))) {
+          this.indexToKeep.push("2");
+        }
       }
-      if (this.attr4 != 1) {
-        indexToRemove.push("3");
+      if (this.selected4 != 1) {
+        if (!(this.indexToKeep.includes("0"))) {
+          this.indexToKeep.push("0");
+        }
+        if (!(this.indexToKeep.includes("1"))) {
+          this.indexToKeep.push("1");
+        }
+        if (!(this.indexToKeep.includes("2"))) {
+          this.indexToKeep.push("2");
+        }
       }
     },
     genRecommendedGrants() { //need print all these grants
-      for(var i = 0; i < indexToRemove.length; i++) {
-        recommendedGrants.splice(indexToRemove[i], 1);
+      console.log(this.indexToKeep);
+      for(var i = 0; i < this.indexToKeep.length; i++) {
+        this.recommendedGrants.push(this.currentGrants[this.indexToKeep[i]]);
       }
+      console.log(this.recommendedGrants);
+    },
+    onQuizComplete() {
+      this.determineRightFunds();
+      this.genRecommendedGrants();
     }
   }, created() {
-    this.recommendedGrants = [
+    this.currentGrants = [
         "Capability Development Grant",
         "Enhanced ISprint",
         "Innovation and Cap Voucher",
         "Productivity Innovation Project"
     ]
+    this.regenRecoArray();
   }
+  
 };
 </script>
 
