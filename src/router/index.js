@@ -51,11 +51,6 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: () => import('../views/Profile/Profile.vue')
-  },
-  {
-    path: '/mambu',
-    name: 'mambu',
-    component: () => import('../views/Mambu.vue')
   }
 ];
 

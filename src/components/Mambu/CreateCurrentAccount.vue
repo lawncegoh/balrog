@@ -1,28 +1,62 @@
 <template>
-  <div>
-  <v-btn icon @click="modalShow = !modalShow">
-      <v-icon>info</v-icon>
-  </v-btn>
+<div>
+  <b-modal v-model="modalShow" hide-footer hide-header>
+    <body>
+      <h2 class="text-center">Awesome, lets create your current account now!</h2>
+      <br />
+      <h5 class="text-center">Create your Current Account with a click of a button</h5>
+      <br />
+      <br />
+      <b-btn
+        pill
+        variant="outline-primary"
+        class="next"
+        text-align="right"
+        href="/landing"
+      >Back to Home Page</b-btn>
 
-  <b-modal v-model="modalShow" :title="service.company">
-      <h6>{{service.desc}}</h6>
-      <body>
-          Category: {{service.category}} <br/>
-          Expertise Areas: <br />
-          <ul>
-              <li v-for="area in service.expertise" :key="area">
-                  {{ area }}
-              </li>
-          </ul>
-      </body>
+      <b-btn
+        pill
+        variant="outline-primary"
+        class="next"
+        text-align="right"
+        @click="createCA"
+      >Create Current Account Now</b-btn>
+    </body>
   </b-modal>
-  </div>
+
+  <!-- <div class="component-container">
+    <h2 class="text-center">Awesome, lets create your current account now!</h2>
+    <br />
+    <h4 class="text-center">Create your Current Account with a click of a button</h4>
+    <br />
+    <br />
+    <b-btn
+      pill
+      variant="outline-primary"
+      class="next"
+      text-align="right"
+      href="/landing"
+    >Back to Home Page</b-btn>
+
+    <b-btn
+      pill
+      variant="outline-primary"
+      class="next"
+      text-align="right"
+      @click="next"
+    >Create Current Account Now</b-btn>
+  </div> -->
+</div>
 </template>
 
 <script>
 import StarRating from "vue-star-rating";
-import firebase from "firebase";
+import firebase from 'firebase';
+import db from "@/firebase/init.js";
 import VueSimpleAlert from "vue-simple-alert";
+
+const baseURL = 'http://localhost:3002'
 
 export default {
   components: {
@@ -31,7 +65,40 @@ export default {
   },
   data() {
     return {
-      
+      modalShow: true,
+      userUid: "",
+      key: []
+    }
+  },
+  created() {
+    this.getKey()
+  },
+  methods: {
+    createCA: async function() {
+      try {
+        var body = {
+          "accountHolderKey": this.key
+        }
+        console.log(body)
+        var results = await axios.post(baseURL + "/createSavings", body);
+        // console.log(results.data.theGroup.encodedKey)
+        console.log("Success")
+      } catch(e) {
+        console.error(e)
+      }
+    },
+    getKey() {
+      db.collection('users').doc(firebase.auth().currentUser.uid)
+        .get().then((doc) => {
+          if (doc.exists) {
+            this.key = doc.data().groupid
+            // console.log(this.key)
+          } else {
+            console.log("No such document")
+          }
+          
+        });
+        // console.log(keyHere)
     }
   }
 }
@@ -39,14 +106,14 @@ export default {
 
 <style scoped>
 .component-container {
-      margin: 0 10px 20px 10px;
-      padding: 20px;
-      background: lightblue;
-      border-radius: 4px;
-      border: 1px solid #EBEBEB;
-      min-width: 300px;
-      transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-      flex: 1 0 48%;
-
-    }
+  margin: 300px auto;
+  width: 65%;
+  padding: 20px;
+  background: rgb(58, 58, 218);
+  border-radius: 14px;
+  border: 3px solid #ebebeb;
+  min-width: 300px;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  flex: 1 0 48%;
+}
 </style>
