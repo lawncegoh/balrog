@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="razefunds">
     <VueFaqAccordion
       @categorySelect="onCategorySelect"
       @itemSelect="onItemSelect"
@@ -134,6 +134,14 @@ export default {
 </script>
 
 <style scoped>
+.razefunds{
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  
+}
+
 .container {
   max-width: 1170px;
   margin: auto;
