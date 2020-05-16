@@ -22,6 +22,11 @@
 
             <v-card-title primary-title>
               <div>
+                <v-col cols="12" sm="3">
+                  <v-btn icon @click="showInfo()">
+                    <v-icon>info</v-icon>
+                  </v-btn>
+                </v-col>
                 <h3>{{ service.company }}</h3>
                 <div>
                   <h6>{{ service.desc }}</h6>
@@ -35,14 +40,24 @@
                     </v-btn>
 
                     <div v-if="isCompared">
-                        <v-btn v-show="browsing" @click="removeCompare(service)" color="#66b933" style="text">
+                      <v-btn
+                        v-show="browsing"
+                        @click="removeCompare(service)"
+                        color="#66b933"
+                        style="text"
+                      >
                         Remove from Comparison
-                        </v-btn>
+                      </v-btn>
                     </div>
                     <div v-else>
-                        <v-btn v-show="browsing" @click="addCompare(service)" color="#66b933" style="text">
+                      <v-btn
+                        v-show="browsing"
+                        @click="addCompare(service)"
+                        color="#66b933"
+                        style="text"
+                      >
                         Add To Comparison
-                        </v-btn>
+                      </v-btn>
                     </div>
                   </body>
                 </div>
@@ -60,16 +75,26 @@
 <script>
 import StarRating from "vue-star-rating";
 import firebase from "firebase";
+import VueSimpleAlert from "vue-simple-alert";
 
 export default {
   components: {
     StarRating,
+    VueSimpleAlert,
   },
-  props: ["order", "service", "addCompare", "browsing", "comparedItems", "removeCompare"],
+  props: [
+    "order",
+    "service",
+    "addCompare",
+    "browsing",
+    "comparedItems",
+    "removeCompare",
+  ],
 
   data() {
     return {
       data: {
+        hover: false,
         category: "",
         company: "",
         contracted_count: 0,
@@ -81,7 +106,11 @@ export default {
       },
     };
   },
-  // methods: {
+  methods: {
+    showInfo() {
+      this.$fire({title: this.service.company, text: this.service.company, text:this.service.company});
+    },
+  },
   //   fetchUser() {
   //     firebase.auth().onAuthStateChanged(user => {
   //       if (user) {
@@ -119,7 +148,11 @@ export default {
   // },
   computed: {
     calculateAverage() {
-      return this.service.total_rating_count == 0 ? 0 : (this.service.total_rating / this.service.total_rating_count).toFixed(2);
+      return this.service.total_rating_count == 0
+        ? 0
+        : (this.service.total_rating / this.service.total_rating_count).toFixed(
+            2
+          );
     },
     isCompared() {
       // check whether in compared

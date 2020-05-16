@@ -125,9 +125,13 @@ export default {
       console.log(data);
     },
     addToComparison(data) {
+      if (this.compared.length < 3) {
       console.log("pushing data into comparison");
       this.compared.push(data);
       console.log(this.compared);
+      } else {
+        alert('You can compare at most 3 companies!');
+      }
     },
     removeFromComparison(data) {
       console.log("removing data from comparison");
