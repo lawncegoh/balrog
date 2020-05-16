@@ -7,7 +7,7 @@
 
     <div v-if="browsing" class="container">
       <div class="col-md-10 ml-auto mr-auto">
-        <ScannerItem v-bind:order="orderFunction" />
+        <ScannerItem v-bind:order="orderCallback" />
       </div>
       <vue-grid align="stretch" justify="between">
         <vue-cell
@@ -24,7 +24,13 @@
 
     <div v-if="ordering" class="container">
       <div class="col-md-10 ml-auto mr-auto">
-        Test
+        <OrderItem v-bind:service="ordered" />
+      </div>
+    </div>
+
+    <div v-if="comparing" class="container">
+      <div class="col-md-10 ml-auto mr-auto">
+        Comparing
       </div>
     </div>
     <!-- <div class="searchbox">
@@ -49,7 +55,11 @@
 <script>
 import db from "@/firebase/init.js";
 import ScannerItem from "../components/ScannerItem.vue";
+<<<<<<< HEAD
 import { VueGrid, VueCell } from "vue-grd";
+=======
+import OrderItem from "../components/Order.vue";
+>>>>>>> 165ea1eacd064cc603f58c6881eb62478325a939
 export default {
   data() {
     return {
@@ -63,13 +73,18 @@ export default {
   },
   components: {
     ScannerItem,
+<<<<<<< HEAD
     VueGrid,
     VueCell,
+=======
+    OrderItem
+>>>>>>> 165ea1eacd064cc603f58c6881eb62478325a939
   },
   methods: {
-    orderFunction() {
+    orderCallback(data) {
       this.browsing = false;
       this.ordering = true;
+<<<<<<< HEAD
     },
     // fetchServices() {
     //   this.services = [];
@@ -81,6 +96,11 @@ export default {
     //       });
     //     });
     // },
+=======
+      this.ordered = data;
+      console.log(data);
+    }
+>>>>>>> 165ea1eacd064cc603f58c6881eb62478325a939
   },
   created() {
     db.collection("services")

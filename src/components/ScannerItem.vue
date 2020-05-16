@@ -16,12 +16,10 @@
               <div>
                 <h6>{{ service.description }}</h6>
                 <body>
-                  Category: {{ service.category }} <br />
-                  Contracted: {{ service.concount }}<br />
-                  Rating: {{ service.average_ratings }} <br />
-                <router-link to="/order" v-slot="{ href, route, navigate}">
-                    <button :href="href" @click="order" color="primary" style="text"> Hello </button>
-                </router-link>
+                Category: {{ service.category }} <br />
+                Contracted: {{ service.contracted_count }}<br />
+                Rating: {{ service.average_ratings }} <br />
+                <v-btn @click="order(service)" color="#66b933" style="text"> Order </v-btn>
                 </body>
               </div>
             </div>
@@ -53,13 +51,13 @@ export default {
             contracted_count: 0,
             description: "",
             price: 0, 
-            total_rating_counts: 0,
+            total_rating_count: 0,
             total_ratings: 0,
             average_ratings: 0
         }
     };
   },
-    props: ["service"],
+    props: ["service", "order"],
   // methods: {
   //   fetchUser() {
   //     firebase.auth().onAuthStateChanged(user => {
