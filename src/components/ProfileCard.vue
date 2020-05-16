@@ -20,6 +20,7 @@
             <v-card-title primary-title>
               <div>
                 <h3>{{ name }}</h3>
+                
                     <br />
                     <br />
                 
