@@ -18,13 +18,17 @@
               <div>
                 <h3>{{ service.company }}</h3>
                 <div>
-                  <h6>{{ service.description }}</h6>
+                  <h6>{{ service.desc }}</h6>
                   <body>
                     Category: {{ service.category }} <br />
                     Contracted: {{ service.contracted_count }}<br />
                     Price: ${{ service.price }} <br />
+                    Rating: {{ calculateAverage }}/5 <br />
                     <v-btn @click="order(service)" color="#66b933" style="text">
                       Order
+                    </v-btn>
+                    <v-btn @click="addCompare(service)" color="#66b933" style="text">
+                      Add To Comparison
                     </v-btn>
                   </body>
                 </div>
@@ -47,7 +51,7 @@ export default {
   components: {
     StarRating,
   },
-  props: ["order", "service"],
+  props: ["order", "service", "addCompare"],
 
   data() {
     return {
@@ -63,7 +67,6 @@ export default {
       },
     };
   },
-  props: ["service", "order"],
   // methods: {
   //   fetchUser() {
   //     firebase.auth().onAuthStateChanged(user => {
@@ -102,7 +105,7 @@ export default {
   // },
   computed: {
     calculateAverage() {
-      return this.total_rating_count == 0 ? 0 : this.total_rating / this.total_rating_count;
+      return this.service.total_rating_count == 0 ? 0 : (this.service.total_rating / this.service.total_rating_count).toFixed(2);
     },
     profileImg() {
       firebase.auth().onAuthStateChanged((user) => {

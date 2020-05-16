@@ -3,12 +3,22 @@
     <h1 class="title1">
       <center>RazeScanner</center>
     </h1>
+    
+    <div class="text-center flex-end">
+      <v-btn @click="browse" color="#66b933" style="text">
+        Browse
+      </v-btn>
+      <v-btn @click="compare" color="#66b933" style="text">
+        Compare
+      </v-btn>
+    </div>
+
     <br />
 
     <div v-if="browsing" class="container">
-      <div class="col-md-10 ml-auto mr-auto">
+      <!-- <div class="col-md-10 ml-auto mr-auto">
         <ScannerItem v-bind:order="orderCallback" />
-      </div>
+      </div> -->
       <vue-grid align="stretch" justify="between">
         <vue-cell
           v-for="service in services"
@@ -16,7 +26,7 @@
           width="4of12"
         >
           <!-- <router-link v-bind:to="'/services/' + service.company"> -->
-            <ScannerItem :service="service" :order="orderCallback"/>
+            <ScannerItem :service="service" :order="orderCallback" :addCompare="addToComparison"/>
           <!-- </router-link> -->
         </vue-cell>
       </vue-grid>
@@ -30,7 +40,7 @@
 
     <div v-if="comparing" class="container">
       <div class="col-md-10 ml-auto mr-auto">
-        Comparing
+        <CompareItem v-bind:services="compared" />
       </div>
     </div>
     <!-- <div class="searchbox">
@@ -57,6 +67,7 @@ import db from "@/firebase/init.js";
 import ScannerItem from "../components/ScannerItem.vue";
 import { VueGrid, VueCell } from "vue-grd";
 import OrderItem from "../components/Order.vue";
+import CompareItem from "../components/Compare.vue";
 export default {
   data() {
     return {
@@ -72,7 +83,8 @@ export default {
     ScannerItem,
     VueGrid,
     VueCell,
-    OrderItem
+    OrderItem,
+    CompareItem
   },
   methods: {
     orderCallback(data) {
@@ -80,6 +92,20 @@ export default {
       this.ordering = true;
       this.ordered = data;
       console.log(data);
+    },
+    addToComparison(data) {
+      console.log('pushing data into comparison: ' + data);
+      this.compared.push(data);
+    },
+    compare() {
+      this.browsing = false;
+      this.ordering = false;
+      this.comparing = true;
+    },
+    browse() {
+      this.browsing = true;
+      this.ordering = false;
+      this.comparing = false;
     },
     // fetchServices() {
     //   this.services = [];
@@ -106,7 +132,7 @@ export default {
             desc: doc.data().description,
             price: doc.data().price,
             total_rating_count: doc.data().total_rating_count,
-            total_rating: doc.data().total_rating,
+            total_rating: doc.data().total_ratings,
           };
           console.log("Write succeeded!");
           console.log(data);
