@@ -708,9 +708,6 @@ export default {
       }
       this.fetchEverything();
       $('#skill').modal('hide');
-    },
-    generateResume() {
-      
     }
   },
   created() {
