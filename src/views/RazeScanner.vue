@@ -32,8 +32,6 @@
         </router-link>
       </div>
     </div> -->
-
-
   </div>
 </template>
 
@@ -43,15 +41,19 @@ import ScannerItem from "../components/ScannerItem.vue";
 export default {
   data() {
     return {
+<<<<<<< HEAD
+      services: [],
+=======
       browsing: true,
       ordering: false,
       comparing: false,
       ordered: null,    
       compared: [],
+>>>>>>> 15775c5d4d2b12a13a3d4f378a8beba27ac85aa7
     };
   },
   components: {
-    ScannerItem
+    ScannerItem,
   },
   methods: {
     orderCallback(data) {
@@ -61,23 +63,26 @@ export default {
     }
   },
   created() {
-    db.collection("modules")
+    db.collection("services")
       .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
           const data = {
             id: doc.id,
-            code: doc.data().code,
-            name: doc.data().name,
-            tutors: doc.data().tutors,
-            modules: doc.data().modules
+            category: doc.data().category,
+            company: doc.data().company,
+            concount: doc.data().contracted_count,
+            desc: doc.data().description,
+            price: doc.data().price,
+            totalrcount: doc.data().total_rating_count,
+            totalr: doc.data().total_rating
           };
           console.log("Write succeeded!");
           console.log(data);
-          this.testlist.push(data);
+          this.services.push(data);
         });
       });
-  }
+  },
 };
 </script>
 
