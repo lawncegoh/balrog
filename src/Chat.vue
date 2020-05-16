@@ -1,93 +1,120 @@
 <template>
-  <div class="razefunds">
-    <VueFaqAccordion
-      @categorySelect="onCategorySelect"
-      @itemSelect="onItemSelect"
-      :items="myItems"
-    />
-  
-  <div>
-    <v-container>
-      <h2>These are the grants that are currently available</h2>
-      <ul id="recoGrants">
-        <li v-for="r in currentGrants">
-          {{ r }}
-        </li>
-      </ul>
-    </v-container>
+  <v-container>
+    <div class="razefunds">
+      <h1 class="title1">
+        <center>RazeScanner</center>
+      </h1>
 
-    <v-container id='questions'>
       <div>
-        <div>
-          <h3>Is your company registered in Singapore?</h3>
-        </div>
-      <select v-model="selected1">
-        <option disabled value="" id='q1'>Please select one</option>
-        <option value='1'>TRUE</option>
-        <option value='0'>FALSE</option>
-      </select>
-      <span>Selected: {{ this.selected1 }}</span>
-      </div>
-      <div>
-        <div>
-          <h3>Do you have at least 30% shareholding?</h3>
-        </div>
-        <select v-model="selected2">
-          <option disabled value="" id='q2'>Please select one</option>
-          <option value='1'>TRUE</option>
-          <option value='0'>FALSE</option>
-        </select>
-        <span>Selected: {{ this.selected2 }}</span>
-      </div>
-      <div>
-        <div>
-          <h3>Is your group's annual sales less than 100million</h3>
-        </div>
-        <select v-model="selected3">
-          <option disabled value="" id='q3'>Please select one</option>
-          <option value='1'>TRUE</option>
-          <option value='0'>FALSE</option>
-        </select>
-        <span>Selected: {{ this.selected3 }}</span>
-      </div>
-      <div>
-        <div>
-          <h3>Do you have less than 200 employees?</h3>
-        </div>
-        <select v-model="selected4">
-          <option disabled value="" id='q4'>Please select one</option>
-          <option value='1'>TRUE</option>
-          <option value='0'>FALSE</option>
-        </select>
-        <span>Selected: {{ this.selected4 }}</span>
-      </div>
-      <div>
-        <button v-on:click=onQuizComplete()>
-          Submit
-        </button>
-      </div>
+        <v-container>
+          <h2 class="headers">
+            These are the grants that are currently available:
+          </h2>
+          <ul id="recoGrants">
+            <li v-for="r in currentGrants">
+              {{ r }}
+            </li>
+          </ul>
+        </v-container>
+        <h2 class="headers">
+          Complete the questionaire to find out what grants you are eligible
+          for!
+        </h2>
+        <v-container id="questions">
+          <div>
+            <div>
+              <h5>Is your company registered in Singapore?</h5>
+            </div>
+            <input type="radio" name="q1" value="1" v-model="selected1" />
+            <span> Yes </span><br />
+            <input type="radio" name="q1" value="0" v-model="selected1" />
+            <span> No </span>
+            <!-- <select v-model="selected1">
+              <option disabled value="" id="q1">(Please select one)</option>
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+            <span> Selected: ?{{ this.selected1 }}</span> -->
+          </div>
+          <br />
+          <div>
+            <div>
+              <h5>Do you have at least 30% shareholding?</h5>
+            </div>
+            <input type="radio" name="q2" value="1" v-model="selected2" />
+            <span> Yes </span><br />
+            <input type="radio" name="q2" value="0" v-model="selected2" />
+            <span> No </span>
+            <!-- <select v-model="selected2">
+              <option disabled value="" id="q2">(Please select one)</option>
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+            <span> Selected: {{ this.selected2 }}</span> -->
+          </div>
+          <br />
+          <div>
+            <div>
+              <h5>Is your group's annual sales less than $100 million?</h5>
+            </div>
+            <input type="radio" name="q3" value="1" v-model="selected3" />
+            <span> Yes </span><br />
+            <input type="radio" name="q3" value="0" v-model="selected3" />
+            <span> No </span>
+            <!-- <select v-model="selected3">
+              <option disabled value="" id="q3">(Please select one)</option>
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+            <span> Selected: {{ this.selected3 }}</span> -->
+          </div>
+          <br />
+          <div>
+            <div>
+              <h5>Do you have less than 200 employees?</h5>
+            </div>
+            <input type="radio" name="q4" value="1" v-model="selected4" />
+            <span> Yes </span><br />
+            <input type="radio" name="q4" value="0" v-model="selected4" />
+            <span> No </span>
+            <!-- <select v-model="selected4">
+              <option disabled value="" id="q4">(Please select one) </option>
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+            <span> Selected: {{ this.selected4 }}</span> -->
+          </div>
+          <br />
+          <div>
+            <v-btn @click="onQuizComplete()" color="success">
+              Find Out!
+            </v-btn>
+          </div>
 
-      <v-container>
-      <h2>These are the grants that are <b>highly recommended</b> for you! :-)</h2>
-      <ul id="recoGrants">
-        <li v-for="r in recommendedGrants">
-          {{ r }}
-        </li>
-      </ul>
-      </v-container>
-      
-    </v-container>
-    <div>
-      <VueFaqAccordion
-        @categorySelect="onCategorySelect"
-        @itemSelect="onItemSelect"
-        :items="myItems"
-      />
+          <v-container v-show="this.complete">
+            <h2 class="headers">
+              These are the grants that are <b>highly recommended</b> for you!
+            </h2>
+            <div v-if="this.recommendedGrants.length === 0">
+              <h4>Sorry, you are not eligible for any grants.</h4>
+            </div>
+            <ul id="recoGrants">
+              <li v-for="r in recommendedGrants">
+                {{ r }}
+              </li>
+            </ul>
+          </v-container>
+        </v-container>
+        <div class="container">
+          <VueFaqAccordion
+            @categorySelect="onCategorySelect"
+            @itemSelect="onItemSelect"
+            :items="myItems"
+          />
+        </div>
+      </div>
     </div>
-
-  </div>
-    
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -98,46 +125,72 @@ export default {
   },
   data() {
     return {
-      attr1: '',
-      attr2: '',
-      attr3: '',
-      attr4: '',
+      attr1: "",
+      attr2: "",
+      attr3: "",
+      attr4: "",
       indexToKeep: [],
       selected1: null,
       selected2: null,
       selected3: null,
       selected4: null,
+      complete: false,
 
       currentGrants: [
-        'Capability Development Grant',
-        'Enhanced ISprint',
-        'Innovation and Cap Voucher',
-        'Productivity Innovation Project'
+        "Capability Development Grant",
+        "Enhanced ISprint",
+        "Innovation and Cap Voucher",
+        "Productivity Innovation Project",
       ],
       recommendedGrants: [],
 
       grantsBinaries: [
-        {grantName: "Capability Development Grant", attr1:"1", attr2:"1", attr3:"1", attr4:"1"},
-        {grantName: "Enhanced ISprint", attr1:"1", attr2:"1", attr3:"1", attr4:"1"},
-        {grantName: "Innovation and Cap Voucher", attr1:"1", attr2:"1", attr3:"1", attr4:"1"},
-        {grantName: "Productivity Innovation Project", attr1:"1", attr2:"0", attr3:"0", attr4:"0"}
+        {
+          grantName: "Capability Development Grant",
+          attr1: "1",
+          attr2: "1",
+          attr3: "1",
+          attr4: "1",
+        },
+        {
+          grantName: "Enhanced ISprint",
+          attr1: "1",
+          attr2: "1",
+          attr3: "1",
+          attr4: "1",
+        },
+        {
+          grantName: "Innovation and Cap Voucher",
+          attr1: "1",
+          attr2: "1",
+          attr3: "1",
+          attr4: "1",
+        },
+        {
+          grantName: "Productivity Innovation Project",
+          attr1: "1",
+          attr2: "0",
+          attr3: "0",
+          attr4: "0",
+        },
       ],
       myItems: [
         {
           title: "Start-Up SG Equity",
-          value:
-            "Managed by SPRING Seeds Capital and SG Innovate",
+          value: "Managed by SPRING Seeds Capital and SG Innovate",
           category: "Government Grants",
         },
         {
           title: "Productivity Solutions Grant (PSG)",
-          value: "The Productivity Solutions Grant (PSG) supports companies keen on adopting IT solutions and equipment to enhance business processes",
-          category: "Government Grants"
+          value:
+            "The Productivity Solutions Grant (PSG) supports companies keen on adopting IT solutions and equipment to enhance business processes",
+          category: "Government Grants",
         },
         {
           title: "SkillsFuture Enterprise Credit (SFEC)",
-          value: " The SkillsFuture Enterprise Credit (SFEC) encourages employers to invest in enterprise transformation and capabilities of their employees",
-          category: "Government Grants"
+          value:
+            " The SkillsFuture Enterprise Credit (SFEC) encourages employers to invest in enterprise transformation and capabilities of their employees",
+          category: "Government Grants",
         },
         {
           title: "How long is a day and year on Venus?",
@@ -172,70 +225,72 @@ export default {
       if (this.selected1 != 1) {
       }
       if (this.selected2 != 1) {
-        if (!(this.indexToKeep.includes("0"))) {
+        if (!this.indexToKeep.includes("0")) {
           this.indexToKeep.push("0");
         }
-        if (!(this.indexToKeep.includes("1"))) {
+        if (!this.indexToKeep.includes("1")) {
           this.indexToKeep.push("1");
         }
-        if (!(this.indexToKeep.includes("2"))) {
+        if (!this.indexToKeep.includes("2")) {
           this.indexToKeep.push("2");
         }
       }
       if (this.selected3 != 1) {
-        if (!(this.indexToKeep.includes("0"))) {
+        if (!this.indexToKeep.includes("0")) {
           this.indexToKeep.push("0");
         }
-        if (!(this.indexToKeep.includes("1"))) {
+        if (!this.indexToKeep.includes("1")) {
           this.indexToKeep.push("1");
         }
-        if (!(this.indexToKeep.includes("2"))) {
+        if (!this.indexToKeep.includes("2")) {
           this.indexToKeep.push("2");
         }
       }
       if (this.selected4 != 1) {
-        if (!(this.indexToKeep.includes("0"))) {
+        if (!this.indexToKeep.includes("0")) {
           this.indexToKeep.push("0");
         }
-        if (!(this.indexToKeep.includes("1"))) {
+        if (!this.indexToKeep.includes("1")) {
           this.indexToKeep.push("1");
         }
-        if (!(this.indexToKeep.includes("2"))) {
+        if (!this.indexToKeep.includes("2")) {
           this.indexToKeep.push("2");
         }
       }
     },
-    genRecommendedGrants() { //need print all these grants
+    genRecommendedGrants() {
+      //need print all these grants
       console.log(this.indexToKeep);
-      for(var i = 0; i < this.indexToKeep.length; i++) {
+      for (var i = 0; i < this.indexToKeep.length; i++) {
         this.recommendedGrants.push(this.currentGrants[this.indexToKeep[i]]);
       }
       console.log(this.recommendedGrants);
     },
     onQuizComplete() {
+      this.recommendedGrants = [];
       this.determineRightFunds();
       this.genRecommendedGrants();
-    }
-  }, created() {
+      this.complete = true;
+      console.log(this.complete);
+      console.log(this.selected1);
+    },
+  },
+  created() {
     this.currentGrants = [
-        "Capability Development Grant",
-        "Enhanced ISprint",
-        "Innovation and Cap Voucher",
-        "Productivity Innovation Project"
-    ]
+      "Capability Development Grant",
+      "Enhanced ISprint",
+      "Innovation and Cap Voucher",
+      "Productivity Innovation Project",
+    ];
     this.regenRecoArray();
-  }
-  
+  },
 };
 </script>
 
 <style scoped>
-.razefunds{
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 20px;
-  
+.razefunds {
+  max-width: 80%;
+  margin: 0px auto;
 }
 
 .container {
@@ -451,5 +506,18 @@ img {
   margin: 10px 5px;
   box-sizing: border-box;
   border: 1px solid #000;
+}
+
+.title1 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #66b933;
+  font-weight: bold;
+}
+.headers {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #66b933;
+  font-weight: bold;
 }
 </style>
