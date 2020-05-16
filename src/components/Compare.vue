@@ -11,7 +11,7 @@
           v-bind:key="service.company"
           width="4of12"
         >
-        <ScannerItem :service="service" :order="orderCallback" :addCompare="addToComparison"/>
+        <ScannerItem :service="service" :order="orderCallback" :addCompare="addToComparison" :browsing="browsing"/>
         </vue-cell>
       </vue-grid>
     </body>
@@ -19,7 +19,11 @@
 </template>
 
 <script>
+import ScannerItem from "../components/ScannerItem.vue";
 export default {
-    props: ["services"]
+    props: ["services", "orderCallback", "browsing"],
+    components: {
+        ScannerItem
+    }
 }
 </script>
