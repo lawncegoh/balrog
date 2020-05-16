@@ -6,7 +6,7 @@
         <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="profile">
           <div class="top-card" style="height:6.5em">
             <v-avatar size="120" class="avatar">
-              <img src="https://ptetutorials.com/images/user-profile.png" class="image" />
+              <img src="razerlogo.jpg" class="image" />
             </v-avatar>
           </div>
 
@@ -19,18 +19,6 @@
                   Category: {{ data.category }} <br />
                   Contracted: {{ data.contracted_count }}<br />
                   Rating: {{ data.average_ratings }} <br />
-                  <!-- Rating:<br />
-                  <star-rating
-                    read-only
-                    v-model="rating"
-                    :show-rating="false"
-                    rounded-corners
-                    :star-size="30"
-                    inline
-                  ></star-rating>
-                  <br />
-                  <br /> -->
-                <!-- <router-link to="{name: 'order', params: {service: data} }" v-slot="{ href, route, navigate}"> -->
                 <router-link to="/order" v-slot="{ href, route, navigate}">
                     <button :href="href" @click="navigate" color="primary" style="text"> Hello </button>
                 </router-link>
@@ -149,7 +137,7 @@ h3 {
   margin: -3.5rem;
 }
 .top-card {
-  background-color: #f1ba79;
+  background-color: #66B933;
   display: flex;
   justify-content: center;
   align-items: flex-end;
