@@ -73,7 +73,7 @@
           {{ r }}
         </li>
       </ul>
-    </v-container>
+      </v-container>
       
     </v-container>
     <div>
@@ -84,7 +84,7 @@
       />
     </div>
 
-    
+  </div>
     
   </div>
 </template>
