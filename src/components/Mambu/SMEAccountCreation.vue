@@ -121,6 +121,7 @@
 </template>
 
 <script>
+  import firebase from 'firebase';
   import db from "@/firebase/init.js";
   import VueInputUi from 'vue-input-ui';
   import 'vue-input-ui/dist/vue-input-ui.css';
@@ -145,8 +146,17 @@
         postcode: "",
         country: "",
         UniqueEntityNumber: "",
-        userUid: "0"
+        userUid: "",
+        groupId: ""
       }
+    },
+    created() {
+        firebase.auth().onAuthStateChanged(user => {
+          
+          this.userUid = user.uid;
+        })
+        
+        
     },
     mounted: async function() {
         try {
@@ -189,21 +199,25 @@
               }
             ]
           }
-          var results = await axios.post(baseURL + "/createAccount", body);
-          console.log(results)
           
+          var results = await axios.post(baseURL + "/createAccount", body);
+          // console.log(results.data.theGroup.encodedKey)
+          this.groupId = await results.data.theGroup.encodedKey
+ 
+          this.insertIntoDb();
         } catch(e) {
-          console.log(body)
           console.error(e)
         }
       },
-      getUserUid() {
-        firebase.auth().onAuthStateChanged(user => {
-          this.userUid = user.uid;
-        })
-      },
-      insertIntoDb() {
-        db.collection("users")
+      insertIntoDb: async function() {
+        var userRef = await db.collection("users")
+          .doc(this.userUid);
+
+        userRef.update({
+              branchkey: this.assignedBranchKey,
+              groupid: this.groupId
+            });
+
       }
     }
   }
