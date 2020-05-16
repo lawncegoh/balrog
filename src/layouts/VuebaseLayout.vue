@@ -129,7 +129,7 @@ export default {
         {
           icon: 'search',
           title: 'RazeScanner',
-          link: '/search'
+          link: '/razescanner'
         },
         {
           icon: 'chat',

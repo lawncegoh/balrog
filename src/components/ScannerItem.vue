@@ -12,13 +12,13 @@
 
           <v-card-title primary-title>
             <div>
-              <h3>{{ company }}</h3>
+              <h3>{{ data.company }}</h3>
               <div>
-                <h6>{{ description }}</h6>
+                <h6>{{ data.description }}</h6>
                 <body>
-                  Category: {{ category }} <br />
-                  Contracted: {{ contracted_count }}<br />
-                  Rating: {{ average_ratings }} <br />
+                  Category: {{ data.category }} <br />
+                  Contracted: {{ data.contracted_count }}<br />
+                  Rating: {{ data.average_ratings }} <br />
                   <!-- Rating:<br />
                   <star-rating
                     read-only
@@ -30,6 +30,10 @@
                   ></star-rating>
                   <br />
                   <br /> -->
+                <!-- <router-link to="{name: 'order', params: {service: data} }" v-slot="{ href, route, navigate}"> -->
+                <router-link to="/order" v-slot="{ href, route, navigate}">
+                    <button :href="href" @click="navigate" color="primary" style="text"> Hello </button>
+                </router-link>
                 </body>
               </div>
             </div>
@@ -54,14 +58,16 @@ export default {
 
   data() {
     return {
-        category: "",
-        company: "",
-        contracted_count: 0,
-        description: "",
-        price: 0, 
-        total_rating_counts: 0,
-        total_ratings: 0,
-        average_ratings: 0
+        data: {
+            category: "",
+            company: "",
+            contracted_count: 0,
+            description: "",
+            price: 0, 
+            total_rating_counts: 0,
+            total_ratings: 0,
+            average_ratings: 0
+        }
     };
   },
   methods: {
@@ -76,13 +82,13 @@ export default {
             .then(doc => {
               if (doc && doc.exists) {
                 const myData = doc.data();
-                this.category = myData.category;
-                this.company = myData.company;
-                this.contracted_count = myData.contracted_count;
-                this.description = myData.description;
-                this.price = myData.price;
-                this.total_rating_counts = myData.total_ratings_counts;
-                this.total_ratings = myData.total_ratings;
+                this.data.category = myData.category;
+                this.data.company = myData.company;
+                this.data.contracted_count = myData.contracted_count;
+                this.data.description = myData.description;
+                this.data.price = myData.price;
+                this.data.total_rating_counts = myData.total_ratings_counts;
+                this.data.total_ratings = myData.total_ratings;
 
                 if (total_rating_counts == 0) {
                     this.average_ratings = 0;

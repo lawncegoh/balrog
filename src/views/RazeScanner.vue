@@ -1,10 +1,15 @@
 <template>
   <div id="show-blogs">
     <h1 class="modsearch">
-      <center>Module Search</center>
+      <center>RazeScanner</center>
     </h1>
     <br />
-    <div class="searchbox">
+    <div class="container">
+      <div class="col-md-10 ml-auto mr-auto">
+        <ScannerItem />
+      </div>
+    </div>
+    <!-- <div class="searchbox">
       <center>
         <input type="text" v-model="search" placeholder="search module codes" class="show-blogs" />
       </center>
@@ -19,18 +24,24 @@
           <h4>{{ tut }}</h4>
         </router-link>
       </div>
-    </div>
+    </div> -->
+
+
   </div>
 </template>
 
 <script>
 import db from "@/firebase/init.js";
+import ScannerItem from "../components/ScannerItem.vue";
 export default {
-  data() {
-    return {
-      search: "",
-      testlist: []
-    };
+  // data() {
+  //   return {
+  //     search: "",
+  //     testlist: []
+  //   };
+  // },
+  components: {
+    ScannerItem
   },
   methods: {},
   created() {
@@ -50,36 +61,6 @@ export default {
           this.testlist.push(data);
         });
       });
-  },
-  computed: {
-    filteredBlogs: function() {
-      return this.testlist.filter(everymod => {
-        return everymod.code.toUpperCase().match(this.search.toUpperCase());
-      });
-    },
-    created() {
-      db.collection("modules")
-        .get()
-        .then(querySnapshot => {
-          querySnapshot.forEach(doc => {
-            const data = {
-              id: doc.id,
-              code: doc.data().code,
-              name: doc.data().name,
-              tutors: doc.data().tutors,
-              modules: doc.data().modules
-            };
-            this.testlist.push(data);
-          });
-        });
-    },
-    computed: {
-      filteredBlogs: function() {
-        return this.testlist.filter(everymod => {
-          return everymod.code.toUpperCase().match(this.search.toUpperCase());
-        });
-      }
-    }
   }
 };
 </script>
