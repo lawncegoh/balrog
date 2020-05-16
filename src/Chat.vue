@@ -8,6 +8,7 @@
   </div>
 </template>
 
+
 <script>
 import VueFaqAccordion from "./vue-faq-accordion.vue";
 export default {
@@ -16,12 +17,39 @@ export default {
   },
   data() {
     return {
+      attr1: '',
+      attr2: '',
+      attr3: '',
+      attr4: '',
+      indexToRemove: [],
+      recommendedGrants:[
+        "Capability Development Grant",
+        "Enhanced ISprint",
+        "Innovation and Cap Voucher",
+        "Productivity Innovation Project"
+      ],
+      grantsBinaries: [
+        {grantName: "Capability Development Grant", attr1:"1", attr2:"1", attr3:"1", attr4:"1"},
+        {grantName: "Enhanced ISprint", attr1:"1", attr2:"1", attr3:"1", attr4:"1"},
+        {grantName: "Innovation and Cap Voucher", attr1:"1", attr2:"1", attr3:"1", attr4:"1"},
+        {grantName: "Productivity Innovation Project", attr1:"1", attr2:"0", attr3:"0", attr4:"0"}
+      ],
       myItems: [
         {
-          title: "How many time zones are there in all?",
+          title: "Start-Up SG Equity",
           value:
-            "Given a 24-hour day and 360 degrees of longitude around the Earth",
+            "Managed by SPRING Seeds Capital and SG Innovate",
           category: "Government Grants",
+        },
+        {
+          title: "Productivity Solutions Grant (PSG)",
+          value: "The Productivity Solutions Grant (PSG) supports companies keen on adopting IT solutions and equipment to enhance business processes",
+          category: "Government Grants"
+        },
+        {
+          title: "SkillsFuture Enterprise Credit (SFEC)",
+          value: " The SkillsFuture Enterprise Credit (SFEC) encourages employers to invest in enterprise transformation and capabilities of their employees",
+          category: "Government Grants"
         },
         {
           title: "How long is a day and year on Venus?",
@@ -49,7 +77,59 @@ export default {
     onItemSelect(args) {
       console.log("onItemSelect", args);
     },
-  },
+    onQuizComplete() {
+      if (questions.getQ1.answer = TRUE) {
+        this.attr1 = 1;
+      } else {
+        this.attr1 = 0;
+      }
+      if (questions.getQ2.answer = TRUE) {
+        this.attr2 = 1;
+      } else {
+        this.attr2 = 0;
+      }
+      if (questions.getQ3.answer = TRUE) {
+        this.attr3 = 1;
+      } else {
+        this.attr3 = 0;
+      }
+      if (questions.getQ4.answer = TRUE) {
+        this.attr4 = 1;
+      } else {
+       this.attr4 = 0;
+      }
+      determineRightFunds()
+    },
+    determineRightFunds() {
+      if (this.attr1 != 1) {
+        indexToRemove.push("0");
+        indexToRemove.push("1");
+        indexToRemove.push("2");
+        indexToRemove.push("3");
+      }
+      if (this.attr2 != 1) {
+        indexToRemove.push("3");
+      }
+      if (this.attr3 != 1) {
+        indexToRemove.push("3");
+      }
+      if (this.attr4 != 1) {
+        indexToRemove.push("3");
+      }
+    },
+    genRecommendedGrants() { //need print all these grants
+      for(var i = 0; i < indexToRemove.length; i++) {
+        recommendedGrants.splice(indexToRemove[i], 1);
+      }
+    }
+  }, created() {
+    this.recommendedGrants = [
+        "Capability Development Grant",
+        "Enhanced ISprint",
+        "Innovation and Cap Voucher",
+        "Productivity Innovation Project"
+    ]
+  }
 };
 </script>
 

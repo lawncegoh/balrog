@@ -43,9 +43,9 @@ const routes = [
     component: () => import('../views/Landing/Landing.vue')
   },
   {
-    path: '/search',
-    name: 'search',
-    component: () => import('../views/Search.vue')
+    path: '/razescanner',
+    name: 'razescanner',
+    component: () => import('../views/RazeScanner.vue')
   },
   {
     path: '/tutors/:tut',
