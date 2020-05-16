@@ -2,7 +2,7 @@
   <div id="app">
     <div id="app">
       <div class="title">
-        <h5>Cloud Services</h5>
+        <h5>Cloud Databases</h5>
         <p>Future-proof your database with one of these awesome cloud providers</p>
       </div>
 
@@ -110,11 +110,7 @@ export default {
         { title: "Oracle Database", content: "All of your data and applications can be integrated. The solution enables the user to migrate all processes to the cloud. Everything is managed via a single platform. All data is encrypted by default. Oracle Cloud Platform claims their solution does everything for you. This saves time on repetitive tasks such as system maintenance, deploying solutions and necessary updates." },
         { title: "IBM DB2 on Cloud", content: "IBM's Db2 on Cloud is a fully managed SQL database that runs in the cloud. It's quick and easy to set up and allows for flexible scaling, so you only need to pay for what you actually use in terms of resources. It also comes with AI capabilities built in, and security patching it automated through rolling updates. It's easy to retrieve datasets as and when you need to look at them. Db2 on Cloud can also be set up on a private VPN." },
         { title: "Google Cloud SQL", content: "The platform provides a fully managed service, specifically for relational databases such as MySQL, PostgreSQL, and SQL Server, and aims to provide strong performance, availability, scalability, and convenience, while also using Google's private global network for enhanced security." },
-        { title: "Item 5", content: "Content item with description" },
-        { title: "Item 6", content: "Content item with description" },
-        { title: "Item 7", content: "Content item with description" },
-        { title: "Item 8", content: "Content item with description" },
-        { title: "Item 9", content: "Content item with description" },
+
       ],
       items1:[
         { title: "Comodo", content: " Comodo is a global, award-winning security provider that offers free and affordable security tools that don't compromise on features and reliability."},
