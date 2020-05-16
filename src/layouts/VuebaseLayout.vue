@@ -2,7 +2,7 @@
   <v-app v-if="user.loggedIn">
     <v-navigation-drawer
       width="250"
-      class="blue-grey darken-4"
+      class="black"
       dark
       persistent
       :mini-variant="miniVariant"
@@ -14,11 +14,11 @@
         <v-list class="pa-0" :class="{ 'list-border-bottom': miniVariant }">
           <v-list-tile>
             <v-list-tile-action v-if="!miniVariant">
-              <img src="./razer.png" height="40" width="40">
+              <img src="./razer.png" height="40" width="40" />
             </v-list-tile-action>
             <v-list-tile-content v-if="!miniVariant">
               <v-list-tile-title>
-                <h4>FundRaze</h4>
+                <h4>Acceleraze</h4>
               </v-list-tile-title>
             </v-list-tile-content>
             <v-list-tile-action>
@@ -38,10 +38,10 @@
           <v-list class="pa-0" :class="{ 'list-border-bottom': miniVariant }">
             <v-list-tile to="/home" exact>
               <v-list-tile-action>
-                <v-icon>home</v-icon>
+                <v-icon>announcement</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
-                <v-list-tile-title>Home</v-list-tile-title>
+                <v-list-tile-title>Announcements</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
           </v-list>
@@ -72,27 +72,23 @@
       </v-list>
       <v-divider></v-divider>
       <v-list subheader :class="{ 'list-border-bottom': miniVariant }">
-      <v-list-tile key="lock_open" @click.prevent="signOut">
-                        <v-list-tile-action>
-                            <v-icon>lock_open</v-icon>
-                        </v-list-tile-action>
-                        <v-list-tile-content>
-                            <v-list-tile-title>Logout</v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
-                          </v-list>
+        <v-list-tile key="lock_open" @click.prevent="signOut">
+          <v-list-tile-action>
+            <v-icon>lock_open</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Logout</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
       <v-divider></v-divider>
 
-      
       <!--<v-divider></v-divider>-->
     </v-navigation-drawer>
-
 
     <v-content>
       <router-view />
     </v-content>
-
-
   </v-app>
   <v-app v-else>
     <v-content>
@@ -102,17 +98,17 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import firebase from 'firebase';
+import { mapGetters } from "vuex";
+import firebase from "firebase";
 
 export default {
-  name: 'VuebaseLayout',
+  name: "VuebaseLayout",
 
   computed: {
     // map `this.user` to `this.$store.getters.user`
     ...mapGetters({
-      user: 'user'
-    })
+      user: "user",
+    }),
   },
 
   data() {
@@ -122,33 +118,32 @@ export default {
       fixed: false,
       analyticsItems: [
         {
-          icon: 'dashboard',
-          title: 'RazeAwareness',
-          link: '/dashboard'
+          icon: "library_books",
+          title: "RazeAwareness",
+          link: "/dashboard",
         },
         {
-          icon: 'search',
-          title: 'RazeScanner',
-          link: '/search'
+          icon: "search",
+          title: "RazeScanner",
+          link: "/search",
         },
         {
-          icon: 'chat',
-          title: 'FundRaze',
-          link: '/chat'
+          icon: "attach_money",
+          title: "RazeFunds",
+          link: "/chat",
         },
         {
-          icon: 'person',
-          title: 'Profile',
-          link: '/profile'
+          icon: "person",
+          title: "Company Profile",
+          link: "/profile",
         },
-
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
 
       searching: false,
-      search: ''
+      search: "",
     };
   },
 
@@ -159,22 +154,20 @@ export default {
         .signOut()
         .then(() => {
           this.$router.replace({
-            name: 'login'
+            name: "login",
           });
         });
     },
     enter() {
       this.$router.push({
-        name: 'Chat',
-        params: { name: user.data.displayName }
+        name: "Chat",
+        params: { name: user.data.displayName },
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped lang="stylus">
 @import '../../node_modules/vuetify/src/stylus/settings/_variables.styl';
-
-
 </style>

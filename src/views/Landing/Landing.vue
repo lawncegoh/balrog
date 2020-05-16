@@ -21,7 +21,7 @@
       <div class="container">
         <!-- <logo /> -->
         <h1 :class="$style.green"><strong>
-          FundRaze
+          Acceleraze
         </strong></h1>
         <h4 :class="$style.green" >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed residamus, inquit, si placet. 
