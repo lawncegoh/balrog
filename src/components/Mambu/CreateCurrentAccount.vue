@@ -1,26 +1,39 @@
 <template>
-  <div class="container">
+  <div>
+  <v-btn icon @click="modalShow = !modalShow">
+      <v-icon>info</v-icon>
+  </v-btn>
 
-    <div class="component-container">
-      <h2> Get Started with your current account </h2>
-      
-      <br>
-
-      <div class="row">
-        <button class="btn btn-primary"  type='submit' name='action'>Create</button>
-        
-        <button class="btn btn-primary" margin="auto" type='submit' name='action' @click>Back to Home</button>
-        
-      </div>
-    </div>
-
+  <b-modal v-model="modalShow" :title="service.company">
+      <h6>{{service.desc}}</h6>
+      <body>
+          Category: {{service.category}} <br/>
+          Expertise Areas: <br />
+          <ul>
+              <li v-for="area in service.expertise" :key="area">
+                  {{ area }}
+              </li>
+          </ul>
+      </body>
+  </b-modal>
   </div>
-  
 </template>
 
 <script>
+import StarRating from "vue-star-rating";
+import firebase from "firebase";
+import VueSimpleAlert from "vue-simple-alert";
+
 export default {
-  
+  components: {
+    StarRating,
+    VueSimpleAlert
+  },
+  data() {
+    return {
+      
+    }
+  }
 }
 </script>
 

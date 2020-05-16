@@ -7,7 +7,7 @@
 
     <div v-if="index === 0" class="container">
       <div class="col-md-10 ml-auto mr-auto">
-        <ScannerItem v-bind:order="orderCallback" />
+        <SMEAccountCreation :order="orderCallback" />
       </div>
       <vue-grid align="stretch" justify="between">
         <vue-cell
@@ -22,13 +22,13 @@
       </vue-grid>
     </div>
 
-    <div v-if="ordering" class="container">
+    <div v-if="index === 1" class="container">
       <div class="col-md-10 ml-auto mr-auto">
-        <OrderItem v-bind:service="ordered" />
+        <Or v-bind:service="ordered" />
       </div>
     </div>
 
-    <div v-if="comparing" class="container">
+    <div v-if="index === 2" class="container">
       <div class="col-md-10 ml-auto mr-auto">
         Comparing
       </div>
@@ -54,27 +54,34 @@
 
 <script>
 import db from "@/firebase/init.js";
-import ScannerItem from "../components/ScannerItem.vue";
+import CreateCurrentAccount from "../components/Mambu/CreateCurrentAccount";
+import SMEAccountCreation from "../components/Mambu/SMEAccountCreation";
+import CreateLoanAccount from "../components/Mambu/CreateLoanAccount";
 import { VueGrid, VueCell } from "vue-grd";
 import OrderItem from "../components/Order.vue";
 export default {
   data() {
     return {
-      services: [],
-      browsing: true,
-      ordering: false,
-      comparing: false,
-      ordered: null,
-      compared: [],
+      index: 0
     };
   },
   components: {
-    ScannerItem,
+    SMEAccountCreation,
+    CreateCurrentAccount,
+    CreateLoanAccount,
     VueGrid,
-    VueCell,
-    OrderItem
+    VueCell
   },
   methods: {
+    increment() {
+      this.index++;
+    },
+    decrement() {
+      this.index--;
+    },
+    submitRegistration() {
+      this.increment();
+    },
     orderCallback(data) {
       this.browsing = false;
       this.ordering = true;
@@ -93,27 +100,27 @@ export default {
     // },
   //   }
   },
-  created() {
-    db.collection("services")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          const data = {
-            id: doc.id,
-            category: doc.data().category,
-            company: doc.data().company,
-            contracted_count: doc.data().contracted_count,
-            desc: doc.data().description,
-            price: doc.data().price,
-            total_rating_count: doc.data().total_rating_count,
-            total_rating: doc.data().total_rating,
-          };
-          console.log("Write succeeded!");
-          console.log(data);
-          this.services.push(data);
-        });
-      });
-  },
+  // created() {
+  //   db.collection("services")
+  //     .get()
+  //     .then((querySnapshot) => {
+  //       querySnapshot.forEach((doc) => {
+  //         const data = {
+  //           id: doc.id,
+  //           category: doc.data().category,
+  //           company: doc.data().company,
+  //           contracted_count: doc.data().contracted_count,
+  //           desc: doc.data().description,
+  //           price: doc.data().price,
+  //           total_rating_count: doc.data().total_rating_count,
+  //           total_rating: doc.data().total_rating,
+  //         };
+  //         console.log("Write succeeded!");
+  //         console.log(data);
+  //         this.services.push(data);
+  //       });
+  //     });
+  // },
 };
 </script>
 

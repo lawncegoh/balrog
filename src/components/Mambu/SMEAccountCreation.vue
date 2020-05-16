@@ -121,6 +121,7 @@
 </template>
 
 <script>
+  import db from "@/firebase/init.js";
   import VueInputUi from 'vue-input-ui';
   import 'vue-input-ui/dist/vue-input-ui.css';
   import axios from 'axios';
@@ -144,6 +145,7 @@
         postcode: "",
         country: "",
         UniqueEntityNumber: "",
+        userUid: "0"
       }
     },
     mounted: async function() {
@@ -194,6 +196,14 @@
           console.log(body)
           console.error(e)
         }
+      },
+      getUserUid() {
+        firebase.auth().onAuthStateChanged(user => {
+          this.userUid = user.uid;
+        })
+      },
+      insertIntoDb() {
+        db.collection("users")
       }
     }
   }
