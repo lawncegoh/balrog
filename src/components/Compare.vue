@@ -1,6 +1,18 @@
 <template>
 <div>
     <body>
+
+        <div class=row>
+            <div class="container col-md-4">
+                
+            </div>
+            <div class="container col-md-4">
+
+            </div>
+            <div class="container col-md-4">
+
+            </div>
+        </div>
         <h1>
         Comparing<br />
         </h1>
