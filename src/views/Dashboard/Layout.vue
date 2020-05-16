@@ -15,7 +15,7 @@
 
         <v-container>
           <vue-horizontal-list
-            :items="items1"
+            :items="items0"
             :options="{
               responsive: [
                 { end: 576, size: 1 },
@@ -26,14 +26,11 @@
           >
             <template v-slot:default="{ item }">
               <div class="item text-center flex-end">
-                <img v-if="item.id==='0'" src= "amazon.png" height="100%" width="100%" />
-                <img v-else-if="item.id==='1'" src= "azure-sql.png" height="60%" width="60%" />
-                <img v-else-if="item.id==='2'" src= "oracle.png" height="60%" width="60%" />
-                <img v-else-if="item.id==='3'" src= "ibm.png" height="60%" width="60%" />
-                <img v-else-if="item.id==='4'" src= "google-cloud.png" height="60%" width="60%" />
-
+                <img v-if="item.id==='0'" src= "digitalisation.jpg" height="100%" width="100%" />
+                <img v-else-if="item.id==='1'" src= "stats.png" height="100%" width="100%" />
+                <img v-else-if="item.id==='2'" src= "funding.jpg" height="100%" width="100%" />
                 <h5>{{ item.title }}</h5>
-                <p>{{ items1.data }}</p>
+                <p>{{ item.content }}</p>
                 <div class="text-center flex-end">
                   <v-btn @click="itemChangeBool(item.id, item.variation)" color="#66b933" style="text">
                     Go to article
@@ -165,6 +162,11 @@
 
       <!-- Article Rendering based on topic-->
       <section v-else-if="this.globalBool==true">
+        <div class="text-center flex-end">
+          <v-btn @click="changeBoolBack()" color="#66b933" style="text">
+            Go back
+          </v-btn>
+        </div>
         <v-container v-if="this.whichItemsArray == '0'">
           <h1> {{ items0[this.index].title }} </h1>
           <p> {{ items0[this.index].data }} </p>
@@ -181,11 +183,6 @@
           <h1> {{ items3[this.index].title }} </h1>
           <p> {{ items3[this.index].data }} </p>
         </v-container>
-        <div class="text-center flex-end">
-          <v-btn @click="changeBoolBack()" color="#66b933" style="text">
-            Go back
-          </v-btn>
-        </div>
       </section>
       <!-- Article Rendering based on topic-->
 
@@ -195,6 +192,9 @@
 
 <script>
 import VueHorizontalList from "./vue-horizontal-list.vue";
+import file1 from '../../../public/text1.txt';
+import file2 from '../../../public/text2.txt';
+
 export default {
   name: "Dashboard",
   components: {
@@ -220,12 +220,12 @@ export default {
       index: null,
       globalBool: false,
       whichItemsArray: null,
-      stringyStuff: '',
+      stringyStuff1: "",
+      stringyStuff2: "",
       items0: [
-        { id: '0', variation: 0, title: "Digital transformation and customer experience go hand in hand. These 100 statistics show the growth and importance of digital transformation, its impact on customer experience and digital challenges and opportunities for the future.", data: this.stringyStuff},
-        { id: '1', variation: 0, title: "Microsoft Azure SQL Database", content: "Azure’s SQL database has the familiar look and feel of Microsoft. It has a strong SQL engine compatibility and machine learning. The service offers all SQL tools and applications needed for creating a database. It's easy to use.", data: "asdsdasdasdasadasdad" },
-        { id: '2', variation: 0, title: "Oracle Database", content: "All of your data and applications can be integrated. The solution enables the user to migrate all processes to the cloud. Everything is managed via a single platform. All data is encrypted by default. Oracle Cloud Platform claims their solution does everything for you. This saves time on repetitive tasks such as system maintenance, deploying solutions and necessary updates.", data: "asdsdasdasdasadasdad"},
-        { id: '3', variation: 0, title: "IBM DB2 on Cloud", content: "IBM's Db2 on Cloud is a fully managed SQL database that runs in the cloud. It's quick and easy to set up and allows for flexible scaling, so you only need to pay for what you actually use in terms of resources. It also comes with AI capabilities built in, and security patching it automated through rolling updates. It's easy to retrieve datasets as and when you need to look at them. Db2 on Cloud can also be set up on a private VPN.", data: "asdsdasdasdasadasdad"}
+        { id: '0', variation: 0, title: "100 Stats on Digitalisation", content: 'Digital transformation and customer experience go hand in hand', data: ''},
+        { id: '1', variation: 0, title: "Why is Digitalisation Important", content: "Azure’s SQL database has the familiar look and feel of Microsoft. It has a strong SQL engine compatibility and machine learning. The service offers all SQL tools and applications needed for creating a database. It's easy to use.", data: '' },
+        { id: '2', variation: 0, title: "7 ways to get funding as a startup!", content: "7 ways!", data: '' }
       ],
       items1: [
         { id: '0', variation: 1, title: "Amazon Relational Database", content: "Amazon Relational Database is a Database as a Service (DBaaS). It is suitable for experienced data users, data scientists and database administrators. This is a good choice for developers already familiar with AWS services. Users need to contact a Database Administrator to get setup as the process is technically involved.", data: "asdsdasdasdasadasdad"},
@@ -316,15 +316,18 @@ export default {
     changeBoolBack() {
       this.globalBool=false;
     },
-    read() {
-      const fs = require('fs') 
-
-      fs.readFile('text.txt', 'utf-8', (err, data) => { 
-      if (err) throw err; 
-        console.log(data); 
-        string.concat(this.stringyStuff, data);
-      });
+    read1() {
+      this.stringyStuff1 = this.stringyStuff1 + file1;
+      this.items0[0].data = this.stringyStuff1;
+    },
+    read2() {
+      this.stringyStuff2 = this.stringyStuff2 + file2;
+      this.items0[1].data = this.stringyStuff2;
     }
+   },
+  created() {
+    this.read1();
+    this.read2();
   }
 }
 </script>
@@ -382,3 +385,5 @@ section {
   font-weight: bold;
 }
 </style>
+
+
