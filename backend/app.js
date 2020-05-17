@@ -39,6 +39,17 @@ app
   .route('/createAccount')
   .post(clientCreation.createSMEAccount)
 
+
+app
+  .route('/createSavings')
+  .post(clientCreation.createSavingsAcc)
+
+app
+  .route('/createLoans')
+  .post(clientCreation.createLoanAcc)
+  
+const url = "https://zqeupwm4b7.execute-api.eu-central-1.amazonaws.com/dev/"
+
 // app.listen(process.env.PORT || 3002, () => {
 //   console.log(`Server listening`)
 // })

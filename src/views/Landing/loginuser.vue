@@ -75,7 +75,7 @@ export default {
             id: user.uid
           }
          
-          this.$router.push({name: 'dashboard'})
+          this.$router.push({name: 'profile'})
           alert(`you are logged in as ${user.user.email}`)
           
         })

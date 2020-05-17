@@ -5,7 +5,7 @@
     </h1>
 
     <div class="text-center flex-end">
-      <div v-if="this.comparing">
+      <div v-if="this.comparing || this.ordering">
         <v-btn @click="browse"  color="#66b933" style="text">
           Browse
         </v-btn>
@@ -36,6 +36,7 @@
     <br />
 
     <div v-if="browsing" class="container">
+      <i><h6 style="padding-left:15px"> Click on the information icon to find out more!</h6></i>
       <!-- <div class="col-md-10 ml-auto mr-auto">
         <ScannerItem v-bind:order="orderCallback" />
       </div> -->
@@ -126,12 +127,12 @@ export default {
       console.log(data);
     },
     addToComparison(data) {
-      if (this.compared.length < 3) {
+      if (this.compared.length < 2) {
       console.log("pushing data into comparison");
       this.compared.push(data);
       console.log(this.compared);
       } else {
-        alert('You can compare at most 3 companies!');
+        alert('You can compare at most 2 companies!');
       }
     },
     removeFromComparison(data) {
@@ -199,7 +200,7 @@ h1 {
   left: 50%;
   top: 7.5%;
   transform: translate(-50%, -50%);
-  background: #f1ba79;
+  background: #66B933;
   height: 5%;
   border-radius: 60px;
   padding: 10px;
