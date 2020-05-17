@@ -1,7 +1,7 @@
 # Acceleraze
 
-> Digitalising Your Company One Step at a Time.
-> Razer Fintech Hackathon
+> Digitalising Your Company One Step at a Time. 
+> Razer Fintech Hackathon. 
 > Check out our Serverless Deployment Web App, Acceleraze at https://d323g1ddhavou7.cloudfront.net/
 
 ## User Deployment Manual :blue_book:
