@@ -178,7 +178,7 @@ import axios from "axios";
 import CreateLoanAccount from "./CreateLoanAccount";
 import VueSimpleAlert from "vue-simple-alert";
 
-const baseURL = "http://localhost:3002";
+const baseURL = "https://o6702mtpsf.execute-api.ap-southeast-1.amazonaws.com/dev/";
 
 export default {
   name: "App",

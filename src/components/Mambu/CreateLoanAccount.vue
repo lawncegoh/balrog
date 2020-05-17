@@ -64,7 +64,7 @@ import firebase from "firebase";
 import db from "@/firebase/init.js";
 import VueSimpleAlert from "vue-simple-alert";
 
-const baseURL = "http://localhost:3002";
+const baseURL = "https://o6702mtpsf.execute-api.ap-southeast-1.amazonaws.com/dev";
 
 export default {
   components: {
