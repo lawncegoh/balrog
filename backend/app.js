@@ -17,6 +17,11 @@ app.get('/', (req, res) => {
   res.json({ info: 'Hello There!' })
 })
 
+app.get('/test', (req, res) => {
+  return res.json({
+    message: 'test works!'
+  })
+})
 
 app
   .route('/getIDDocuments')
@@ -34,6 +39,8 @@ app
   .route('/createAccount')
   .post(clientCreation.createSMEAccount)
 
-app.listen(process.env.PORT || 3002, () => {
-  console.log(`Server listening`)
-})
+// app.listen(process.env.PORT || 3002, () => {
+//   console.log(`Server listening`)
+// })
+
+module.exports = app
