@@ -10,25 +10,27 @@
         <br />
         <br />
         <div class="text-center">
+        <router-link v-bind:to="'/'">
           <b-btn
             pill
             variant="success"
             class="next"
             text-align="right"
-            href="/landing"
             >Back to Home Page</b-btn
           >
+        </router-link>
           <br />
           <br />
+        <router-link v-bind:to="'/'">
           <b-btn
             pill
             variant="success"
             class="next"
             text-align="right"
-            href="/razefunds"
             @click="createLA"
             >Create Loan Account Now</b-btn
           >
+        </router-link>
         </div>
       </body>
     </b-modal>

@@ -87,8 +87,8 @@
 
     <div class="row align-center">
       <div class="container col-md-3"><h4>Estimated Cost Savings</h4></div>
-      <div class="container col-md-3">From SGD${{services[0].cost_savings}} onwards</div>
-      <div class="container col-md-3">From SGD${{services[1].cost_savings}} onwards</div>
+      <div class="container col-md-3">{{services[0].cost_savings}}</div>
+      <div class="container col-md-3">{{services[1].cost_savings}}</div>
     </div>
 
     <div class="row align-center">

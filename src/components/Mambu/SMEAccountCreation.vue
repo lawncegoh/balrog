@@ -125,9 +125,11 @@
         <br />
         <br />
         <div class="text-center ">
-          <b-btn pill variant="success" class="text-center" href="/razefunds"
+        <router-link v-bind:to="'/'">
+          <b-btn pill variant="success" class="text-center"
             >Back to Home Page</b-btn
           >
+        </router-link>
           <br />
           <br />
           <b-btn
