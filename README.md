@@ -2,10 +2,11 @@
 
 > Digitalising Your Company One Step at a Time.
 
+> Check out our Serverless Deployment Web App, Acceleraze at https://d323g1ddhavou7.cloudfront.net/
+
 ## User Deployment Manual :blue_book:
 Feel free to check out our :sparkles: **[Wiki](https://github.com/jordseow/balrog/wiki)** for more information:
   - [Local Deployment Manual](https://github.com/jordseow/balrog/wiki/Local-Deployment-Manual)  
-  - [Serverless Deployment Manual](https://github.com/jordseow/balrog/wiki/Serverless-Deployment-Manual)
 
 ## Build Setup
 
