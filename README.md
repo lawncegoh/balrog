@@ -1,4 +1,5 @@
 # Acceleraze
+# Razer Fintech Hackathon
 
 > Digitalising Your Company One Step at a Time.  
 > Razer Fintech Hackathon.  
